@@ -62,6 +62,7 @@ height: 32.625rem;
 flex-shrink: 0;
 background: #FFF;
 box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.10);
+margin-right : 13.38rem;
 `
 
 const Header = styled.div`
