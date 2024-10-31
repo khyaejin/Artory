@@ -2,13 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Calendar from './Calendar'
 import Memo from './Memo'
-export default function CalendarAndMemo() {
+export default function CalendarAndMemo({currentYear,setCurrentYear}) {
   return (
     <MainLayout>
 
         <Memo/>
         
-        <Calendar/>
+        <Calendar currentYear={currentYear} setCurrentYear={setCurrentYear}/>
       
     </MainLayout>
   )

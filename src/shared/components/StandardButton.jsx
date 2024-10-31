@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-export default function StandardButton({ text, width, height,marginRight }) {
+export default function StandardButton({ text, width, height,marginRight, onClick }) {
     return (
         <MainLayout
             width={width}
             height={height}
             marginRight={marginRight}
+            onClick={onClick}
         >
             {text}
         </MainLayout>
