@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Exhibitions } from '../../../shared/dummy/ExhibitionDummy';
+import StandardPoster from '../../../shared/components/StandardPoster';
 
 export default function SavedExhibitionList() {
     return (
@@ -9,9 +10,7 @@ export default function SavedExhibitionList() {
             <ExhibitionContainer>
                 {
                     Exhibitions.map((e, i) => (
-                        <ExhibitionItem key={i}>
-                            <img src={e.포스터} />
-                        </ExhibitionItem>
+                        <StandardPoster poster={e.포스터}/>
                     ))
                 }
             </ExhibitionContainer>
@@ -38,6 +37,3 @@ const ExhibitionContainer = styled.div`
 display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
 `
-const ExhibitionItem = styled.div`
-margin-bottom : 2.94rem;
-`;
