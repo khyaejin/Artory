@@ -10,22 +10,26 @@ export default function StandardInput({
     height,
     marginTop,
     marginRight,
+    marginBottom,
     isInputClick,
     onFocus,
-    onBlur 
+    onBlur,
+    onKeyDown
 }) {
   return (
     <MainLayout>
 
-      <StyledImg src={GLASSES} /> 
+      {/* <StyledImg src={GLASSES} />  */}
       <StyledInput 
         placeholder={isInputClick ? "" : placeholder} 
         width={width}
         height={height}
         onFocus={onFocus} 
         onBlur={onBlur}
+        onKeyDown={onKeyDown}
         marginTop={marginTop}
         marginRight={marginRight}
+        marginBottom={marginBottom}
         />
 
     </MainLayout>
@@ -43,6 +47,7 @@ width: 100%;
 height: 100%;
 margin-top : ${({marginTop}) => (marginTop || "0")};
 margin-right : ${({marginRight}) => (marginRight || "0")};
+margin-bottom : ${({marginBottom}) => (marginBottom || "0")};
 border: none;
 background-color: #F4F5F7;
 padding-left: 5.19rem;
@@ -59,6 +64,6 @@ const StyledImg = styled.img`
 width: 2.2195rem;
 height: 2.2195rem;
 position: absolute;
-top: 12%;
+top: 22%;
 left: 5%;
 `;
