@@ -19,10 +19,10 @@ import weather_b5 from '../../../assets/weather/weather_b5.svg';
 
 export default function Select({ type, value }) {
     const [isText, setIsText] = useState();
-    const [isClicked, setIsClicked] = useState();
+    const [currentClicked, setCurrentClicked] = useState();
     const selectedFace = [face_b1,face_b2,face_b3,face_b4,face_b5,face_b6,face_b7,face_b8,face_b9]
     const selectedWeather = [weather_b1,weather_b2,weather_b3,weather_b4,weather_b5]
-
+    
     useEffect(() => {
         switch(type) {
             case "관람소요시간":
@@ -38,7 +38,6 @@ export default function Select({ type, value }) {
                 break;
         }
     }, [type]);
-    
     return (
         <MainLayout>
 
@@ -48,7 +47,7 @@ export default function Select({ type, value }) {
                 {
                     isText ?
                     value.map((v, i) => (
-                        <Value key={i} onClick={()=>setIsClicked(i)} isSelected={i === isClicked} >{v}</Value>
+                        <Value key={i} onClick={()=>setCurrentClicked(i)} isSelected={i === currentClicked} >{v}</Value>
                     ))
 
                     :
@@ -56,10 +55,10 @@ export default function Select({ type, value }) {
                     value.map((v,i) => (
                         <Icon 
                             key={i} 
-                            onClick={()=>setIsClicked(i)} 
-                            src={(isClicked === i && type === "만족도") 
+                            onClick={()=>setCurrentClicked(i)} 
+                            src={(currentClicked === i && type === "만족도") 
                             ? selectedFace[i] 
-                            : (isClicked === i && type === "날씨") 
+                            : (currentClicked === i && type === "날씨") 
                             ? selectedWeather[i] 
                             : v}/>
                     ))
@@ -74,7 +73,7 @@ export default function Select({ type, value }) {
 const MainLayout = styled.div`
 display : flex;
 justify-content : space-between;
-width : 75%;
+width : 100%;
 `;
 
 const Type = styled.div`
