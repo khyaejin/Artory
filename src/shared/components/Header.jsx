@@ -34,7 +34,7 @@ export default function NavigationBar() {
 
         <StyledLink
           to="/mystory"
-          selected={location.pathname === '/mystory'}
+          selected={location.pathname === '/mystory' || location.pathname === '/mystory/storywrite'}
         >
           <div>MY STORY</div>
         </StyledLink>
