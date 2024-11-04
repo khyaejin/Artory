@@ -12,6 +12,9 @@ import MyPage from "./pages/MyPage";
 import Home from "./pages/Home";
 import StroyDetail from "./pages/StoryDetail";
 
+import StoryWrite from "./pages/StoryWrite";
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +28,7 @@ function App() {
         <Route  path="/exhibition" element={<Exhibition />}/>
         <Route path="/story" element={<Story/>}/>
         <Route path="/mystory" element={<MyStory/>}/>
+        <Route path="/mystory/storywrite" element={<StoryWrite/>}/>
         <Route path="/mypage" element={<MyPage/>}/>
         <Route path="/story/:id" element={<StroyDetail/>}/>
       </Routes>
