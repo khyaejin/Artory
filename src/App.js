@@ -10,6 +10,7 @@ import Story from "./pages/Story";
 import MyStory from "./pages/MyStory";
 import MyPage from "./pages/MyPage";
 import Home from "./pages/Home";
+import StoryWrite from "./pages/StoryWrite";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route  path="/exhibition" element={<Exhibition />}/>
         <Route path="/story" element={<Story/>}/>
         <Route path="/mystory" element={<MyStory/>}/>
+        <Route path="/mystory/storywrite" element={<StoryWrite/>}/>
         <Route path="/mypage" element={<MyPage/>}/>
       </Routes>
     </BrowserRouter>

@@ -1,20 +1,32 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import StandardButton from '../../../shared/components/StandardButton';
 
 export default function Memo() {
   const [isInputClick, setIsInputClick] = useState(false);
   return (
-    <MainLayout>
-      <StyledMemo 
-        onFocus={()=>setIsInputClick(true)}
-        onBlur={()=>setIsInputClick(false)}
-        placeholder={ isInputClick ? "" : "메모하고 싶은 내용을 적어주세요"}/>
+    <MainLayout style={{position:'relative'}}>
+
+      {/* 메모 */}
+      <StyledMemo
+        onFocus={() => setIsInputClick(true)}
+        onBlur={() => setIsInputClick(false)}
+        placeholder={isInputClick ? "" : "메모하고 싶은 내용을 적어주세요"}
+      />
+
+      {/* 저장 버튼 */}
+      <WrapButton>
+        <StandardButton text="저장" width="4.375rem" height="1.75rem" onClick={()=>alert("메모가 저장되었습니다.")} />
+      </WrapButton>
+
     </MainLayout>
   )
 }
 
 const MainLayout = styled.div`
 margin-left : 13.38rem;
+position : relative;
+
 `
 
 const StyledMemo = styled.textarea`
@@ -31,4 +43,10 @@ padding : 0.94rem 0 0 0.94rem;
 &:focus {
     outline: none;
 }
+`
+
+const WrapButton = styled.div`
+    position : absolute;
+    bottom : 3%;
+    right : 5%;
 `
