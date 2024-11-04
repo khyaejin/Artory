@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Stories } from '../../shared/dummy/StoryDummy';
-import StandardPoster from '../../shared/components/StandardPoster';
+import Poster from './Poster';
 
 import PREVARROW from '../../assets/prevarrow.svg';
 import NEXTARROW from '../../assets/nextarrow.svg';
@@ -42,9 +42,8 @@ export default function CarouselStory({ title }) {
         slidesToScroll: 4,
         prevArrow: <CustomPrevArrow/>,
         nextArrow: <CustomNextArrow/>
-
     }
-    
+
     return (
         <CarouselStoryLayout>
             <StoryTItle>{title}</StoryTItle>
@@ -52,7 +51,7 @@ export default function CarouselStory({ title }) {
                 <Slider {...settings}>
                     {
                         Stories.map((data, i) => (
-                            <StandardPoster key={i} poster={data.포스터} />
+                            <Poster key={i} index={i} poster={data.포스터}/>
                         ))
                     }
                 </Slider>
@@ -62,7 +61,7 @@ export default function CarouselStory({ title }) {
 }
 
 const CarouselStoryLayout = styled.div`
-width: 80%;
+width: 70%;
 
 `;
 
