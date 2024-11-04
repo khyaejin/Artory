@@ -4,32 +4,45 @@ import POSTER3 from '../../assets/poster/3.svg';
 import POSTER4 from '../../assets/poster/4.svg';
 import POSTER5 from '../../assets/poster/5.svg';
 
+// 유저 이미지
+import USER1 from '../../assets/user/1.svg';
+
+// 만족도
+import GOODEMOTION from '../../assets/emotion-good.svg';
+
+// 날씨
+import CLEARWEATHER from '../../assets/weather-clear.svg';
+
 export const Stories = [
     {
         "포스터": POSTER1,
+        "전시이름": "황성욱 개인전 <GIWOOLGI>",
         "작성자": "홍길동",
+        "작성자프로필": USER1,
         "글제목": "빛과 색의 조화 감상기",
-        "방문일": "2024-03-05",
+        "방문일": "2024.03.05",
         "관람소요시간": "2시간",
-        "만족도": 5, // 1에서 5까지의 숫자
-        "날씨": "맑음",
+        "만족도": GOODEMOTION, 
+        "날씨": CLEARWEATHER,
         "동행인": "친구",
         "카테고리": ["현대 미술", "색채 예술"], // 여러 카테고리
+        "키워드": ["# 황성욱", "# 개인전", "# 실물영접"],
         "글내용": [
-            "이번 전시회는 색과 빛의 조화가 정말 인상적이었어요.",
-            { "이미지": "../../assets/content-images/art1.jpg" }, // 사진 포함
-            "각 작품이 독창적이었고, 작가의 의도가 잘 느껴졌습니다.",
-            { "이미지": "../../assets/content-images/art2.jpg" },
-            "특히 마지막 전시물은 감동적이었습니다."
+            { "type": "text", "content": "이번 전시회는 색과 빛의 조화가 정말 인상적이었어요." },
+            { "type": "image", "src": POSTER1 },
+            { "type": "text", "content": "각 작품이 독창적이었고, 작가의 의도가 잘 느껴졌습니다." },
+            { "type": "image", "src": POSTER2 },
+            { "type": "text", "content": "특히 마지막 전시물은 감동적이었습니다." }        
         ]
     },
     {
         "포스터": POSTER2,
+        "전시이름": "반고흐 인 서울",
         "작성자": "김영희",
         "글제목": "미래 도시를 꿈꾸며",
         "방문일": "2024-04-10",
         "관람소요시간": "1시간 30분",
-        "만족도": 4,
+        "만족도": GOODEMOTION,
         "날씨": "비",
         "동행인": "가족",
         "카테고리": ["건축", "미래 디자인"],
@@ -41,11 +54,12 @@ export const Stories = [
     },
     {
         "포스터": POSTER3,
+        "전시이름": "일리야 밀스타인: 기억의 캐비닛",
         "작성자": "이민호",
         "글제목": "디지털 아트의 세계로",
         "방문일": "2024-05-15",
         "관람소요시간": "2시간 30분",
-        "만족도": 5,
+        "만족도": GOODEMOTION,
         "날씨": "흐림",
         "동행인": "혼자",
         "카테고리": ["디지털 아트", "미디어 아트"],
@@ -57,6 +71,7 @@ export const Stories = [
     },
     {
         "포스터": POSTER4,
+        "전시이름": "클로드 오스카 모네: Meets The Scent",
         "작성자": "박수진",
         "글제목": "고대 문명 전시, 시간 여행",
         "방문일": "2024-06-15",

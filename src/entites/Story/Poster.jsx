@@ -1,11 +1,17 @@
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom";
 
-export default function StandardPoster({poster}) {
+export default function Poster({ key, index, poster }) {
     // const [isLikeClick, setIsLikeClick] = useState(false)
     // const [isSaveClick, setIsSaveClick] = useState(false)
+
+    const navigate = useNavigate();
+    const handlePoster = () => {
+        navigate(`/story/${index}`);
+    }
     
   return (
-    <MainLayout>
+    <MainLayout onClick={handlePoster}>
 
         {/* 포스터 이미지 */}
         <StyledPoster src={poster}/>
