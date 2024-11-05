@@ -29,6 +29,7 @@ export default CommentInput;
 
 const CommentInputBox = styled.div`
 box-sizing: border-box;
+width: 100%;
 height: ${props => props.height || '130px'};
 padding: 14px;
 position: relative;
@@ -46,6 +47,7 @@ background-color: #f4f5f7;
 border: none;
 outline: none;
 width: 100%;
+height: 100%;
 box-sizing: border-box;
 flex-grow: 1;
 padding: 8px; 
