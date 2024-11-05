@@ -14,12 +14,14 @@ import USER1 from '../../assets/user/1.svg';
 
 export const comments = [
     {
+        "아이디": 1,
         "프로필": USER1,
         "작성자": "맴맴",
         "이모지": FACE_B1,
         "댓글":"SNS에서 많이 봐서 궁금했는데 저도 보러 가야겠어요!",
         "대댓글": [
             {
+                "아이디": 2,
                 "프로필": USER1,
                 "댓글": "SNS에서 많이 봐서 궁금했는데 저도 보러 가야겠어요!!",
             },
@@ -27,6 +29,7 @@ export const comments = [
 
     },
     {
+        "아이디": 2,
         "프로필": USER1,
         "작성자": "일기는 작심삼일",
         "이모지": FACE_B1,
@@ -37,6 +40,7 @@ export const comments = [
 
     },
     {
+        "아이디": 3,
         "프로필": USER1,
         "작성자": "마니또",
         "이모지": FACE_B5,
@@ -48,6 +52,7 @@ export const comments = [
 
     },
     {
+        "아이디": 4,
         "프로필": USER1,
         "작성자": "전시덕후",
         "이모지": FACE_B1,
@@ -58,6 +63,7 @@ export const comments = [
 
     },
     {
+        "아이디": 5,
         "프로필": USER1,
         "작성자": "새벽감성",
         "이모지": FACE_B2,
@@ -68,6 +74,7 @@ export const comments = [
 
     },
     {
+        "아이디": 6,
         "프로필": USER1,
         "작성자": "빵덕",
         "이모지": FACE_B6,
@@ -78,6 +85,7 @@ export const comments = [
 
     },
     {
+        "아이디": 7,
         "프로필": USER1,
         "작성자": "지나가는 관객",
         "이모지": FACE_B4,

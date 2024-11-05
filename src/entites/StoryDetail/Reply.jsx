@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import REPLYARROW from '../../assets/replyarrow.svg';
 
-export default function Reply({profile, replyText}) {
+export default function Reply({id, profile, replyText}) {
     return (
         <ReplyContainer>
             <img src={REPLYARROW}/>
