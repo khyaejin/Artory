@@ -29,6 +29,7 @@ import FACE_B9 from '../../assets/face/face_b9.svg';
 import USER1 from '../../assets/user/1.svg';
 
 import CommentItem from './CommentItem';
+import CommentInput from './CommentInput';
 
 export default function Comment() {
     const [isOpenComment, setIsOpenComment] = useState(false);
@@ -92,13 +93,18 @@ export default function Comment() {
                                 ))
                             }
                         </FaceListBox>
-                        <CommentInputBox>
+                        <CommentInput
+                        value={input}
+                        onChange={e => setInput(e.target.value)}
+                        onSubmit={addComment}
+                        />
+                        {/* <CommentInputBox>
                             <CommentTextArea
                             value={input}
                             onChange={e => setInput(e.target.value)}
                             />
                             <SubmitButton onClick={addComment}>완료</SubmitButton>
-                        </CommentInputBox>
+                        </CommentInputBox> */}
 
                     </>
                 ) : (
@@ -116,6 +122,8 @@ export default function Comment() {
                             userName={data.작성자}
                             emoji={data.이모지}
                             comment={data.댓글}
+                            reply={data.대댓글}
+                            commentItem={data}
                             />
                         ))
                     }
