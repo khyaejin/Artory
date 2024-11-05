@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { comments } from '../../shared/dummy/CommentDummy';
 
 // image
 import DOWNBUTTON from '../../assets/downbutton-black.svg';
+import UPBUTTON from '../../assets/upbutton-black.svg';
+
 import FACE_G1 from '../../assets/face/face_g1.svg';
 import FACE_G2 from '../../assets/face/face_g2.svg';
 import FACE_G3 from '../../assets/face/face_g3.svg';
@@ -22,9 +25,17 @@ import FACE_B6 from '../../assets/face/face_b6.svg';
 import FACE_B7 from '../../assets/face/face_b7.svg';
 import FACE_B8 from '../../assets/face/face_b8.svg';
 import FACE_B9 from '../../assets/face/face_b9.svg';
+// 유저 이미지
+import USER1 from '../../assets/user/1.svg';
+
+import CommentItem from './CommentItem';
 
 export default function Comment() {
+    const [isOpenComment, setIsOpenComment] = useState(false);
     const [selectedFaceId, setSelectedFaceId] = useState(null);
+    const [selectedFace, setSelectedFace] = useState(null);
+    const [input, setInput] = useState('');
+    //const [commentList, setCommentList] = useState(comments);
 
     // 감정 이모티콘 목록
     const faces = [
@@ -38,30 +49,80 @@ export default function Comment() {
         { id: 8, src: FACE_G8, selectedSrc: FACE_B8, label: "Sleepy" },
         { id: 9, src: FACE_G9, selectedSrc: FACE_B9, label: "Sleepy" },
     ];
+
+    const setFace = (data) => {
+        setSelectedFaceId(data.id);
+        setSelectedFace(data.selectedSrc)
+    }
+
+    // 댓글 추가 기능
+    const addComment = () => {
+        if(input !== '') {
+            const newComment = {
+                "프로필": USER1,
+                "작성자": "나야나",
+                "이모지": selectedFace,
+                "댓글": input,        
+            };
+            //setCommentList([...commentList, newComment]); // 더미데이터 배열 복사본을 생성하고 새로운 댓글 추가
+            comments.push(newComment);
+            setInput('');
+        }
+    }
+
     return (
-        <CommonBox>
-            <CommentTitleBox>
-                <CommonTitleText>댓글작성</CommonTitleText>
-                <img src={DOWNBUTTON} />
-            </CommentTitleBox>
-            <div style={{ color: '#5A5C62', fontSize: '0.6rem' }}>전시에 대한 공감 표시를 선택해주세요</div>
-            <FaceListBox>
-                {
-                    faces.map((data,i) => (
-                        <img
-                        src={selectedFaceId === data.id ? data.selectedSrc : data.src}
-                        onClick={() => setSelectedFaceId(data.id)}
-                        alt={data.label}
-                        style={{ cursor: 'pointer' }}
-                        />
-                    ))
-                }
-            </FaceListBox>
-            <CommentInputBox>
-                <CommentTextArea/>
-                <SubmitButton>완료</SubmitButton>
-            </CommentInputBox>
-        </CommonBox>
+        <>
+            <CommonBox>
+                <CommentTitleBox onClick={() => setIsOpenComment(!isOpenComment)}>
+                    <CommonTitleText>댓글작성</CommonTitleText>
+                    <img src={isOpenComment ? UPBUTTON : DOWNBUTTON} />
+                </CommentTitleBox>
+                {isOpenComment ? (
+                    <>
+                        <div style={{ color: '#5A5C62', fontSize: '0.6rem' }}>전시에 대한 공감 표시를 선택해주세요</div>
+                        <FaceListBox>
+                            {
+                                faces.map((data, i) => (
+                                    <img
+                                        src={selectedFaceId === data.id ? data.selectedSrc : data.src}
+                                        onClick={() => setFace(data)}
+                                        alt={data.label}
+                                        style={{ cursor: 'pointer' }}
+                                    />
+                                ))
+                            }
+                        </FaceListBox>
+                        <CommentInputBox>
+                            <CommentTextArea
+                            value={input}
+                            onChange={e => setInput(e.target.value)}
+                            />
+                            <SubmitButton onClick={addComment}>완료</SubmitButton>
+                        </CommentInputBox>
+
+                    </>
+                ) : (
+                    <></>
+                )}
+
+            </CommonBox>
+            {/* 댓글 리스트 */}
+            <CommonBox>
+                <CommentContainer>
+                    {
+                        comments.map((data, i) => (
+                            <CommentItem
+                            profile={data.프로필}
+                            userName={data.작성자}
+                            emoji={data.이모지}
+                            comment={data.댓글}
+                            />
+                        ))
+                    }
+                </CommentContainer>
+
+            </CommonBox>
+        </>
     )
 }
 
@@ -82,6 +143,7 @@ font-weight: 700;
 
 const CommentTitleBox = styled.div`
 display: flex;
+gap: 7px;
 `;
 
 const FaceListBox = styled.div`
@@ -119,4 +181,13 @@ border: none;
 background-color: black;
 color: white;
 padding: 5px 32px;
+`;
+
+const CommentContainer = styled.div`
+display:flex;
+flex-direction: column;
+gap: 36px;
+height: 629px;
+overflow-y: auto; /* 높이가 넘칠 때 스크롤 생성 */
+overflow-x: hidden; /* 가로 스크롤 숨김 */
 `;
