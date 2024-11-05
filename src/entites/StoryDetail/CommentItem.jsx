@@ -26,7 +26,7 @@ export default function CommentItem({ id, profile, userName, emoji, comment, rep
     const addReply = () => {
         if (input != '') {
             const newReply = {
-                "아이디": id,
+                "아이디": userId,
                 "프로필": USER1,
                 "댓글": input
             }
@@ -76,6 +76,7 @@ export default function CommentItem({ id, profile, userName, emoji, comment, rep
                             id={data.아이디}
                             profile={data.프로필}
                             replyText={data.댓글}
+                            userId={userId}
                         />
                     ))
                 ) : (null)}
