@@ -30,12 +30,14 @@ import USER1 from '../../assets/user/1.svg';
 
 import CommentItem from './CommentItem';
 import CommentInput from './CommentInput';
+import Emotion from './Emotion';
 
 export default function Comment() {
     const [isOpenComment, setIsOpenComment] = useState(false);
     const [selectedFaceId, setSelectedFaceId] = useState(null);
     const [selectedFace, setSelectedFace] = useState(null);
     const [input, setInput] = useState('');
+    const [userId, setUserId] = useState(1);
     //const [commentList, setCommentList] = useState(comments);
 
     // 감정 이모티콘 목록
@@ -60,6 +62,7 @@ export default function Comment() {
     const addComment = () => {
         if(input !== '') {
             const newComment = {
+                "아이디": userId,
                 "프로필": USER1,
                 "작성자": "나야나",
                 "이모지": selectedFace,
@@ -80,32 +83,16 @@ export default function Comment() {
                 </CommentTitleBox>
                 {isOpenComment ? (
                     <>
-                        <div style={{ color: '#5A5C62', fontSize: '0.6rem' }}>전시에 대한 공감 표시를 선택해주세요</div>
-                        <FaceListBox>
-                            {
-                                faces.map((data, i) => (
-                                    <img
-                                        src={selectedFaceId === data.id ? data.selectedSrc : data.src}
-                                        onClick={() => setFace(data)}
-                                        alt={data.label}
-                                        style={{ cursor: 'pointer' }}
-                                    />
-                                ))
-                            }
-                        </FaceListBox>
+                        <div style={{ color: '#5A5C62', fontSize: '0.6rem', marginBottom: '13px' }}>전시에 대한 공감 표시를 선택해주세요</div>
+                        <Emotion
+                        selectedFaceId={selectedFaceId}
+                        setFace={setFace}
+                        />
                         <CommentInput
                         value={input}
                         onChange={e => setInput(e.target.value)}
                         onSubmit={addComment}
                         />
-                        {/* <CommentInputBox>
-                            <CommentTextArea
-                            value={input}
-                            onChange={e => setInput(e.target.value)}
-                            />
-                            <SubmitButton onClick={addComment}>완료</SubmitButton>
-                        </CommentInputBox> */}
-
                     </>
                 ) : (
                     <></>
@@ -118,6 +105,7 @@ export default function Comment() {
                     {
                         comments.map((data, i) => (
                             <CommentItem
+                            id={data.아이디}
                             profile={data.프로필}
                             userName={data.작성자}
                             emoji={data.이모지}
@@ -152,43 +140,7 @@ font-weight: 700;
 const CommentTitleBox = styled.div`
 display: flex;
 gap: 7px;
-`;
-
-const FaceListBox = styled.div`
-display: flex;
-gap: 18px;
-margin: 13px 0 34px;
-`;
-
-const CommentInputBox = styled.div`
-min-height: 130px;
-padding: 14px;
-position: relative;
-background-color: #f4f5f7;
-`;
-
-const CommentTextArea = styled.textarea`
-resize: none;
-color: #28292a;
-font-weight: 500;
-background-color: #f4f5f7;
-border: none;
-outline: none;
-width: 100%;
-height: 100%;
-min-height: 120px;
-`;
-
-const SubmitButton = styled.button`
-position: absolute;
-bottom: 8px;
-right: 8px;
-font-weight: 600;
-font-size: medium;
-border: none;
-background-color: black;
-color: white;
-padding: 5px 32px;
+cursor: pointer;
 `;
 
 const CommentContainer = styled.div`

@@ -1,13 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import Emotion from './Emotion';
 
-function CommentInput({ value, onChange, onSubmit, height }) {
+function CommentInput({ value, onChange, onSubmit, height, type, onSetFace, selectedFaceId}) {
     return (
         <CommentInputBox height={height}>
+            {type === 'commentEdit' ? (
+                <Emotion
+                size={'22px'}
+                setFace={onSetFace}
+                margin={'3px'}
+                selectedFaceId={selectedFaceId}
+                />
+                
+            ) : (null)}
             <CommentTextArea
                 value={value}
                 onChange={onChange}
-                height={height}
+                
                 placeholder='댓글을 입력해주세요'
             />
             <SubmitButton onClick={onSubmit}>완료</SubmitButton>
@@ -18,10 +28,14 @@ function CommentInput({ value, onChange, onSubmit, height }) {
 export default CommentInput;
 
 const CommentInputBox = styled.div`
-min-height: ${props => props.height || '130px'};
+box-sizing: border-box;
+height: ${props => props.height || '130px'};
 padding: 14px;
 position: relative;
 background-color: #f4f5f7;
+display: flex;
+flex-direction: column;
+gap: 8px; 
 `;
 
 const CommentTextArea = styled.textarea`
@@ -32,8 +46,9 @@ background-color: #f4f5f7;
 border: none;
 outline: none;
 width: 100%;
-height: 100%;
-min-height: ${props => props.height || '120px'};
+box-sizing: border-box;
+flex-grow: 1;
+padding: 8px; 
 `;
 
 const SubmitButton = styled.button`
@@ -46,5 +61,7 @@ border: none;
 background-color: black;
 color: white;
 padding: 5px 32px;
+cursor: pointer;
+
 `;
 
