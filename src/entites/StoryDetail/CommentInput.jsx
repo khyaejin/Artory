@@ -17,7 +17,6 @@ function CommentInput({ value, onChange, onSubmit, height, type, onSetFace, sele
             <CommentTextArea
                 value={value}
                 onChange={onChange}
-                
                 placeholder='댓글을 입력해주세요'
             />
             <SubmitButton onClick={onSubmit}>완료</SubmitButton>
@@ -36,6 +35,7 @@ position: relative;
 background-color: #f4f5f7;
 display: flex;
 flex-direction: column;
+align-items:center;
 gap: 8px; 
 `;
 
