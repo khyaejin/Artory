@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { comments } from '../../shared/dummy/CommentDummy';
 
@@ -17,24 +17,57 @@ export default function CommentItem({ id, profile, userName, emoji, comment, rep
     const [selectedFace, setSelectedFace] = useState(emoji);
     const [commentText, setCommentText] = useState(comment);
     const [isClickEditBtn, setIsClickEditBtn] = useState(false);
+    const [replies, setReplies] = useState(reply);
 
     const setFace = (data) => {
         setSelectedFaceId(data.id);
         setSelectedFace(data.selectedSrc)
     }
 
+    // const addReply = () => {
+    //     // if (input != '') {
+    //     //     const lastIndex = reply.아이디;
+    //     //     const newReply = {
+    //     //         "아이디": lastIndex + 1,
+    //     //         "작성자아이디": userId,
+    //     //         "프로필": USER1,
+    //     //         "댓글": input
+    //     //     }
+    //     //     // 불변성을 유지하며 대댓글 추가
+    //     //     // setReplies([...replies, newReply]);
+    //     //     //reply.push(newReply);
+    //     //     setInput('');
+
+    //     // }
+    //     if (input.trim() !== '') {
+    //         const lastIndex = replies.length > 0 ? replies[replies.length - 1].아이디 : 0;
+    //         const newReply = {
+    //             아이디: lastIndex + 1,
+    //             작성자아이디: userId,
+    //             프로필: USER1,
+    //             댓글: input.trim()
+    //         };
+    //         setReplies(prevReplies => [...prevReplies, newReply]); // 이전 상태에 새로 추가
+    //         setInput('');
+    //     }
+    // }
+
     const addReply = () => {
-        if (input != '') {
+        if (input !== '') {
+            const lastIndex = replies[replies.length - 1].아이디;
             const newReply = {
-                "아이디": userId,
+                "아이디": lastIndex + 1,
+                "작성자아이디": userId,
                 "프로필": USER1,
                 "댓글": input
-            }
-            commentItem.대댓글.push(newReply);
+            };
+            
+            setReplies(prevReplies => [...prevReplies, newReply]);
+            console.log("Updated replies:", reply);
             setInput('');
-
         }
-    }
+    };
+    
 
     const handleEdit = () => {
         setIsClickEditBtn(!isClickEditBtn);
@@ -43,6 +76,12 @@ export default function CommentItem({ id, profile, userName, emoji, comment, rep
     const handleDelete = () => {
 
     }
+
+    // 대댓글 삭제 핸들러
+    const handleDeleteReply = (replyId) => {
+        // const updatedReplies = replies.filter(reply => reply.아이디 !== replyId);
+        // setReplies(updatedReplies);
+    };
 
     return (
         <CommentItemContainer>
@@ -70,13 +109,18 @@ export default function CommentItem({ id, profile, userName, emoji, comment, rep
                         onSetFace={setFace}
                     />
                 )}
-                {reply ? (
-                    reply.map((data, i) => (
+
+                {replies ? (
+                    replies.map((data, i) => (
                         <Reply
+                            key={i}
                             id={data.아이디}
+                            authorId={data.작성자아이디}
                             profile={data.프로필}
                             replyText={data.댓글}
                             userId={userId}
+                            commentItem={commentItem}
+                            onDelete={handleDeleteReply}
                         />
                     ))
                 ) : (null)}
