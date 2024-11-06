@@ -53,7 +53,7 @@ export const Users = [
     },
     {
         id: 9,
-        name: "전시회보고싶음",
+        name: "성공한덕후",
         profile: USER9,
     }
 ];
