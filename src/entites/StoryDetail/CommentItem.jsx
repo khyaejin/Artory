@@ -10,7 +10,7 @@ import Reply from './Reply';
 import USER1 from '../../assets/user/1.svg';
 import DeleteModal from './DeleteModal';
 
-export default function CommentItem({ id, authorId, profile, userName, emoji, comment, reply, commentItem, setIsShowModal, setSaveCommentId }) {
+export default function CommentItem({ id, authorId, profile, userName, emoji, comment, reply, commentItem, setIsShowModal, setSaveCommentId, isClickDelete, setIsClickDelete }) {
     const [isOpenReply, setIsOpenReply] = useState(false);
     const [input, setInput] = useState('');
     const [userId, setUserId] = useState(1);
@@ -20,6 +20,7 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
     const [isClickEditBtn, setIsClickEditBtn] = useState(false);
     const [replies, setReplies] = useState(reply);
     const [isClickDeleteBtn, setIsClickDeleteBtn] = useState(false);
+    const [saveReplyId, setSaveReplyId] = useState(null);
 
     const setFace = (data) => {
         setSelectedFaceId(data.id);
@@ -58,6 +59,15 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
         // setReplies(updatedReplies);
     };
 
+    useEffect(() => {
+        if(isClickDelete && saveReplyId) {
+            setReplies(prevReplies => prevReplies.filter(replies => replies.아이디 !== saveReplyId));
+            setSaveCommentId(null);
+            setIsShowModal(false);
+            setIsClickDelete(false);
+        } 
+    },[isClickDelete])
+
     return (
         <CommentItemContainer>
             <ProfileImg src={profile} />
@@ -95,7 +105,8 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
                             replyText={data.댓글}
                             userId={userId}
                             commentItem={commentItem}
-                            onDelete={handleDeleteReply}
+                            setIsShowModal={setIsShowModal}
+                            setSaveReplyId={setSaveReplyId}
                         />
                     ))
                 ) : (null)}
