@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom';
 import { Stories } from '../shared/dummy/StoryDummy';
+import Comment from '../entites/StoryDetail/Comment';
 
 export default function StroyDetail() {
     const { id } = useParams();
@@ -17,7 +18,7 @@ export default function StroyDetail() {
             </StoryDetailBanner>
             <StoryDetailContents>
                 <AuthorInfoContainer>
-                    <AuthorImg src={story.작성자프로필}/>
+                    <AuthorImg src={story.작성자프로필} />
                     <div style={{ marginTop: '20px', marginLeft: '5px' }}>
                         <AuthorText>작성자</AuthorText>
                         <AuthorName>{story.작성자}</AuthorName>
@@ -94,16 +95,19 @@ export default function StroyDetail() {
                     <CommonTitleText>오늘의 전시 스토리</CommonTitleText>
                     <StoryContent>
                         {
-                            story.글내용.map((data, i) =>  {
-                                if(data.type == 'text') {
+                            story.글내용.map((data, i) => {
+                                if (data.type == 'text') {
                                     return <p>{data.content}</p>;
                                 } else {
-                                    return <img src={data.src}/>
+                                    return <img src={data.src} />
                                 }
                             })
                         }
                     </StoryContent>
                 </CommonBox>
+                {/* 댓글 작성 및 댓글 리스트*/}
+                <Comment/>
+                
             </StoryDetailContents>
         </StoryDetailLayout>
     )
