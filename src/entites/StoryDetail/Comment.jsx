@@ -72,20 +72,18 @@ export default function Comment({ setIsShowModal, isClickDelete, setIsClickDelet
                 "댓글": input,
             };
             setCommentList([...commentList, newComment]); // 더미데이터 배열 복사본을 생성하고 새로운 댓글 추가
-            //commentList.push(newComment);
             setInput('');
         }
     }
     // 댓글 삭제 기능
     useEffect(() => {
-        if (isClickDelete && saveCommentId) {
-            //setCommentList(prevComments => prevComments.filter(comment => comment.아이디 !== saveCommentId));
+        if (isClickDelete && saveCommentId) { // 삭제 '예'버튼을 누르고 && 선택한 해당 댓글 아이디가 있을 경우에 실행한다
             setCommentList(prevComments => prevComments.filter(comment => comment.아이디 !== saveCommentId));
             console.log(saveCommentId);
 
             setSaveCommentId(null); // 다음 호출을 방지하기 위해 ID 초기화
             setIsShowModal(false); // 모달 닫기
-            setIsClickDelete(false); 
+            setIsClickDelete(false); // 다시 삭제 모달이 뜨도록. 이렇게 설정하지 않으면 삭제 버튼 누를시 모달창이 뜨지 않고 바로 삭제된다.
         }
     }, [isClickDelete, saveCommentId, setIsShowModal]);
 
@@ -131,7 +129,8 @@ export default function Comment({ setIsShowModal, isClickDelete, setIsClickDelet
                                 commentItem={data}
                                 setIsShowModal={setIsShowModal}
                                 setSaveCommentId={setSaveCommentId}
-                                //setCommentId={setCommentId}
+                                isClickDelete={isClickDelete}
+                                setIsClickDelete={setIsClickDelete}
                             />
                         ))
                     }

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import REPLYARROW from '../../assets/replyarrow.svg';
 import CommentInput from './CommentInput';
 
-export default function Reply({ authorId, id, profile, replyText, userId, commentItem, onDelete }) {
+export default function Reply({ authorId, id, profile, replyText, userId, commentItem, setIsShowModal, setSaveReplyId }) {
     const [reply, setReply] = useState(replyText);
     const [isClickEditBtn, setIsClickEditBtn] = useState(false);
 
@@ -12,12 +12,14 @@ export default function Reply({ authorId, id, profile, replyText, userId, commen
         setIsClickEditBtn(!isClickEditBtn);
     }
 
-    const handleDelete = (id) => {
+    const handleDelete = () => {
         // const confirmed = window.confirm('정말 이 댓글을 삭제하시겠습니까?');
         // if (confirmed) {
         //     onDelete(id); // 부모에게 삭제 요청 전달
         // }
-        onDelete(id);
+        setIsShowModal(true); // 삭제 확인 모달창을 연다
+        //onDelete(id);
+        setSaveReplyId(id);
     }
 
     return (
@@ -36,11 +38,11 @@ export default function Reply({ authorId, id, profile, replyText, userId, commen
                     <div>{reply}</div>
                 </>
             )}
-            {userId === authorId  && !isClickEditBtn  ? (
+            {userId === authorId  && !isClickEditBtn  && (
                 <ChangeBox>
-                    <div onClick={handleEdit}>수정</div> | <div onClick={handleDelete(id)}>삭제</div>
+                    <div onClick={handleEdit}>수정</div> | <div onClick={() => handleDelete()}>삭제</div>
                 </ChangeBox>
-            ) : (null)}
+            )}
 
         </ReplyContainer>
     )
