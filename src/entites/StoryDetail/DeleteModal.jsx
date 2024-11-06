@@ -2,17 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import ReactModal from 'react-modal'
 
-export default function DeleteModal({isShowModal, setIsShowModal}) {
+export default function DeleteModal({isShowModal, setIsShowModal, setIsClickDelete}) {
+    const handleYes = () => {
+        setIsShowModal(false);
+        setIsClickDelete(true);
+    }
     return (
         <ReactModal
         isOpen={isShowModal}
         onRequestClose={() => setIsShowModal(false)}
         style={StyledModal}
+        ariaHideApp={false} 
         >
             <h2>댓글을 삭제하시겠습니까?</h2>
             <ConfirmBtnContainer>
-                <ConfirmBox>예</ConfirmBox>
-                <ConfirmBox>아니요</ConfirmBox>
+                <ConfirmBox onClick={handleYes}>예</ConfirmBox>
+                <ConfirmBox onClick={() => setIsShowModal(false)}>아니요</ConfirmBox>
             </ConfirmBtnContainer>
         </ReactModal>
     )
@@ -53,5 +58,6 @@ const StyledModal = ReactModal.Styles = {
   width: 127px;
   height: 36px;
   color: white;
+  cursor: pointer;
   `;
   
