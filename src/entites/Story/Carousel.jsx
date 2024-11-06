@@ -5,13 +5,15 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Stories } from '../../shared/dummy/StoryDummy';
 import StandardPoster from '../../shared/components/StandardPoster';
+import { Users } from '../../shared/dummy/UserDummy';
 
 import PREVARROW from '../../assets/prevarrow.svg';
 import NEXTARROW from '../../assets/nextarrow.svg';
 
-export default function CarouselStory({ title }) {
+export default function Carousel({ title, type }) {
+    const data = type === 'user' ? Users : Stories; // type에 따라 데이터를 선택
     const numItems = Stories.length;
-    const infinite = numItems < 4 ? false : true;
+    const infinite = numItems < (type === 'user' ? 6 : 4) ? false : true;
     const CustomPrevArrow = (props) => {
         const { style, onClick } = props;
         return (
@@ -38,8 +40,8 @@ export default function CarouselStory({ title }) {
         arrows: true,
         infinite: infinite,
         speed: 800,
-        slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToShow: type === 'user' ? 6 : 4,
+        slidesToScroll: type === 'user' ? 6 : 4,
         prevArrow: <CustomPrevArrow />,
         nextArrow: <CustomNextArrow />
     }
@@ -51,12 +53,15 @@ export default function CarouselStory({ title }) {
                 <StyledSlider {...settings}>
 
                     {
-                        Stories.map((data, i) => (
-                            <SlideItem >
-                                <StandardPoster key={i} index={i} poster={data.포스터} />
+                        data.map((item, i) => (
+                            <SlideItem key={i}>
+                                {type === 'user' ? (
+                                    <UserProfileImg src={item.profile} alt={item.name} /> // 유저 이미지 컴포넌트 사용
+                                ) : (
+                                    <StandardPoster index={i} poster={item.포스터} />
+                                )}
                             </SlideItem>
-                        ))
-                    }
+                        ))                    }
 
                 </StyledSlider>
             </CarouselStoryContainer>
@@ -124,4 +129,9 @@ const StyledSlider = styled(Slider)`
 
   }
 
+`;
+
+const UserProfileImg = styled.img`
+width: 129px;
+height: 129px;
 `;
