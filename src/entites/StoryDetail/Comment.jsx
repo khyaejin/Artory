@@ -32,7 +32,7 @@ import CommentItem from './CommentItem';
 import CommentInput from './CommentInput';
 import Emotion from './Emotion';
 
-export default function Comment() {
+export default function Comment({setIsShowModal}) {
     const [isOpenComment, setIsOpenComment] = useState(false);
     const [selectedFaceId, setSelectedFaceId] = useState(null);
     const [selectedFace, setSelectedFace] = useState(null);
@@ -112,6 +112,7 @@ export default function Comment() {
                             comment={data.댓글}
                             reply={data.대댓글}
                             commentItem={data}
+                            setIsShowModal={setIsShowModal}
                             />
                         ))
                     }

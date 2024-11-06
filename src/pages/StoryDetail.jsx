@@ -3,10 +3,16 @@ import styled from 'styled-components'
 import { useParams } from 'react-router-dom';
 import { Stories } from '../shared/dummy/StoryDummy';
 import Comment from '../entites/StoryDetail/Comment';
+import DeleteModal from '../entites/StoryDetail/DeleteModal';
 
 export default function StroyDetail() {
     const { id } = useParams();
     const story = Stories[id];
+    const [isShowModal, setIsShowModal] = useState(false)
+
+    useEffect(() => {
+        console.log("isShowModal: ", isShowModal);
+    },[isShowModal]);
 
     return (
         <StoryDetailLayout>
@@ -106,9 +112,10 @@ export default function StroyDetail() {
                     </StoryContent>
                 </CommonBox>
                 {/* 댓글 작성 및 댓글 리스트*/}
-                <Comment/>
-                
+                <Comment setIsShowModal={setIsShowModal}/>
+
             </StoryDetailContents>
+            {isShowModal && <DeleteModal isShowModal={isShowModal} setIsShowModal={setIsShowModal}/>}
         </StoryDetailLayout>
     )
 }
