@@ -119,7 +119,7 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
                     <CommentInput
                         value={input}
                         onChange={e => setInput(e.target.value)}
-                        height={'42px'}
+                        height={'50px'}
                         onSubmit={addReply}
                     />
                 ) : (null)}
