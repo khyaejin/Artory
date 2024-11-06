@@ -8,8 +8,9 @@ import CommentInput from './CommentInput';
 import Reply from './Reply';
 
 import USER1 from '../../assets/user/1.svg';
+import DeleteModal from './DeleteModal';
 
-export default function CommentItem({ id, profile, userName, emoji, comment, reply, commentItem }) {
+export default function CommentItem({ id, profile, userName, emoji, comment, reply, commentItem, setIsShowModal }) {
     const [isOpenReply, setIsOpenReply] = useState(false);
     const [input, setInput] = useState('');
     const [userId, setUserId] = useState(1);
@@ -18,39 +19,12 @@ export default function CommentItem({ id, profile, userName, emoji, comment, rep
     const [commentText, setCommentText] = useState(comment);
     const [isClickEditBtn, setIsClickEditBtn] = useState(false);
     const [replies, setReplies] = useState(reply);
+    const [isClickDeleteBtn, setIsClickDeleteBtn] = useState(false);
 
     const setFace = (data) => {
         setSelectedFaceId(data.id);
         setSelectedFace(data.selectedSrc)
     }
-
-    // const addReply = () => {
-    //     // if (input != '') {
-    //     //     const lastIndex = reply.아이디;
-    //     //     const newReply = {
-    //     //         "아이디": lastIndex + 1,
-    //     //         "작성자아이디": userId,
-    //     //         "프로필": USER1,
-    //     //         "댓글": input
-    //     //     }
-    //     //     // 불변성을 유지하며 대댓글 추가
-    //     //     // setReplies([...replies, newReply]);
-    //     //     //reply.push(newReply);
-    //     //     setInput('');
-
-    //     // }
-    //     if (input.trim() !== '') {
-    //         const lastIndex = replies.length > 0 ? replies[replies.length - 1].아이디 : 0;
-    //         const newReply = {
-    //             아이디: lastIndex + 1,
-    //             작성자아이디: userId,
-    //             프로필: USER1,
-    //             댓글: input.trim()
-    //         };
-    //         setReplies(prevReplies => [...prevReplies, newReply]); // 이전 상태에 새로 추가
-    //         setInput('');
-    //     }
-    // }
 
     const addReply = () => {
         if (input !== '') {
@@ -74,7 +48,8 @@ export default function CommentItem({ id, profile, userName, emoji, comment, rep
     }
 
     const handleDelete = () => {
-
+        setIsClickDeleteBtn(!isClickDeleteBtn);
+        setIsShowModal(true);
     }
 
     // 대댓글 삭제 핸들러
@@ -139,6 +114,7 @@ export default function CommentItem({ id, profile, userName, emoji, comment, rep
                 ) : (null)}
             </CommentWrapper>
         </CommentItemContainer>
+        
     )
 }
 
