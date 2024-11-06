@@ -10,7 +10,7 @@ import Reply from './Reply';
 import USER1 from '../../assets/user/1.svg';
 import DeleteModal from './DeleteModal';
 
-export default function CommentItem({ id, profile, userName, emoji, comment, reply, commentItem, setIsShowModal }) {
+export default function CommentItem({ id, authorId, profile, userName, emoji, comment, reply, commentItem, setIsShowModal, setSaveCommentId }) {
     const [isOpenReply, setIsOpenReply] = useState(false);
     const [input, setInput] = useState('');
     const [userId, setUserId] = useState(1);
@@ -41,15 +41,15 @@ export default function CommentItem({ id, profile, userName, emoji, comment, rep
             setInput('');
         }
     };
-    
 
     const handleEdit = () => {
         setIsClickEditBtn(!isClickEditBtn);
     }
 
-    const handleDelete = () => {
+    const handleDelete = (id) => {
         setIsClickDeleteBtn(!isClickDeleteBtn);
         setIsShowModal(true);
+        setSaveCommentId(id);
     }
 
     // 대댓글 삭제 핸들러
@@ -67,9 +67,9 @@ export default function CommentItem({ id, profile, userName, emoji, comment, rep
                     <CommentBox>
                         <img src={selectedFace} />
                         {commentText}
-                        {userId === id ? (
+                        {userId === authorId ? (
                             <ChangeBox>
-                                <div onClick={handleEdit}>수정</div> | <div onClick={handleDelete}>삭제</div>
+                                <div onClick={handleEdit}>수정</div> | <div onClick={() => handleDelete(id)}>삭제</div>
                             </ChangeBox>
                         ) : (null)}
                     </CommentBox>

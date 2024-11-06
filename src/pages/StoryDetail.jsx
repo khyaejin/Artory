@@ -8,11 +8,12 @@ import DeleteModal from '../entites/StoryDetail/DeleteModal';
 export default function StroyDetail() {
     const { id } = useParams();
     const story = Stories[id];
-    const [isShowModal, setIsShowModal] = useState(false)
+    const [isShowModal, setIsShowModal] = useState(false);
+    const [isClickDelete, setIsClickDelete] = useState(false);
 
-    useEffect(() => {
-        console.log("isShowModal: ", isShowModal);
-    },[isShowModal]);
+    // useEffect(() => {
+    //     console.log("isShowModal: ", isShowModal);
+    // },[isShowModal]);
 
     return (
         <StoryDetailLayout>
@@ -79,7 +80,7 @@ export default function StroyDetail() {
                                     <CategoryContainer>
                                         {
                                             story.카테고리.map((data, i) => (
-                                                <HighlightTagBox>{story.카테고리[i]}</HighlightTagBox>
+                                                <HighlightTagBox key={i}>{data}</HighlightTagBox>
                                             ))
                                         }
                                     </CategoryContainer>
@@ -94,7 +95,7 @@ export default function StroyDetail() {
                     <KeywordContainer>
                         {
                             story.키워드.map((data, i) => (
-                                <div>{story.키워드[i]}</div>
+                                <div key={i}>{data}</div>
                             ))
                         }
                     </KeywordContainer>
@@ -103,19 +104,19 @@ export default function StroyDetail() {
                         {
                             story.글내용.map((data, i) => {
                                 if (data.type == 'text') {
-                                    return <p>{data.content}</p>;
+                                    return <p key={i}>{data.content}</p>;
                                 } else {
-                                    return <img src={data.src} />
+                                    return <img key={i} src={data.src} />
                                 }
                             })
                         }
                     </StoryContent>
                 </CommonBox>
                 {/* 댓글 작성 및 댓글 리스트*/}
-                <Comment setIsShowModal={setIsShowModal}/>
+                <Comment setIsShowModal={setIsShowModal} isClickDelete={isClickDelete} setIsClickDelete={setIsClickDelete}/>
 
             </StoryDetailContents>
-            {isShowModal && <DeleteModal isShowModal={isShowModal} setIsShowModal={setIsShowModal}/>}
+            {isShowModal && <DeleteModal isShowModal={isShowModal} setIsShowModal={setIsShowModal} setIsClickDelete={setIsClickDelete}/>}
         </StoryDetailLayout>
     )
 }

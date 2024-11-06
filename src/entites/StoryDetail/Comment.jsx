@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { comments } from '../../shared/dummy/CommentDummy';
 
@@ -32,13 +32,14 @@ import CommentItem from './CommentItem';
 import CommentInput from './CommentInput';
 import Emotion from './Emotion';
 
-export default function Comment({setIsShowModal}) {
+export default function Comment({ setIsShowModal, isClickDelete, setIsClickDelete }) {
     const [isOpenComment, setIsOpenComment] = useState(false);
     const [selectedFaceId, setSelectedFaceId] = useState(null);
     const [selectedFace, setSelectedFace] = useState(null);
     const [input, setInput] = useState('');
     const [userId, setUserId] = useState(1);
-    //const [commentList, setCommentList] = useState(comments);
+    const [commentList, setCommentList] = useState(comments);
+    const [saveCommentId, setSaveCommentId] = useState(null);
 
     // 감정 이모티콘 목록
     const faces = [
@@ -60,19 +61,33 @@ export default function Comment({setIsShowModal}) {
 
     // 댓글 추가 기능
     const addComment = () => {
-        if(input !== '') {
+        if (input !== '') {
+            const lastIndex = commentList.length;
             const newComment = {
-                "아이디": userId,
+                "아이디": lastIndex+1,
+                "작성자아이디": userId,
                 "프로필": USER1,
                 "작성자": "나야나",
                 "이모지": selectedFace,
-                "댓글": input,        
+                "댓글": input,
             };
-            //setCommentList([...commentList, newComment]); // 더미데이터 배열 복사본을 생성하고 새로운 댓글 추가
-            comments.push(newComment);
+            setCommentList([...commentList, newComment]); // 더미데이터 배열 복사본을 생성하고 새로운 댓글 추가
+            //commentList.push(newComment);
             setInput('');
         }
     }
+    // 댓글 삭제 기능
+    useEffect(() => {
+        if (isClickDelete && saveCommentId) {
+            //setCommentList(prevComments => prevComments.filter(comment => comment.아이디 !== saveCommentId));
+            setCommentList(prevComments => prevComments.filter(comment => comment.아이디 !== saveCommentId));
+            console.log(saveCommentId);
+
+            setSaveCommentId(null); // 다음 호출을 방지하기 위해 ID 초기화
+            setIsShowModal(false); // 모달 닫기
+            setIsClickDelete(false); 
+        }
+    }, [isClickDelete, saveCommentId, setIsShowModal]);
 
     return (
         <>
@@ -85,13 +100,13 @@ export default function Comment({setIsShowModal}) {
                     <>
                         <div style={{ color: '#5A5C62', fontSize: '0.6rem', marginBottom: '13px' }}>전시에 대한 공감 표시를 선택해주세요</div>
                         <Emotion
-                        selectedFaceId={selectedFaceId}
-                        setFace={setFace}
+                            selectedFaceId={selectedFaceId}
+                            setFace={setFace}
                         />
                         <CommentInput
-                        value={input}
-                        onChange={e => setInput(e.target.value)}
-                        onSubmit={addComment}
+                            value={input}
+                            onChange={e => setInput(e.target.value)}
+                            onSubmit={addComment}
                         />
                     </>
                 ) : (
@@ -103,16 +118,20 @@ export default function Comment({setIsShowModal}) {
             <CommonBox>
                 <CommentContainer>
                     {
-                        comments.map((data, i) => (
+                        commentList.map((data, i) => (
                             <CommentItem
-                            id={data.아이디}
-                            profile={data.프로필}
-                            userName={data.작성자}
-                            emoji={data.이모지}
-                            comment={data.댓글}
-                            reply={data.대댓글}
-                            commentItem={data}
-                            setIsShowModal={setIsShowModal}
+                                key={data.아이디}
+                                id={data.아이디}
+                                authorId={data.작성자아이디}
+                                profile={data.프로필}
+                                userName={data.작성자}
+                                emoji={data.이모지}
+                                comment={data.댓글}
+                                reply={data.대댓글}
+                                commentItem={data}
+                                setIsShowModal={setIsShowModal}
+                                setSaveCommentId={setSaveCommentId}
+                                //setCommentId={setCommentId}
                             />
                         ))
                     }
