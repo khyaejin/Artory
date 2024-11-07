@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { comments } from '../../shared/dummy/CommentDummy';
+import { Stories } from '../../shared/dummy/StoryDummy';
 
 // image
 import DOWNBUTTON from '../../assets/downbutton-black.svg';
@@ -32,13 +33,14 @@ import CommentItem from './CommentItem';
 import CommentInput from './CommentInput';
 import Emotion from './Emotion';
 
-export default function Comment({ setIsShowModal, isClickDelete, setIsClickDelete }) {
+export default function Comment({ storyId, setIsShowModal, isClickDelete, setIsClickDelete }) {
     const [isOpenComment, setIsOpenComment] = useState(false);
     const [selectedFaceId, setSelectedFaceId] = useState(null);
     const [selectedFace, setSelectedFace] = useState(null);
     const [input, setInput] = useState('');
     const [userId, setUserId] = useState(1);
-    const [commentList, setCommentList] = useState(comments);
+    //const [commentList, setCommentList] = useState(comments);
+    const [commentList, setCommentList] = useState(Stories[storyId]?.댓글 || []); 
     const [saveCommentId, setSaveCommentId] = useState(null);
 
     // 감정 이모티콘 목록

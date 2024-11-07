@@ -35,7 +35,6 @@ position: relative;
 background-color: #f4f5f7;
 display: flex;
 flex-direction: column;
-align-items:center;
 gap: 8px; 
 `;
 
@@ -47,10 +46,7 @@ background-color: #f4f5f7;
 border: none;
 outline: none;
 width: 100%;
-height: 100%;
-box-sizing: border-box;
 flex-grow: 1;
-padding: 8px; 
 `;
 
 const SubmitButton = styled.button`
