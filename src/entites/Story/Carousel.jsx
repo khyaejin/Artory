@@ -11,7 +11,21 @@ import PREVARROW from '../../assets/prevarrow.svg';
 import NEXTARROW from '../../assets/nextarrow.svg';
 
 export default function Carousel({ title, type }) {
-    const data = type === 'user' ? Users : Stories; // type에 따라 데이터를 선택
+    // 작성 날짜 기준으로 정렬(최신 스토리)
+    const sortedStories = [...Stories].sort((a, b) => new Date(b.작성날짜) - new Date(a.작성날짜));
+    // 좋아요 수 기준 내림차순 정렬(인기 스토리)
+    const popularStories = [...Stories].sort((a, b) => b.좋아요 - a.좋아요);
+    // 랜덤으로 내림차순 정렬(추천 스토리)
+    const recommendedStories = [...Stories].sort(() => 0.5 - Math.random()) // 무작위 정렬
+
+    const data = type === 'user'
+        ? Users
+        : title === '인기 스토리'
+            ? popularStories
+            : title === '최근 스토리'
+                ? sortedStories
+                : recommendedStories; // 추천 스토리가 기본값
+
     const numItems = Stories.length;
     const infinite = numItems < (type === 'user' ? 6 : 4) ? false : true;
     const CustomPrevArrow = (props) => {
@@ -61,7 +75,8 @@ export default function Carousel({ title, type }) {
                                     <StandardPoster index={i} poster={item.포스터} />
                                 )}
                             </SlideItem>
-                        ))                    }
+                        ))
+                    }
 
                 </StyledSlider>
             </CarouselStoryContainer>
