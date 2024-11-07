@@ -4,6 +4,17 @@ import POSTER3 from '../../assets/poster/3.svg';
 import POSTER4 from '../../assets/poster/4.svg';
 import POSTER5 from '../../assets/poster/5.svg';
 
+// 공감 이미지
+import FACE_B1 from '../../assets/face/face_b1.svg';
+import FACE_B2 from '../../assets/face/face_b2.svg';
+import FACE_B3 from '../../assets/face/face_b3.svg';
+import FACE_B4 from '../../assets/face/face_b4.svg';
+import FACE_B5 from '../../assets/face/face_b5.svg';
+import FACE_B6 from '../../assets/face/face_b6.svg';
+import FACE_B7 from '../../assets/face/face_b7.svg';
+import FACE_B8 from '../../assets/face/face_b8.svg';
+import FACE_B9 from '../../assets/face/face_b9.svg';
+
 // 유저 이미지
 import USER1 from '../../assets/user/1.svg';
 import USER2 from '../../assets/user/2.svg';
@@ -45,8 +56,43 @@ export const Stories = [
             { "type": "text", "content": "또 이번 개인전에서 공개한 작가님의 트럼프 카드 작업까지 볼 수 있었는데 먼가 사람들이 모여있는 곳에서,,,작가님을 발견 할 수 있었다!!!!!!!" },
             { "type": "image", "src": STORY4 },
             { "type": "text", "content": "갑작스럽게 정해서 보러 간거였는데 실제 작가님까지 뵙고 그래서 더 알찬 전시 였던거 같다ㅎㅎ 다들 전시 종료 전에 꼭  요시다 유니 전시 보러 가시길 추천드립니답..ㅎ" },
-            { "type": "image", "src": STORY2 },    
+            { "type": "image", "src": STORY2 },
+        ],
+        "작성날짜": '2024.03.10',
+        "좋아요":20,
+        "스크랩":10,
+        "댓글": [{
+            "아이디": 1,
+            "작성자아이디": 1,
+            "프로필": USER1,
+            "작성자": "맴맴",
+            "이모지": FACE_B1,
+            "댓글": 'SNS에서 많이 봐서 궁금했는데 저도 보러 가야겠어요!',
+            "대댓글": [
+                {
+                    "아이디": 1,
+                    "작성자아이디": 2,
+                    "프로필": USER2,
+                    "댓글": "SNS에서 많이 봐서 궁금했는데 저도 보러 가야겠어요!!",
+                },
+            ]
+
+        },
+        {
+            "아이디": 2,
+            "작성자아이디":2,
+            "프로필": USER2,
+            "작성자": "일기는 작심삼일",
+            "이모지": FACE_B8,
+            "댓글":"저도 보러 갔었는데,, 작가님은 못 만났진만 재밌었어요!",
+            "대댓글": [
+            ]
+    
+    
+        },
+    
         ]
+
     },
     {
         "포스터": POSTER2,
@@ -65,7 +111,10 @@ export const Stories = [
             { "type": "text", "content": "미래의 건축과 도시 디자인을 볼 수 있는 좋은 기회였습니다." },
             { "type": "image", "src": STORY3 },
             { "type": "text", "content": "특히 친환경 건축에 대한 전시물이 흥미로웠어요. 다만 비가 와서 이동이 조금 불편했습니다." }
-        ]
+        ],
+        "작성날짜": '2024.04.11',
+        "좋아요":30,
+        "스크랩":10,
     },
     {
         "포스터": POSTER3,
@@ -84,7 +133,10 @@ export const Stories = [
             { "type": "text", "content": "디지털 아트와 기술의 결합이 너무 놀라웠습니다." },
             { "type": "image", "src": STORY4 },
             { "type": "text", "content": "작품들이 하나같이 생동감 있고, 미래 기술이 얼마나 발전할 수 있는지 알게 되었어요. 추천합니다!" }
-        ]
+        ],
+        "작성날짜": '2024.05.20',
+        "좋아요":0,
+        "스크랩":0,
     },
     {
         "포스터": POSTER4,
@@ -103,7 +155,10 @@ export const Stories = [
             { "type": "text", "content": "고대 문명의 미스터리와 신비로움을 느낄 수 있었던 전시회였습니다." },
             { "type": "image", "src": STORY2 },
             { "type": "text", "content": "유물들이 정말 잘 보존되어 있었고, 설명도 상세해서 이해하기 좋았어요." }
-        ]
+        ],
+        "작성날짜": '2024.06.15',
+        "좋아요":5,
+        "스크랩":10,
     },
     {
         "포스터": POSTER5,
@@ -122,6 +177,9 @@ export const Stories = [
             { "type": "text", "content": "스마트 도시 기술을 소개하는 전시였습니다." },
             { "type": "image", "src": POSTER5 },
             { "type": "text", "content": "흥미로운 내용이 많았지만, 너무 더운 날씨라 집중하기 힘들었어요. 전시장의 에어컨이 좀 더 강했으면 좋았을 것 같습니다." }
-        ]
+        ],
+        "작성날짜": '2024.07.28',
+        "좋아요":9,
+        "스크랩":8,
     }
 ];
