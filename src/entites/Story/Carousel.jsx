@@ -13,16 +13,16 @@ import NEXTARROW from '../../assets/nextarrow.svg';
 export default function Carousel({ title, type }) {
     // 작성 날짜 기준으로 정렬(최신 스토리)
     const sortedStories = [...Stories].sort((a, b) => new Date(b.작성날짜) - new Date(a.작성날짜));
-    // 좋아요 수 기준 내림차순 정렬(인기 스토리)
-    const popularStories = [...Stories].sort((a, b) => b.좋아요 - a.좋아요);
-    // 랜덤으로 내림차순 정렬(추천 스토리)
-    const recommendedStories = [...Stories].sort(() => 0.5 - Math.random()) // 무작위 정렬
+    // 좋아요 수 기준 내림차순 정렬(인기 스토리) 6개만 보여주기
+    const popularStories = [...Stories].sort((a, b) => b.좋아요 - a.좋아요).slice(0,6);
+    // 랜덤으로 내림차순 정렬(추천 스토리) 6개만 보여주기
+    const recommendedStories = [...Stories].sort(() => 0.5 - Math.random()); // 무작위 정렬
 
     const data = type === 'user'
         ? Users
-        : title === '인기 스토리'
+        : title === '인기 Story'
             ? popularStories
-            : title === '최근 스토리'
+            : title === '최근 Story'
                 ? sortedStories
                 : recommendedStories; // 추천 스토리가 기본값
 
@@ -72,7 +72,7 @@ export default function Carousel({ title, type }) {
                                 {type === 'user' ? (
                                     <UserProfileImg src={item.profile} alt={item.name} /> // 유저 이미지 컴포넌트 사용
                                 ) : (
-                                    <StandardPoster index={i} poster={item.포스터} />
+                                    <StandardPoster id={item.아이디} poster={item.포스터} />
                                 )}
                             </SlideItem>
                         ))

@@ -8,7 +8,7 @@ import FILLLIKE from '../../assets/filllike.svg'
 import SAVE from '../../assets/save.svg'
 import FILLSAVE from '../../assets/fillsave.svg'
 
-export default function StandardPoster({index, poster}) {
+export default function StandardPoster({id, poster}) {
     const [isLikeClick, setIsLikeClick] = useState(false)
     const [isSaveClick, setIsSaveClick] = useState(false)
     
@@ -17,9 +17,9 @@ export default function StandardPoster({index, poster}) {
 
     const handlePoster = () => {
       if(location.pathname === '/story') {
-        navigate(`/story/${index}`);
+        navigate(`/story/${id}`);
       } else if (location.pathname === '/exhibition') {
-        navigate(`/exhibition/${index}`);
+        navigate(`/exhibition/${id}`);
       } else {
         <></>
       }
