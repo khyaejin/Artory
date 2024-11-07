@@ -18,7 +18,7 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
     const [selectedFace, setSelectedFace] = useState(emoji);
     const [commentText, setCommentText] = useState(comment);
     const [isClickEditBtn, setIsClickEditBtn] = useState(false);
-    const [replies, setReplies] = useState(reply);
+    const [replies, setReplies] = useState(reply || []);
     const [isClickDeleteBtn, setIsClickDeleteBtn] = useState(false);
     const [saveReplyId, setSaveReplyId] = useState(null);
 
@@ -29,7 +29,7 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
 
     const addReply = () => {
         if (input !== '') {
-            const lastIndex = replies[replies.length - 1].아이디;
+            const lastIndex = replies.length > 0 ? replies[replies.length - 1].아이디 : 0; // replies가 빈 배열일 때 0으로 설정한다
             const newReply = {
                 "아이디": lastIndex + 1,
                 "작성자아이디": userId,
