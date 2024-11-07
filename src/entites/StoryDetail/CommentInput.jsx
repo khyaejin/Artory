@@ -35,7 +35,6 @@ position: relative;
 background-color: #f4f5f7;
 display: flex;
 flex-direction: column;
-align-items:center;
 gap: 8px; 
 `;
 

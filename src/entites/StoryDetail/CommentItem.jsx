@@ -18,7 +18,7 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
     const [selectedFace, setSelectedFace] = useState(emoji);
     const [commentText, setCommentText] = useState(comment);
     const [isClickEditBtn, setIsClickEditBtn] = useState(false);
-    const [replies, setReplies] = useState(reply);
+    const [replies, setReplies] = useState(reply || []);
     const [isClickDeleteBtn, setIsClickDeleteBtn] = useState(false);
     const [saveReplyId, setSaveReplyId] = useState(null);
 
