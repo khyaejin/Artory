@@ -113,7 +113,7 @@ export default function StroyDetail() {
                     </StoryContent>
                 </CommonBox>
                 {/* 댓글 작성 및 댓글 리스트*/}
-                <Comment setIsShowModal={setIsShowModal} isClickDelete={isClickDelete} setIsClickDelete={setIsClickDelete}/>
+                <Comment storyId={id} setIsShowModal={setIsShowModal} isClickDelete={isClickDelete} setIsClickDelete={setIsClickDelete}/>
 
             </StoryDetailContents>
             {isShowModal && <DeleteModal isShowModal={isShowModal} setIsShowModal={setIsShowModal} setIsClickDelete={setIsClickDelete}/>}
