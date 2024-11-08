@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link, useLocation } from 'react-router-dom';
 
@@ -7,13 +7,20 @@ import LOGO from '../../assets/logo.svg'
 
 export default function NavigationBar() {
   const location = useLocation();
+  const [isLogin, setIsLogin] = useState(false); // 로그인 안되어있는 상태가 디폴트, 추후에 수정 필요
   return (
     <MainLayout>
 
       {/* 로고 부분 */}
       <LogoSection>
-        <StyledImg src={LOGO} />
-        <div>Artroy</div>
+        <LogoLink
+          to="/"
+          selected={location.pathname === '/'}
+        >
+
+          <StyledImg src={LOGO} />
+          <LogoText>ARTORY</LogoText>
+        </LogoLink>
       </LogoSection>
 
       {/* 페이지 이동 네비게이션바 */}
@@ -46,10 +53,29 @@ export default function NavigationBar() {
           <div>MY PAGE</div>
         </StyledLink>
 
-        <Logout>LOGOUT</Logout>
+        {isLogin ? (
+          <StyledLink
+            to="/"
+            selected={location.pathname === '/'}
+          >
+            <SignBox> {/* 클릭하면 로그아웃되어 로그인으로 바뀌는 이벤트 함수 필요 */}
+              LOGOUT
+            </SignBox>
+          </StyledLink>
+        ) : (
+          <StyledLink
+            to="/signin"
+            selected={location.pathname === '/signin'}
+          >
+            <SignBox>
+              LOGIN
+            </SignBox>
+          </StyledLink>
+        )}
+
       </PageSection>
 
-    </MainLayout>
+    </MainLayout >
   )
 }
 
@@ -95,7 +121,7 @@ width : 23px;
 height : 25px;
 margin-right : 0.38rem;
 `
-const Logout = styled.div`
+const SignBox = styled.div`
 color: var(--7, #A8A8B0);
 font-family: Pretendard;
 font-size: 0.875rem;
@@ -113,6 +139,22 @@ gap: 0.625rem;
 
 const StyledLink = styled(Link)`
 color: ${({ selected }) => (selected ? '#F5F5F5' : '#ABABAB')};
-font-weight: ${({selected}) => (selected ? 800 : 500 )};
+font-weight: ${({ selected }) => (selected ? 800 : 500)};
 text-decoration: none;
+display:flex;
+justify-content: center;
+algin-items: center;
 `
+const LogoLink = styled(Link)`
+text-decoration: none;
+display:flex;
+justify-content: center;
+algin-items: center;
+color: #F5F5F5;
+
+`;
+const LogoText = styled.div`
+display:flex;
+align-items: center;
+font-weight: 800;
+`;
