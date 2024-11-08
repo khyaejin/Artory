@@ -11,11 +11,13 @@ export default function Stroy() {
       <Search searchStories={searchStories} setSearchStories={setSearchStories} /> {/* Exhibition 페이지에도 있기 때문에 shared에 해놔야할지 생각 */}
       {searchStories.length > 0 ? (
         <>
+        <SearchResultLayout>
           {searchStories.map((data) => (
             <SearchPosterBox key={data.아이디}>
               <StandardPoster id={data.아이디} poster={data.포스터} />
             </SearchPosterBox>
           ))}
+          </SearchResultLayout>
         </>
       ) : (
         <>
