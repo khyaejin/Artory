@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import StandardButton from '../../shared/components/StandardButton';
-import NaverLoginButtonImage from '../../assets/naver-login-button.svg';
+import NaverLoginButtonImage from '../../assets/naver_login_large_narrow 2.svg';
 import KakaoLoginButtonImage from '../../assets/kakao_login_large_narrow 2.svg';
 
 export default function LoginSection() {
@@ -112,8 +112,8 @@ const SocialLogin = styled.div`
 
 // 소셜 로그인 버튼
 const SocialButton = styled.div`
-  flex: 1; // 버튼들이 동일한 넓이를 가지도록 설정
-  max-width: 48%; // 버튼 크기를 부모 컨테이너 대비 제한
+  flex: 1; // 버튼들이 동일한 넓이를 가지도록
+  max-width: 48%; // 버튼 크기를 부모 대비 최대 제한
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,7 +123,7 @@ const SocialButton = styled.div`
   img {
     width: 135%; 
 		height: auto;
-    object-fit: cover; // 이미지 비율을 유지하며 요소 크기에 맞게 채움
+    object-fit: cover; // 이미지 비율 유지
   }
 `;
 
