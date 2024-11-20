@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import MainBannerSection from '../entites/Home/MainBannerSection'
 import PosterSection from '../entites/Home/PosterSection'
-import LoginSection from '../entites/Home/MainBanner'
+import LoginSection from '../entites/Home/LoginSection'
 
 export default function Home() {
   const [isClicked, setIsClicked] = useState(false);
+
   return (
     <MainLayout>
       {/* 좌측 제목 섹션 */}
