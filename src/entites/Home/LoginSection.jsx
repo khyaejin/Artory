@@ -16,7 +16,7 @@ const MainLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white; /* 텍스트 색상 */
+  color: black; /* 텍스트 색상 */
   font-size: 16px;
   font-family: Arial, sans-serif;
 `
