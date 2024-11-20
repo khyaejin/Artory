@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import StandardButton from '../../shared/components/StandardButton';
+import NaverLoginButtonImage from '../../assets/naver-login-button.svg';
+import KakaoLoginButtonImage from '../../assets/kakao_login_large_narrow 2.svg';
 
 export default function LoginSection() {
   return (
@@ -18,8 +20,12 @@ export default function LoginSection() {
         </BottomLinks>
 
         <SocialLogin>
-          <SocialButton bgColor="#1E8C4E" color="white">네이버 로그인</SocialButton>
-          <SocialButton bgColor="#FEE500" color="black">카카오 로그인</SocialButton>
+          <SocialButton>
+            <img src={NaverLoginButtonImage} alt="네이버 로그인" />
+          </SocialButton>
+          <SocialButton>
+            <img src={KakaoLoginButtonImage} alt="네이버 로그인" />
+          </SocialButton>
         </SocialLogin>
       </LoginBox>
     </MainLayout>
@@ -27,86 +33,99 @@ export default function LoginSection() {
 }
 
 const MainLayout = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // background-color: red;
-`;
-
-const LoginBox = styled.div`
-    width: 40%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
-
-const InputField = styled.input`
-    width: 20.375rem;
-    height: 3.125rem;
-    flex-shrink: 0;
-    margin-bottom: 1rem; // 인풋 필드간 간격
-
-    // box
-    border: 1px solid rgba(171, 171, 171, 0.02);
-    background: #FFF;
-    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.10);
-    
-    // font
-    color: #A6A9AF;
-    font-family: Pretendard;
-    font-size: 0.8125rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: -0.0325rem;
-    padding: 0 1rem;
-    outline: none;
-    border-radius: 5px;
-
-    &:focus {
-        border: 1px solid #A6A9AF;
-    }
-`;
-
-const BottomLinks = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    font-size: 14px;
-    margin-bottom: 20px;
-`;
-
-const LinkItem = styled.a`
-    color: #9C9C9C;
-    font-family: Pretendard;
-    font-size: 0.8125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.0325rem;
-    text-decoration: none;
-`;
-
-const SocialLogin = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const SocialButton = styled.button`
-  width: 48%;
-  padding: 12px;
-  font-size: 16px;
-  color: ${({ color }) => color};
-  background-color: ${({ bgColor }) => bgColor};
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+
+// 로그인 관련 전체
+const LoginBox = styled.div`
+  width: 35%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+// 이메일, 비밀번호 입력 필드
+const InputField = styled.input`
+  display: flex;
+  width: 90%;
+  height: 3.125rem;
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+
+  border: 1px solid rgba(171, 171, 171, 0.02);
+  background: #FFF;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.10);
+  
+  // 글씨
+  color: #A6A9AF;
+  font-family: Pretendard;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.0325rem;
+  padding: 0 1rem;
+  outline: none;
+
+  &:focus {
+    border: 1px solid #A6A9AF;
+  }
+`;
+
+// 찾기
+const BottomLinks = styled.div`
+	margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 14px;
+  margin-bottom: 20px;
+`;
+
+// 찾기
+const LinkItem = styled.a`
+  cursor: pointer;
+  color: #9C9C9C;
+  font-family: Pretendard;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.0325rem;
+  text-decoration: none;
+`;
+
+// 소셜 로그인 관련 전체
+const SocialLogin = styled.div`
+  width: 100%;
+	height: 3rem; // 높이를 줄이기 위해 명시적으로 설정
+  display: flex;
+  justify-content: space-between; // 양쪽 끝에 버튼 배치
+  gap: 1rem; // 버튼들 사이 간격
+`;
+
+// 소셜 로그인 버튼
+const SocialButton = styled.div`
+  flex: 1; // 버튼들이 동일한 넓이를 가지도록 설정
+  max-width: 48%; // 버튼 크기를 부모 컨테이너 대비 제한
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; // 버튼 클릭 가능하게 설정
+  overflow: hidden; // 이미지가 버튼 크기를 넘지 않도록 잘라내기
+
+  img {
+    width: 135%; 
+		height: auto;
+    object-fit: cover; // 이미지 비율을 유지하며 요소 크기에 맞게 채움
+  }
+`;
+
+
+
