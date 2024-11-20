@@ -18,8 +18,8 @@ export default function MainBanner() {
 }
 
 const MainLayout = styled.div`
-    width: 50%;
-    height: 30%;
+    width: 70%;
+    height:15%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,12 +44,14 @@ const SubTitle = styled.div`
     font-weight: 500;
     line-height: 133.072%; /* 3.32681rem */
     letter-spacing: -0.1rem;
+    margin-bottom: -0.7rem; // 제목 위의 간격 줄이기
+
 `;
 
 const ServiceIntro = styled.div`
     color: #595959;
     font-family: Pretendard;
-    font-size: 0.875rem;
+    font-size: 0.93rem;
     font-style: normal;
     font-weight: 500;
     line-height: 133.072%; /* 1.16438rem */
