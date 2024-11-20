@@ -16,6 +16,7 @@ export default function StandardButton({ text, width, height,marginRight, onClic
 const MainLayout = styled.button`
 width: ${({ width }) => (width  || "20.375rem")};
 height:${({ height }) => (height || "3.25rem")};
+cursor: pointer;
 background-color: #0E0E0F;
 color:  #FFF;
 border: none;
