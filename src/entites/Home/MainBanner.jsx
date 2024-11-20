@@ -19,7 +19,7 @@ export default function MainBanner() {
 
 const MainLayout = styled.div`
     width: 70%;
-    height: 30%;
+    height: 25%;
     display: flex;
     flex-direction: column;
     justify-content: center;
