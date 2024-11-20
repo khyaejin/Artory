@@ -18,7 +18,7 @@ export default function MainBanner() {
 }
 
 const MainLayout = styled.div`
-    width: 50%;
+    width: 70%;
     height: 30%;
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@ const SubTitle = styled.div`
 const ServiceIntro = styled.div`
     color: #595959;
     font-family: Pretendard;
-    font-size: 0.875rem;
+    font-size: 0.93rem;
     font-style: normal;
     font-weight: 500;
     line-height: 133.072%; /* 1.16438rem */
