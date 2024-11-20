@@ -14,6 +14,8 @@ export default function MyStoryButton({ text, width, height,marginRight, onClick
 }
 
 const MainLayout = styled.button`
+    margin-top: 7rem; //버튼이 나올 때 위에서 적당한 여백을 주기
+    cursor: pointer;
     width: ${({ width }) => (width  || "20.375rem")};
     height:${({ height }) => (height || "3.25rem")};
     background-color: #0E0E0F;

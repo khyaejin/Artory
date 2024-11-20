@@ -23,9 +23,10 @@ const MainLayout = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white; /* 텍스트 색상 */
+  justify-content: flex-start; /* 버튼이 없어도 MainBanner 위치 고정 */
+  // align-items: center;
+  margin-left: 170px;
+  margin-top: 27%;
   font-size: 18px;
   font-family: Arial, sans-serif;
 `;
