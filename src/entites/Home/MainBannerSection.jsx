@@ -10,9 +10,9 @@ export default function MainBannerSection({isClicked,setIsClicked}) {
       <MainBanner/>
       {/* 버튼 */}
       {
-        // 버튼이 클릭되지 않았을 시 버튼 보이지 않도록
-        // 클릭할 경우 프스터 섹션 -> 로그인 섹션으로 이동하도록
-        !isClicked && <MyStoryButton text = "MY STROY ▶" width="12.1875rem" height="3rem" onClick={()=>setIsClicked(true)}/> 
+        // 버튼 클릭 x -> 버튼 보이지 않도록
+        // 버튼 클릭 : 프스터 섹션 -> 로그인 섹션 이동
+        !isClicked && <MyStoryButton text = "MY STORY ▶" width="12.1875rem" height="3rem" onClick={()=>setIsClicked(true)}/> 
       }
     </MainLayout>
   );
