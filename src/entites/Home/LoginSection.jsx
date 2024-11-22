@@ -20,8 +20,8 @@ export default function LoginSection() {
 				/>
         <InputField type="password" 
 					placeholder={isPasswordFocus ? "" : "비밀번호를 입력해주세요"}
-					onFocus={()=>setIsPasswordFocus(true)}
-					onBlur={()=>setIsPasswordFocus(false)}
+					onFocus={()=>setIsPasswordFocus(true)} //포커스
+					onBlur={()=>setIsPasswordFocus(false)} //프커스 해제
 				/>
 
         <StandardButton text="로그인" width="100%" height="3.25rem" marginRight="0" />
