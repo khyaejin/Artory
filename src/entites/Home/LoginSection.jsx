@@ -1,15 +1,28 @@
+import { useState } from 'react';
 import React from 'react';
 import styled from 'styled-components';
 import StandardButton from '../../shared/components/StandardButton';
 import NaverLoginButtonImage from '../../assets/naver_login_large_narrow 2.svg';
 import KakaoLoginButtonImage from '../../assets/kakao_login_large_narrow 2.svg';
 
+
 export default function LoginSection() {
+	const [isEmailFocus, setIsEmailFocus] = useState(false);
+	const [isPasswordFocus, setIsPasswordFocus] = useState(false);
+
   return (
     <MainLayout>
       <LoginBox>
-        <InputField type="email" placeholder="이메일을 입력해주세요" />
-        <InputField type="password" placeholder="비밀번호를 입력해주세요" />
+        <InputField type="email" 
+					placeholder={isEmailFocus ? "" : "이메일을 입력해주세요"}  
+					onFocus={() => setIsEmailFocus(true)} // 포커스
+					onBlur={() => setIsEmailFocus(false)} // 포커스 해제
+				/>
+        <InputField type="password" 
+					placeholder={isPasswordFocus ? "" : "비밀번호를 입력해주세요"}
+					onFocus={()=>setIsPasswordFocus(true)}
+					onBlur={()=>setIsPasswordFocus(false)}
+				/>
 
         <StandardButton text="로그인" width="100%" height="3.25rem" marginRight="0" />
 
