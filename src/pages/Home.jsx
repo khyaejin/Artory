@@ -27,5 +27,4 @@ const MainLayout = styled.div`
 height : 85vh;
 display : flex;
 align-items : center;
-// background-color :green;
 `
