@@ -51,7 +51,7 @@ const IconContainer = styled.div`
   justify-content: flex-end; // 오른쪽 정렬
   margin: 0; // 모든 여백 제거
   margin-bottom: 1rem; // 아래쪽 간격만 추가
-  cursor: pointer;
+  cursor: pointer; // 커서 손가락 표시
 
   img {
     width: 2.23725rem;
