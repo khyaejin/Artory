@@ -5,17 +5,18 @@ import IMG from '../../assets/profileImg.svg'
 
 
 export default function ProfileSection() {
+    const userName = "니모";
+
     return (
         <MainLayout>
 
             <ProfileContainer>
                 <span>
-                    니모님의 <br></br>
+                    {userName}님의 <br></br>
                     마이페이지
                 </span>
                 <ProfileImg src={IMG} />
             </ProfileContainer>
-
 
         </MainLayout>
     )
