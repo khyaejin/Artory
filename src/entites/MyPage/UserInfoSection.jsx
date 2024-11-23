@@ -12,7 +12,8 @@ export default function UserInfoSection() {
         {/* 프로필과 버튼 섹션 */}
         <ProfileSection></ProfileSection>
 
-        <InfoSection>정보 섹션</InfoSection>
+        {/* 정보 섹션 */}
+        <InfoSection></InfoSection>
 
         </MainLayout>
     );
@@ -20,9 +21,8 @@ export default function UserInfoSection() {
 
 const MainLayout = styled.div`
   width: 100%;
-  height: 60%;
+  height: 45%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 `;
