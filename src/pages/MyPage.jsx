@@ -67,7 +67,7 @@ const TapContainer = styled.div`
   width: calc(100% - 28rem); // 양쪽 14rem 여백을 고려해 너비 계산
   display: flex;
   position: sticky; // 스크롤 시 부모 컨테이너 내에서 고정
-  margin: 20px;
+  margin: 40px;
 `;
 
 const TabButton = styled.button`
