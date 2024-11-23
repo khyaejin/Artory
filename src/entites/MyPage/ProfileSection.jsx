@@ -32,12 +32,12 @@ justify-content : space-between;
 
 const ProfileContainer = styled.div`
 display : flex;
-margin-top : 5.94rem; // 위쪽 간격 조정
-margin-left : 13.31rem; // 좌측 간격 조정
+margin-top : 5.94rem; // 위쪽 간격 설정
+margin-left : 14rem; // 좌측 간격 설종
 flex-direction : column;
 line-height: 133.072%; // 2.49513rem
 letter-spacing: 0.06563rem;
-gap : 1rem; // 글씨와 프로필 이미지 간의 거리 조정
+gap : 1rem; // 글씨와 프로필 이미지 간의 거리 설정
 
 color: #000;
 font-family: Pretendard;
