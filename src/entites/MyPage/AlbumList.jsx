@@ -4,7 +4,7 @@ import { Stories } from '../../shared/dummy/StoryDummy'; // 스토리 더미 데
 import BasicImg from '../../assets/story/basic-story.svg'; // 기본 이미지
 import StandardPoster from '../../shared/components/StandardPoster';
 
-export default function StoryList() {
+export default function AlbumList() {
     return (
         <MainLayout>
             <ExhibitionContainer>
