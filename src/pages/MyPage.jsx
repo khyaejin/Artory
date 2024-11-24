@@ -4,7 +4,7 @@ import UserInfoSection from '../entites/MyPage/UserInfoSection';
 import MyStory from '../entites/MyPage/MyStory';
 import MyAlbum from '../entites/MyPage/MyAlbum';
 import SavedUser from '../entites/MyPage/SavedUser';
-import SavedStory from '../entites/MyPage/SavedStory';
+import SavedExhibition from '../entites/MyPage/SavedExhibition';
 
 export default function MyPage() {
   // 버튼 4개 중 어떤 게 눌렸는지 감지하는 상태 변수, 상태함수
@@ -33,13 +33,13 @@ export default function MyPage() {
           isActive={isButtonClicked === 3}
           onClick={() => setIsButtonClicked(3)}
         >
-          저장 유저
+          저장한 유저
         </TabButton>
         <TabButton
           isActive={isButtonClicked === 4}
           onClick={() => setIsButtonClicked(4)}
         >
-          저장 스토리
+          저장한 전시
         </TabButton>
       </TapContainer>
 
@@ -47,7 +47,7 @@ export default function MyPage() {
       {isButtonClicked === 1 && <MyStory />}
       {isButtonClicked === 2 && <MyAlbum />}
       {isButtonClicked === 3 && <SavedUser />}
-      {isButtonClicked === 4 && <SavedStory />}
+      {isButtonClicked === 4 && <SavedExhibition />}
     </MainLayout>
   );
 }
@@ -79,7 +79,7 @@ const TabButton = styled.button`
   // 버튼 누르면 배경 색 변경
   background-color: ${(props) => (props.isActive ? '#0E0E0F' : '#F4F5F7')};
 
-  // 폰트 관련 css ============================================
+  // 폰트 관련 css 
   text-align: center;
   font-family: Pretendard;
   font-size: 0.875rem;
