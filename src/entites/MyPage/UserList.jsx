@@ -34,15 +34,19 @@ const MainLayout = styled.div`
 const ExhibitionContainer = styled.div`
   display: flex;
   justify-content: space-between; // 양쪽 끝에 맞추고 나머지는 동일 간격
-  align-items: center; // 세로 중앙 정렬
+  align-items: center; 
   width: 100%; 
-  gap: 1rem; // 유저 간 간격 추가
+  gap: 1rem; 
   box-sizing: border-box;
 `;
 
 const UserAvatar = styled.img`
-  width: 8.0625rem;
-  height: 8.0625rem; 
-  flex-shrink: 0; // 크기 고정
+  width: 13%; // 비율로 너비 설정
+  max-width: 8.0625rem; // 최대 너비
+  min-width: 3rem; // 최소 너비
+  height: auto; // 높이는 비율에 맞게 자동으로 설정
+  
+  flex-shrink: 0; // 크기 고정 방지
   object-fit: cover; // 이미지 비율 유지하며 크기 조정
 `;
+
