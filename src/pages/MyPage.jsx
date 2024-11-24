@@ -73,8 +73,9 @@ const TapContainer = styled.div`
 const TabButton = styled.button`
   cursor: pointer;
   border: 1px solid #ddd;
-  width: 13.625rem;
-  height: 2.1875rem;
+width: 20%; // 너비를 부모 컨테이너 기준 비율로 설정
+  max-width: 13.625rem; // 최대 너비 제한
+  min-width: 8rem; // 최소 너비 제한  height: 2.1875rem;
   flex-shrink: 0;
   // 버튼 누르면 배경 색 변경
   background-color: ${(props) => (props.isActive ? '#0E0E0F' : '#F4F5F7')};
