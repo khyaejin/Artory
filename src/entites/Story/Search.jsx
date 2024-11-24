@@ -4,7 +4,7 @@ import { Stories } from '../../shared/dummy/StoryDummy';
 
 import SEARCH from '../../assets/searchicon.svg';
 
-export default function Search({ searchStories, setSearchStories }) {
+export default function Search({ searchStories, setSearchStories, placeholder }) {
     const [input, setInput] = useState('');
 
     useEffect(() => {
@@ -35,6 +35,7 @@ export default function Search({ searchStories, setSearchStories }) {
                     value={input}
                     onChange={e => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
+                    placeholder={placeholder} // exhibition 페이지에는 placdeholder가 필으하므로 props로 받음
                 />
             </SearchContainer>
         </SearchLayout>
