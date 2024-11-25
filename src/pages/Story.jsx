@@ -8,7 +8,7 @@ export default function Stroy() {
   const [searchStories, setSearchStories] = useState([]); // 검색하고자 하는 스토리를 저장하는 배열
   return (
     <StoryLayout>
-      <Search searchStories={searchStories} setSearchStories={setSearchStories} /> {/* Exhibition 페이지에도 있기 때문에 shared에 해놔야할지 생각 */}
+      <Search searchItems={searchStories} setSearchItems={setSearchStories} /> {/* Exhibition 페이지에도 있기 때문에 shared에 해놔야할지 생각 */}
       {searchStories.length > 0 ? (
         <>
         <SearchResultLayout>
