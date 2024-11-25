@@ -4,7 +4,10 @@ import styled from 'styled-components'
 export default function ExhibitionInfo({ exhibition }) {
   return (
     <ExhibitionInfoLayout>
+      {/* 전시 제목 */}
       <Title>{exhibition.제목}</Title>
+
+      {/* 전시 제목 외 상세 정보 영역 */}
       <InfoContainer>
         <InfoWrapper>
           <Type>장소</Type>
@@ -37,6 +40,7 @@ export default function ExhibitionInfo({ exhibition }) {
           </TypeContent>
         </InfoWrapper>
       </InfoContainer>
+      
     </ExhibitionInfoLayout>
   );
 }
