@@ -23,7 +23,7 @@ export default function ExhibitionDetail() {
       {/* 전시 장소 영역 */}
       <ExhibitionLocationContainer>
           {/* 전시 장소 지도 컴포넌트 */}
-          <ExhibtionMap address={exhibition.주소}/>
+          <ExhibtionMap address={exhibition.주소} place={exhibition.장소}/>
       </ExhibitionLocationContainer>
 
     </ExhibitionDetailLayout>
