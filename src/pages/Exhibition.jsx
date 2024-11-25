@@ -9,9 +9,13 @@ export default function Exhibition() {
   const [searchExhibition, setSearchExhibitions] = useState([]); // 검색하고자 하는 전시를 저장하는 배열
   return (
     <ExhibitionLayout>
-      <BannerWrapper>
+      {/* 스와이퍼 배너 영역 */}
+      <BannerWrapper> 
+        {/* 배너 컴포넌트 */}
         <Banner/>
       </BannerWrapper>
+
+      {/* 검색바 컴포넌트 */}
       <Search searchStories={searchExhibition} setSearchStories={setSearchExhibitions} placeholder="원하는 전시를 검색해보세요"/> {/* Story 페이지와는 다르게 placeholer 추가 */}
       {searchExhibition.length > 0 ? (
         <>
@@ -25,6 +29,7 @@ export default function Exhibition() {
         </>
       ) : (
         <>
+        {/* 캐러셀 */}
           <Carousel title={'인기 전시'} type={'exhibition'} />
           <Carousel title={'최근 전시'} type={'exhibition'} />
           <Carousel title={'추천 전시'} type={'exhibition'} />     

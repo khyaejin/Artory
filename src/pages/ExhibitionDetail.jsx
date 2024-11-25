@@ -2,26 +2,30 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Exhibitions } from '../shared/dummy/ExhibitionDummy';
-import ExhibitionInfo from '../entites/Exibition/ui/\bExhibitionInfo';
+import ExhibitionInfo from '../entites/Exibition/ui/ExhibitionInfo';
+import ExhibtionMap from '../entites/Exibition/ui/ExhibitionMap';
 
 export default function ExhibitionDetail() {
   const { id } = useParams(); // useParmas로 URL에서 id 가져오기
-
   const exhibition = Exhibitions.find((exhibit) => exhibit.아이디 ===  Number(id)); // 아이디로 데이터 찾기
 
-
   return (
-    <ExhibitionDetailLayout>
+    <ExhibitionDetailLayout> 
+
+      {/* 전시 정보 상단 영역 */}
       <ExhibitionTopContainer>
+        {/* 전시 포스터 */}
         <ExhibitionPoster src={exhibition.포스터} alt={exhibition.제목} />
+        {/* 전시 상세 정보 컴포넌트 */}
         <ExhibitionInfo exhibition={exhibition} />
       </ExhibitionTopContainer>
+
+      {/* 전시 장소 영역 */}
       <ExhibitionLocationContainer>
-        <ExhibtionMap />
-        <ExhibitionLoactaion>
-          {/* 카카오맵 연동 */}
-        </ExhibitionLoactaion>
+          {/* 전시 장소 지도 컴포넌트 */}
+          <ExhibtionMap address={exhibition.주소}/>
       </ExhibitionLocationContainer>
+
     </ExhibitionDetailLayout>
   );
 }
@@ -29,6 +33,7 @@ export default function ExhibitionDetail() {
 const ExhibitionDetailLayout = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const ExhibitionTopContainer = styled.div`
@@ -42,8 +47,8 @@ const ExhibitionPoster = styled.img`
   height: 489px;
 `;
 
-const ExhibitionLocationContainer = styled.div``;
-
-const ExhibtionMap = styled.div``;
-
-const ExhibitionLoactaion = styled.div``;
+const ExhibitionLocationContainer = styled.div`
+display: flex;
+  flex-direction: column;
+  gap:15px;
+`;
