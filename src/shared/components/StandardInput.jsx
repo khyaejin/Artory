@@ -20,7 +20,7 @@ export default function StandardInput({
   return (
     <MainLayout>
 
-      {/* <StyledImg src={GLASSES} />  */}
+      <StyledImg src={GLASSES} /> 
       <StyledInput 
         placeholder={isInputClick ? "" : placeholder} 
         width={width}
@@ -39,7 +39,6 @@ export default function StandardInput({
 }
 
 const MainLayout = styled.div`
-position: relative; 
 width: ${({ width }) => (width  || "34.89513rem")};
 height:${({ height }) => (height || "3.69913rem")};
 `;
@@ -52,13 +51,17 @@ margin-right : ${({marginRight}) => (marginRight || "0")};
 margin-bottom : ${({marginBottom}) => (marginBottom || "0")};
 border: none;
 background-color: #F4F5F7;
-padding-left: 5.19rem;
 font-size: 1.2rem;
 font-style: normal;
 font-weight: 500;
+padding-left : 4rem;
 color : #A6A9AF;
 &:focus {
     outline: none;
+}
+&::placeholder {
+    color: #a6a9af;
+    font-size: 1rem;
 }
 `;
 
@@ -66,6 +69,6 @@ const StyledImg = styled.img`
 width: 2.2195rem;
 height: 2.2195rem;
 position: absolute;
-top: 22%;
-left: 5%;
+margin-top : 0.74rem;
+margin-left : 1.11rem;
 `;

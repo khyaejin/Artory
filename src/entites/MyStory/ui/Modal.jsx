@@ -81,6 +81,8 @@ const StyledModal = ReactModal.Styles = {
     flexDirection: "column",
     alignItems: "center",
     overflow: "auto",
+    paddingLeft : "1.44rem",
+    paddingRight : "1.44rem"
   },
 };
 
@@ -93,11 +95,12 @@ const StyledImg = styled.img`
 const Result = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top : 5.61rem;
+  gap : 1rem;
 `;
 
 const PosterImg = styled.img`
   width: 10.25rem;
   height: 14.9375rem;
-  margin-top: 0.88rem;
-  margin-right: 0.88rem;
+
 `;
