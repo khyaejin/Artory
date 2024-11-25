@@ -1,6 +1,11 @@
+.ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+  min-height: 35rem !important; /* 원하는 높이 설정 */
+  height: 100% !important;
+  padding: 0;
+}
+
 .ck.ck-editor {
-  width: 50rem;
-  height: 45rem;
+  width: 200px;
   background: #FFF;
   box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.10);
   /* max-width: 500px; */
@@ -10,15 +15,15 @@
 }
 /* 포커스 안했을 때 */
 .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
-  padding: 150px 40px 30px 30px;
+  padding-top : 9.3rem;
+  padding-left: 2.5rem;
   font-size: 0.95rem;
   color: #5a5c62;
   line-height: 1.3rem;
 }
 /* 포커스 했을때 */
 .ck.ck-editor__editable.ck-focused:not(.ck.ck-editor__nested-editable) {
-  /* padding: 150px 40px 30px 30px; */
-  /* border: 1px solid red; */
+  padding-top : 9.3rem;
   padding-left: 2.5rem;
   border: none;
   z-index: 102;
