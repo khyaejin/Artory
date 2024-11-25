@@ -16,7 +16,7 @@ export default function Exhibition() {
       </BannerWrapper>
 
       {/* 검색바 컴포넌트 */}
-      <Search searchStories={searchExhibition} setSearchStories={setSearchExhibitions} placeholder="원하는 전시를 검색해보세요"/> {/* Story 페이지와는 다르게 placeholer 추가 */}
+      <Search searchItems={searchExhibition} setSearchItems={setSearchExhibitions} placeholder="원하는 전시를 검색해보세요" type="exhibition"/> {/* Story 페이지와는 다르게 placeholer 추가 */}
       {searchExhibition.length > 0 ? (
         <>
         <SearchResultLayout>

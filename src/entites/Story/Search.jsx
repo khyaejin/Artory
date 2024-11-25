@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Stories } from '../../shared/dummy/StoryDummy';
+import { Exhibitions } from '../../shared/dummy/ExhibitionDummy';
 
 import SEARCH from '../../assets/searchicon.svg';
 
-export default function Search({ searchStories, setSearchStories, placeholder }) {
+export default function Search({ searchItems, setSearchItems, placeholder, type }) {
     const [input, setInput] = useState('');
 
     useEffect(() => {
         if (input === '') {
-            setSearchStories([]); // 빈 입력일 때 캐러셀 표시
+            setSearchItems([]); // 빈 입력일 때 캐러셀 표시
         }
-    }, [input, setSearchStories])
+    }, [input, setSearchItems])
 
     // 엔터 키를 눌렀을 때 검색 실행
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             if(input === '') {
-                setSearchStories([]); // 빈 입력일 때 캐러셀 표시
+                setSearchItems([]); // 빈 입력일 때 캐러셀 표시
             } else {
-                const filteredData = Stories.filter(story => story.전시이름.includes(input));
-                setSearchStories(filteredData);
+                let filteredData=[];
+                if(type === 'story'){
+                    filteredData = Stories.filter(story => story.전시이름.includes(input));
+                } else if(type === 'exhibition'){
+                    filteredData = Exhibitions.filter(exhibition => exhibition.제목.includes(input));
+                }
+                setSearchItems(filteredData);
             }
             
         }
