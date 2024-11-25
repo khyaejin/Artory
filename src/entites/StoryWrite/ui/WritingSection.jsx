@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import StoryTitle from './StoryTitle'
 import TodaysExhibition from './TodaysExhibition'
+import TextEditor from './TextEditor'
 
 export default function WritingSection() {
   return (
     <div>
-         <Title>스토리 기록</Title>
+      <Title>스토리 기록</Title>
 
-         <StoryTitle/>
+      <StoryTitle />
 
-        <TodaysExhibition/>
+      <TodaysExhibition />
+
+      <TextEditor />
     </div>
   )
 }

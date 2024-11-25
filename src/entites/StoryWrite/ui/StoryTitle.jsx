@@ -4,8 +4,8 @@ const InputTitle = styled.input`
     font-size : 18px;
     font-family: 'Pretendard';
     padding :0 0 0 2%;
-    width : 800px;
-    height : 55px;
+    width: 50rem;
+    height : 3.4rem;
     border: none;
     box-shadow: 1px 2px 8px #f3f3f3; 
     color : #ababab;
