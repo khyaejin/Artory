@@ -14,7 +14,8 @@ export default function StandardInput({
     isInputClick,
     onFocus,
     onBlur,
-    onKeyDown
+    onKeyDown,
+    onChange
 }) {
   return (
     <MainLayout>
@@ -27,6 +28,7 @@ export default function StandardInput({
         onFocus={onFocus} 
         onBlur={onBlur}
         onKeyDown={onKeyDown}
+        onChange={onChange}
         marginTop={marginTop}
         marginRight={marginRight}
         marginBottom={marginBottom}

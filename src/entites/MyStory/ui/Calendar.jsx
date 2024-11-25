@@ -142,9 +142,5 @@ const Day = styled.div`
     padding-top: 0.5%;
     &:hover {
         background-color: #F4F5F7;
-        background-image: url(${ADD});
-        background-size: 0.875rem 0.875rem;
-        background-repeat: no-repeat;
-        background-position: 90% 10%;
     }
 `;
