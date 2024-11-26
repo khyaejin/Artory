@@ -42,6 +42,10 @@ import STORY2 from '../../assets/story/2.svg';
 import STORY3 from '../../assets/story/3.svg';
 import STORY4 from '../../assets/story/4.svg';
 import STORY5 from '../../assets/story/5.svg';
+import STORY6 from '../../assets/story/6.svg';
+import STORY7 from '../../assets/story/6.svg';
+import STORY8 from '../../assets/story/6.svg';
+
 
 export const Stories = [
     {
@@ -60,11 +64,15 @@ export const Stories = [
         "키워드": ["# 황성욱", "# 개인전", "# 실물영접"],
         "글내용": [
             { "type": "text", "content": "오늘은 드디어 꼭 가고 싶던..요시다 유니 작가님의 개인전을 보러 갔다!!!!!!!" },
-            { "type": "image", "src": POSTER1 },
+            { "type": "image", "src": STORY5 },
             { "type": "text", "content": "또 이번 개인전에서 공개한 작가님의 트럼프 카드 작업까지 볼 수 있었습니다!" },
             { "type": "image", "src": STORY4 },
             { "type": "text", "content": "다들 전시 종료 전에 꼭 요시다 유니 전시 보러 가시길 추천드립니답!" },
             { "type": "image", "src": STORY2 },
+            { "type": "text", "content": "신기하당" },
+            { "type": "image", "src": STORY7 },
+            { "type": "text", "content": "벽이 너무 예뻐요~" },
+            { "type": "image", "src": STORY8 },
         ],
         "작성날짜": '2024.03.10',
         "좋아요": 35,
@@ -101,7 +109,7 @@ export const Stories = [
         "아이디": 1,
         "포스터": POSTER2,
         "전시이름": "반고흐 인 서울",
-        "작성자": "김영희",
+        "작성자": "성공한덕후",
         "작성자프로필": USER2,
         "글제목": "반고흐, 그림에 반하고 인생에 반하다!",
         "방문일": "2024.04.10",
@@ -219,7 +227,7 @@ export const Stories = [
         "아이디": 4,
         "포스터": POSTER5,
         "전시이름": "미래 도시와 스마트 라이프 체험",
-        "작성자": "최지훈",
+        "작성자": "성공한덕후",
         "작성자프로필": USER5,
         "글제목": "미래 도시와 스마트 라이프 체험",
         "방문일": "2024.07.20",
@@ -260,7 +268,7 @@ export const Stories = [
         "아이디": 5,
         "포스터": POSTER6,
         "전시이름": "피카소와 현대미술",
-        "작성자": "예술혼",
+        "작성자": "성공한덕후",
         "작성자프로필": USER6,
         "글제목": "피카소의 예술세계에 빠져들다",
         "방문일": "2024.08.10",
@@ -272,7 +280,7 @@ export const Stories = [
         "키워드": ["#피카소", "#현대미술"],
         "글내용": [
             { "type": "text", "content": "피카소의 작품을 직접 보니 감동적이었습니다!" },
-            { "type": "image", "src": STORY1 },
+            { "type": "image", "src": STORY6 },
             { "type": "text", "content": "그의 색채와 형태 표현이 인상 깊었어요." }
         ],
         "작성날짜": '2024.08.12',
@@ -362,7 +370,7 @@ export const Stories = [
         "아이디": 8,
         "포스터": POSTER9,
         "전시이름": "서울 미디어아트 '앙리마티스'",
-        "작성자": "예술가",
+        "작성자": "성공한덕후",
         "작성자프로필": USER9,
         "글제목": "빛과 색의 향연, 미디어 아트",
         "방문일": "2024.11.01",
