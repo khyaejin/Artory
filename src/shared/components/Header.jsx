@@ -27,7 +27,7 @@ export default function NavigationBar() {
       <PageSection>
         <StyledLink
           to="/exhibition"
-          selected={location.pathname === '/exhibition'}
+          selected={location.pathname === '/exhibition' || location.pathname==='/exhibition/' || location.pathname==='/exhibition/search'}
         >
           <div>EXHIBITION</div>
         </StyledLink>

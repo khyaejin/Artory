@@ -90,7 +90,7 @@ const ExhibitionMap = ({ address, place }) => {
     <MapLayout>
       <MapContainer ref={mapContainer} />
       <AddressContainer>
-        <AddresText>위치 : </AddresText>
+        <AddresText>위치 :&nbsp;</AddresText>
         <Address>{address} {place}</Address>
       </AddressContainer>
     </MapLayout>
@@ -106,7 +106,7 @@ const MapLayout = styled.div`
 `;
 
 const MapContainer = styled.div`
-  width: 1012px;
+width:1014px;
   height: 406px;
 `;
 
