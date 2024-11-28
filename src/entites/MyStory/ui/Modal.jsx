@@ -42,11 +42,14 @@ export default function Modal({ isShowModal, setIsShowModal }) {
       onRequestClose={() => setIsShowModal(false)}
       style={StyledModal}
     >
-      <StandardInput
-        placeholder="전시 검색"
-        onChange={e => setInput(e.target.value)}
-        onKeyDown={handleKeyDown}
-      />
+      <InputContainer>
+        <StandardInput
+          placeholder="전시 검색"
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          marginLeft="13%"
+        />
+      </InputContainer>
       {
         isEnter ?
           <Result>
@@ -104,3 +107,8 @@ const PosterImg = styled.img`
   height: 14.9375rem;
 
 `;
+
+const InputContainer = styled.div`
+  width: 100%;
+   height: 4vw;
+`

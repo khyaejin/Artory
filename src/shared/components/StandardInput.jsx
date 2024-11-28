@@ -11,6 +11,7 @@ export default function StandardInput({
     marginTop,
     marginRight,
     marginBottom,
+    marginLeft,
     isInputClick,
     onFocus,
     onBlur,
@@ -32,6 +33,7 @@ export default function StandardInput({
         marginTop={marginTop}
         marginRight={marginRight}
         marginBottom={marginBottom}
+        marginLeft={marginLeft}
         />
 
     </MainLayout>
@@ -49,6 +51,7 @@ height: 100%;
 margin-top : ${({marginTop}) => (marginTop || "0")};
 margin-right : ${({marginRight}) => (marginRight || "0")};
 margin-bottom : ${({marginBottom}) => (marginBottom || "0")};
+margin-left : ${({marginLeft}) => (marginLeft || "0")};
 border: none;
 background-color: #F4F5F7;
 font-size: 1.2rem;
@@ -70,5 +73,5 @@ width: 2.2195rem;
 height: 2.2195rem;
 position: absolute;
 margin-top : 0.74rem;
-margin-left : 1.11rem;
+margin-left : 5.5rem;
 `;
