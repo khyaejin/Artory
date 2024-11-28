@@ -1,28 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import ReactModal from 'react-modal'
+import ReactModal from 'react-modal';
 import StandardInput from '../../../shared/components/StandardInput';
-import { Exhibitions } from '../../../shared/dummy/ExhibitionDummy'
+import { Exhibitions } from '../../../shared/dummy/ExhibitionDummy';
 
-// 이미지
-import GLASSES from '../../../assets/searchicon.svg'
-import StandardPoster from '../../../shared/components/StandardPoster';
+import GLASSES from '../../../assets/searchicon.svg';
 
 export default function Modal({ isShowModal, setIsShowModal }) {
-  const [isInputClick, setIsInputClick] = useState(false);
-  const [isEnterClick, setIsEnterClick] = useState(false);
+  const [isEnter, setIsEnter] = useState(false);
+  const [searchExhibition, setSearchExhibition] = useState([]);
+  const [input, setInput] = useState('');
   const navigate = useNavigate();
 
-  const onKeyDownEnter = (e) => {
-    if (e.key === "Enter") {
-      setIsEnterClick(true);
+  useEffect(() => {
+    if (input === '') {
+      setIsEnter(false);
+      setSearchExhibition([]);
+    }
+  }, [input]);
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      if (input === '') {
+        setSearchExhibition([]);
+      } else {
+        const filteredData = Exhibitions.filter(exhibition => exhibition.제목.includes(input));
+        setSearchExhibition(filteredData);
+      }
+      setIsEnter(true);
     }
   };
 
   const onClickPoster = (exhibition) => {
-    console.log(exhibition);
-    navigate('/mystory/storywrite', { state: { exhibition } });  // state로 exhibition 객체 전달
+    navigate('/mystory/storywrite', { state: { exhibition } });
   };
 
   return (
@@ -31,21 +42,23 @@ export default function Modal({ isShowModal, setIsShowModal }) {
       onRequestClose={() => setIsShowModal(false)}
       style={StyledModal}
     >
-      <StandardInput
-        placeholder="전시 검색"
-        isInputClick={isInputClick}
-        onFocus={() => setIsInputClick(true)}
-        onBlur={() => setIsInputClick(false)}
-        onKeyDown={(e) => onKeyDownEnter(e)}
-      />
-      {!isEnterClick && <StyledImg src={GLASSES} />}
+      <InputContainer>
+        <StandardInput
+          placeholder="전시 검색"
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          marginLeft="13%"
+        />
+      </InputContainer>
       {
-        isEnterClick &&
-        <Result>
-          {Exhibitions.map((e, i) => (
-            <PosterImg key={i} src={e.포스터} onClick={() => onClickPoster(e)} />
-          ))}
-        </Result>
+        isEnter ?
+          <Result>
+            {searchExhibition.map((e, i) => (
+              <PosterImg key={i} src={e.포스터} onClick={() => onClickPoster(e)} />
+            ))}
+          </Result>
+          :
+          <StyledImg src={GLASSES} />
       }
     </ReactModal>
   );
@@ -53,15 +66,15 @@ export default function Modal({ isShowModal, setIsShowModal }) {
 
 const StyledModal = ReactModal.Styles = {
   overlay: {
-    backgroundColor: " rgba(0, 0, 0, 0.4)",
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
     width: "100%",
     height: "100vh",
-    zIndex: "10",
+    zIndex: 10,
   },
   content: {
     width: "46.625rem",
     height: "28.375rem",
-    zIndex: "150",
+    zIndex: 150,
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -71,16 +84,10 @@ const StyledModal = ReactModal.Styles = {
     flexDirection: "column",
     alignItems: "center",
     overflow: "auto",
+    paddingLeft : "1.44rem",
+    paddingRight : "1.44rem"
   },
 };
-
-const ResultSection = styled.div`
-  border: 1px solid;
-  width: 85%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-`;
 
 const StyledImg = styled.img`
   width: 3.75rem;
@@ -91,11 +98,17 @@ const StyledImg = styled.img`
 const Result = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top : 5.61rem;
+  gap : 1rem;
 `;
 
 const PosterImg = styled.img`
   width: 10.25rem;
   height: 14.9375rem;
-  margin-top: 0.88rem;
-  margin-right: 0.88rem;
+
 `;
+
+const InputContainer = styled.div`
+  width: 100%;
+   height: 4vw;
+`
