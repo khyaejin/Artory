@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Stories } from '../shared/dummy/StoryDummy';
 import Comment from '../entites/StoryDetail/Comment';
 import DeleteModal from '../entites/StoryDetail/DeleteModal';
+import Banner from '../entites/StoryDetail/Banner';
 
 export default function StroyDetail() {
     const { id } = useParams();
@@ -17,12 +18,14 @@ export default function StroyDetail() {
 
     return (
         <StoryDetailLayout>
-            <StoryDetailBanner>
+            {/* <StoryDetailBanner>
                 <BannerImg src={story.포스터} />
                 <BannerTitle>
                     <h3>{story.전시이름}</h3>
                 </BannerTitle>
-            </StoryDetailBanner>
+            
+            </StoryDetailBanner> */}
+            <Banner image={story.포스터} title={story.전시이름}/>
             <StoryDetailContents>
                 <AuthorInfoContainer>
                     <AuthorImg src={story.작성자프로필} />
