@@ -15,7 +15,6 @@ export default function Banner({ image, title }) {
     )
 }
 
-
 const MainLayout = styled.div`
 width: 100%;
 height: 268px;

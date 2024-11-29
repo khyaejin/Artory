@@ -1,3 +1,4 @@
+// 포스터 이미지
 import POSTER1 from '../../assets/poster/1.svg';
 import POSTER2 from '../../assets/poster/2.svg';
 import POSTER3 from '../../assets/poster/3.svg';
@@ -29,6 +30,7 @@ import USER6 from '../../assets/user/6.svg';
 import USER7 from '../../assets/user/7.svg';
 import USER8 from '../../assets/user/8.svg';
 import USER9 from '../../assets/user/9.svg';
+
 // 만족도
 import GOODEMOTION from '../../assets/emotion-good.svg';
 
@@ -74,7 +76,7 @@ export const Stories = [
                 "아이디": 1,
                 "작성자아이디": 1,
                 "프로필": USER1,
-                "작성자": "맴맴",
+                "작성자": "나야나",
                 "이모지": FACE_B1,
                 "댓글": "저도 꼭 보러 가야겠어요!",
                 "대댓글": [
