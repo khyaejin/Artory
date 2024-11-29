@@ -5,7 +5,7 @@ import Emotion from './Emotion';
 function CommentInput({ value, onChange, onSubmit, height, type, onSetFace, selectedFaceId}) {
     return (
         <CommentInputBox height={height}>
-            {type === 'commentEdit' ? (
+            {type === 'commentEdit' && ( // 댓글 수정인 경우, 이모티콘 선택박스가 나타나도록 한다
                 <Emotion
                 size={'22px'}
                 setFace={onSetFace}
@@ -13,7 +13,7 @@ function CommentInput({ value, onChange, onSubmit, height, type, onSetFace, sele
                 selectedFaceId={selectedFaceId}
                 />
                 
-            ) : (null)}
+            )}
             <CommentTextArea
                 value={value}
                 onChange={onChange}
