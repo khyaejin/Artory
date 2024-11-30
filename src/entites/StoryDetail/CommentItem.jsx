@@ -1,19 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { comments } from '../../shared/dummy/CommentDummy';
+import { Users } from '../../shared/dummy/UserDummy';
 
+// 이미지
 import DOWNBUTTON from '../../assets/downbutton-story.svg';
 import UPBUTTON from '../../assets/upbutton-story.svg';
 import CommentInput from './CommentInput';
 import Reply from './Reply';
 
-import USER1 from '../../assets/user/1.svg';
-import DeleteModal from './DeleteModal';
-
 export default function CommentItem({ id, authorId, profile, userName, emoji, comment, reply, commentItem, setIsShowModal, setSaveCommentId, isClickDelete, setIsClickDelete }) {
     const [isOpenReply, setIsOpenReply] = useState(false);
     const [input, setInput] = useState('');
-    const [userId, setUserId] = useState(1);
+    const [loginUser, setLoginUser] = useState(Users[0]); // 현재 로그인된 사용자의 정보를 가져온다
     const [selectedFaceId, setSelectedFaceId] = useState(null);
     const [selectedFace, setSelectedFace] = useState(emoji);
     const [commentText, setCommentText] = useState(comment);
@@ -32,13 +30,12 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
             const lastIndex = replies.length > 0 ? replies[replies.length - 1].아이디 : 0; // replies가 빈 배열일 때 0으로 설정한다
             const newReply = {
                 "아이디": lastIndex + 1,
-                "작성자아이디": userId,
-                "프로필": USER1,
+                "작성자아이디": loginUser.id,
+                "프로필": loginUser.profile,
                 "댓글": input
             };
             
             setReplies(prevReplies => [...prevReplies, newReply]);
-            console.log("Updated replies:", reply);
             setInput('');
         }
     };
@@ -52,12 +49,6 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
         setIsShowModal(true);
         setSaveCommentId(id);
     }
-
-    // 대댓글 삭제 핸들러
-    const handleDeleteReply = (replyId) => {
-        // const updatedReplies = replies.filter(reply => reply.아이디 !== replyId);
-        // setReplies(updatedReplies);
-    };
 
     useEffect(() => {
         if(isClickDelete && saveReplyId) {
@@ -77,11 +68,11 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
                     <CommentBox>
                         <img src={selectedFace} />
                         {commentText}
-                        {userId === authorId ? (
+                        {loginUser.id === authorId && (
                             <ChangeBox>
                                 <div onClick={handleEdit}>수정</div> | <div onClick={() => handleDelete(id)}>삭제</div>
                             </ChangeBox>
-                        ) : (null)}
+                        )}
                     </CommentBox>
                 ) : (
                     <CommentInput
@@ -95,7 +86,7 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
                     />
                 )}
 
-                {replies ? (
+                {replies && (
                     replies.map((data, i) => (
                         <Reply
                             key={i}
@@ -103,26 +94,26 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
                             authorId={data.작성자아이디}
                             profile={data.프로필}
                             replyText={data.댓글}
-                            userId={userId}
+                            userId={loginUser.id}
                             commentItem={commentItem}
                             setIsShowModal={setIsShowModal}
                             setSaveReplyId={setSaveReplyId}
                         />
                     ))
-                ) : (null)}
+                )}
 
                 <ReplyButtonBox onClick={() => setIsOpenReply(!isOpenReply)}>
                     <img src={isOpenReply ? UPBUTTON : DOWNBUTTON} />
                     댓글 달기
                 </ReplyButtonBox>
-                {isOpenReply ? (
+                {isOpenReply && (
                     <CommentInput
                         value={input}
                         onChange={e => setInput(e.target.value)}
                         height={'50px'}
                         onSubmit={addReply}
                     />
-                ) : (null)}
+                )}
             </CommentWrapper>
         </CommentItemContainer>
         

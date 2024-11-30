@@ -13,7 +13,7 @@ import USER9 from '../../assets/user/9.svg';
 export const Users = [
     {
         id: 1,
-        name: "맴맴",
+        name: "나야나",
         profile: USER1,
     },
     {

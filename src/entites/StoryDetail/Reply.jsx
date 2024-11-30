@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import REPLYARROW from '../../assets/replyarrow.svg';
 import CommentInput from './CommentInput';
 
-export default function Reply({ authorId, id, profile, replyText, userId, commentItem, setIsShowModal, setSaveReplyId }) {
+export default function Reply({ authorId, id, profile, replyText, userId, setIsShowModal, setSaveReplyId }) {
     const [reply, setReply] = useState(replyText);
     const [isClickEditBtn, setIsClickEditBtn] = useState(false);
 
@@ -13,12 +13,7 @@ export default function Reply({ authorId, id, profile, replyText, userId, commen
     }
 
     const handleDelete = () => {
-        // const confirmed = window.confirm('정말 이 댓글을 삭제하시겠습니까?');
-        // if (confirmed) {
-        //     onDelete(id); // 부모에게 삭제 요청 전달
-        // }
         setIsShowModal(true); // 삭제 확인 모달창을 연다
-        //onDelete(id);
         setSaveReplyId(id);
     }
 
