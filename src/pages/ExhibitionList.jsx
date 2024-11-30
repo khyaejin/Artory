@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom'; // Link 임포트 추가
 import StandardPoster from '../shared/components/StandardPoster';
 import { Exhibitions } from '../shared/dummy/ExhibitionDummy';
-import ExhibitionHover from '../entites/Exibition/ui/ExhibitionHover';
 
 export default function ExhibitionList() {
   const { listType } = useParams(); // URL에서 listType을 가져옴
@@ -18,7 +17,7 @@ export default function ExhibitionList() {
       case 'recent':
         return '최근 전시';
       default:
-        return '전시 목록';
+        return type;
     }
   };
 
@@ -34,6 +33,10 @@ export default function ExhibitionList() {
         const startDateB = new Date(b.기간.split(' ~ ')[0]);
         return startDateB - startDateA;
       });
+    } else { // 카테고리가 포함된 전시 나열
+      sortedList = Exhibitions.filter((exhibition) =>
+        exhibition.카테고리.includes(listType)
+      );
     }
     setSortedExhibitions(sortedList);
   }, [listType]);
@@ -44,13 +47,15 @@ export default function ExhibitionList() {
       <ExhibitionListType>{getTitle(listType)}</ExhibitionListType>
 
       {/* 전시 목록 */}
-      <ExhibitionListWrpper>
+      <ExhibitionListWrapper>
         {sortedExhibitions.map((exhibition) => (
           <PosterItem key={exhibition.아이디}>
-            <StandardPoster id={exhibition.아이디} poster={exhibition.포스터} />
+            <StyledLink to={`/exhibition/${exhibition.아이디}`}>
+              <StandardPoster id={exhibition.아이디} poster={exhibition.포스터} />
+            </StyledLink>
           </PosterItem>
         ))}
-      </ExhibitionListWrpper>
+      </ExhibitionListWrapper>
     </ExhibitionListLayout>
   );
 }
@@ -62,26 +67,29 @@ const ExhibitionListLayout = styled.div`
   padding: 50px 0px;
 `;
 
-const ExhibitionListWrpper = styled.div`
+const ExhibitionListWrapper = styled.div`
   width: 894px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   margin-top: 50px;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 50px;
 `;
 
 const ExhibitionListType = styled.div`
-text-align: left;
-width: 894px;
+  text-align: left;
+  width: 894px;
   color: #000;
-  font-family: Pretendard;
   font-size: 30px;
-  font-style: normal;
   font-weight: 700;
   line-height: 133.072%;
   letter-spacing: 1.05px;
 `;
 
 const PosterItem = styled.div``;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
