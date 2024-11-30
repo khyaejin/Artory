@@ -8,33 +8,32 @@ import FILLLIKE from '../../assets/filllike.svg'
 import SAVE from '../../assets/save.svg'
 import FILLSAVE from '../../assets/fillsave.svg'
 
-export default function StandardPoster({id, poster}) {
-    const [isLikeClick, setIsLikeClick] = useState(false)
-    const [isSaveClick, setIsSaveClick] = useState(false)
-    
-    const navigate = useNavigate();
-    const location = useLocation();
+export default function StandardPoster({ id, poster }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [isLikeClick, setIsLikeClick] = useState(false)
+  const [isSaveClick, setIsSaveClick] = useState(location.pathname === '/mystory' ? true : false)
 
-    const handlePoster = () => {
-      if(location.pathname === '/story') {
-        navigate(`/story/${id}`);
-      } else if (location.pathname === '/exhibition') {
-        navigate(`/exhibition/${id}`);
-      } else {
-        <></>
-      }
+  const handlePoster = () => {
+    if (location.pathname === '/story') {
+      navigate(`/story/${id}`);
+    } else if (location.pathname === '/exhibition') {
+      navigate(`/exhibition/${id}`);
+    } else {
+      <></>
     }
+  }
 
   return (
     <MainLayout>
 
-        {/* 포스터 이미지 */}
-        <StyledPoster src={poster}  onClick={handlePoster}/>
-        <Linear onClick={handlePoster}/>
+      {/* 포스터 이미지 */}
+      <StyledPoster src={poster} onClick={handlePoster} />
+      <Linear onClick={handlePoster} />
 
-        {/* 좋아요와 저장 버튼 */}
-        <Like src={isLikeClick ? FILLLIKE : LIKE} onClick={()=>{isLikeClick ? setIsLikeClick(false) : setIsLikeClick(true)}}/>
-        <Save src={isSaveClick ? FILLSAVE : SAVE} onClick={()=>{isSaveClick ? setIsSaveClick(false) : setIsSaveClick(true)}}/>
+      {/* 좋아요와 저장 버튼 */}
+      <Like src={isLikeClick ? FILLLIKE : LIKE} onClick={() => { isLikeClick ? setIsLikeClick(false) : setIsLikeClick(true) }} />
+      <Save src={isSaveClick ? FILLSAVE : SAVE} onClick={() => { isSaveClick ? setIsSaveClick(false) : setIsSaveClick(true) }} />
 
     </MainLayout>
   )

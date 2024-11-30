@@ -1,7 +1,7 @@
 import '../../../css/ckeditor.css';
+import { useState } from 'react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import { useState } from 'react';
 import styled from 'styled-components';
 import ImageLoader from './ImageLoader';
 
@@ -18,21 +18,21 @@ const TextEditor = () => {
         'heading',
         'fontFamily',
         'fontSize',
+        'fontColor',
+        'fontBackgroundColor',
         '|',
         'bold',
         'italic',
         'underline',
         'strikethrough',
         '|',
+        'alignment',
         'bulletedList',
         'numberedList',
-        'alignment',
         '|',
         'blockQuote',
         'link',
-        'imageStyle:inline',
-        'imageStyle:block',
-        'imageStyle:side',
+        'imageUpload',
         '|',
         'resizeImage:50',
         'resizeImage:75',
@@ -52,8 +52,7 @@ const TextEditor = () => {
         'resizeImage:75',
         'resizeImage:original',
       ],
-      resizeUnit: '%', // 크기 조정 단위
-      styles: ['inline', 'block', 'side'],
+      resizeUnit: '%',
     },
     placeholder: '이곳에 내용을 작성해 주세요',
   };
@@ -63,7 +62,7 @@ const TextEditor = () => {
       <Keyword>
         <p>오늘의 전시 키워드</p>
         <KeywordInput
-          type="text"
+          $marginBottom="1rem"
           value={keyword}
           placeholder="#키워드를 입력해주세요"
           onChange={(e) => setKeyword(e.target.value)}
@@ -72,7 +71,6 @@ const TextEditor = () => {
         <p>오늘의 전시 스토리</p>
       </Keyword>
       <CKEditor
-        id="ckeditor"
         editor={ClassicEditor}
         config={editorConfiguration}
         data={data}
@@ -91,13 +89,13 @@ export default TextEditor;
 
 const Keyword = styled.div`
   padding: 0 0 0 2.5rem;
-  z-index: 101;
+  z-index: 1;
   width: 50rem;
   background: none;
   font-size: 1.3rem;
   font-weight: bold;
-  position : absolute;
-  margin-top : 2.5rem;
+  position: absolute;
+  margin-top: 2.5rem;
 `;
 
 const KeywordInput = styled.input`
@@ -111,9 +109,9 @@ const KeywordInput = styled.input`
     color: #5a5c62;
   }
 `;
-const ImageLoaderContainer = styled.div`
-position : absolute;
-bottom : 1rem;
-right : 5%;
 
-`
+const ImageLoaderContainer = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  right: 5%;
+`;

@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
 import StandardButton from '../../../shared/components/StandardButton';
 import { useNavigate } from 'react-router-dom';
-export default function Modal({ isShowModal, setIsShowModal }) {
+export default function Modal({ isShowModal, setIsShowModal,date,title }) {
     const navigate = useNavigate();
-    const onClickButton = () => {
-        navigate('/mystory');
-    }
+    useEffect(()=>{
+        console.log(date);
+    },[date])
     return (
         <ReactModal
             isOpen={isShowModal}
@@ -18,7 +18,7 @@ export default function Modal({ isShowModal, setIsShowModal }) {
                 저장하시겠습니까?
             </StyledText>
 
-            <StandardButton text="네" width="11rem" height="3rem" onClick={ ()=>navigate('/mystory')}/>
+            <StandardButton text="네" width="11rem" height="3rem" onClick={ ()=>navigate('/mystory', { state: { date, title} })}/>
 
         </ReactModal>
     )

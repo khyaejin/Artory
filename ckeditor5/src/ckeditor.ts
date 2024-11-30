@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2014-2024, CKSource Holding sp. z o.o. All rights reserved.
+ * @license Copyright (c) 2014-2024, CKSource Holding sp. z o.o.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
@@ -49,8 +49,6 @@ import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { Undo } from '@ckeditor/ckeditor5-undo';
 import { Base64UploadAdapter } from '@ckeditor/ckeditor5-upload';
 import { SimpleUploadAdapter } from '@ckeditor/ckeditor5-upload';
-// You can read more about extending the build with additional plugins in the "Installing plugins" guide.
-// See https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html for details.
 
 class Editor extends ClassicEditor {
   public static override builtinPlugins = [
@@ -104,6 +102,8 @@ class Editor extends ClassicEditor {
         'heading',
         'fontFamily',
         'fontSize',
+        'fontColor',
+        'fontBackgroundColor',
         '|',
         'bold',
         'italic',
@@ -116,6 +116,9 @@ class Editor extends ClassicEditor {
         '|',
         'blockQuote',
         'link',
+        'imageUpload',
+        'imageInsert',
+        '|',
         'imageStyle:inline',
         'imageStyle:block',
         'imageStyle:side',

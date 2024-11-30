@@ -20,7 +20,7 @@ export default function ImageLoader({ setData }) {
           fileUrls.push(fileUrl); // fileUrl 배열에 추가
 
           setData((prevData) =>
-            `${prevData}<img src="${fileUrl}" alt="Uploaded Image" />`
+            `${prevData}<img src="${fileUrl}" alt="Uploaded Image" style="width: 300px; height: 400px;" />`
           );
         } catch (error) {
           console.log('handleFileChange error', error);
