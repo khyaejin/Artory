@@ -72,8 +72,8 @@ const ExhibitionListWrpper = styled.div`
 `;
 
 const ExhibitionListType = styled.div`
-text-align: left;
-width: 894px;
+  text-align: left;
+  width: 894px;
   color: #000;
   font-family: Pretendard;
   font-size: 30px;
