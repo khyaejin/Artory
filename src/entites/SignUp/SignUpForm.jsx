@@ -126,7 +126,7 @@ export default function SignUpForm() {
       />
 
       {/* Link로 경로 이동 */}
-      <StyledLink to="/onboarding">
+      <StyledLink to="/onboarding1">
         <CustomButton
           text="ARTORY 시작하기"
           disabled={!isFormValid}
