@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link, useLocation } from 'react-router-dom';
+import ExhibitionHover from '../../entites/Exibition/ui/ExhibitionHover';
 
 //이미지
 import LOGO from '../../assets/logo.svg'
@@ -8,6 +9,7 @@ import LOGO from '../../assets/logo.svg'
 export default function NavigationBar() {
   const location = useLocation();
   const [isLogin, setIsLogin] = useState(false); // 로그인 안되어있는 상태가 디폴트, 추후에 수정 필요
+
   return (
     <MainLayout>
 
@@ -25,12 +27,19 @@ export default function NavigationBar() {
 
       {/* 페이지 이동 네비게이션바 */}
       <PageSection>
-        <StyledLink
-          to="/exhibition"
-          selected={location.pathname === '/exhibition'}
-        >
-          <div>EXHIBITION</div>
-        </StyledLink>
+      <ExhibitionWrapper>
+          <StyledLink
+            to="/exhibition"
+            selected={location.pathname.startsWith('/exhibition')}
+          >
+            <div>EXHIBITION</div>
+          </StyledLink>
+
+          {/* Exhibition Hover 영역 */}
+          <ExhibitionHoverWrapper>
+            <ExhibitionHover />
+          </ExhibitionHoverWrapper>
+        </ExhibitionWrapper>
 
         <StyledLink
           to="/story"
@@ -86,6 +95,7 @@ width : 100%;
 height : 3.25rem;
 display : flex;
 justify-content : space-between;
+position: relative; // Hover를 위치시키기 위한
 `
 
 const LogoSection = styled.div`
@@ -144,6 +154,7 @@ text-decoration: none;
 display:flex;
 justify-content: center;
 algin-items: center;
+position: relative;
 `
 const LogoLink = styled(Link)`
 text-decoration: none;
@@ -157,4 +168,22 @@ const LogoText = styled.div`
 display:flex;
 align-items: center;
 font-weight: 800;
+`;
+
+const ExhibitionHoverWrapper = styled.div`
+  position: absolute; // MainLayout 아래 배치
+  top: 100%;
+  right: -8rem;
+  z-index: 10;
+  width: 338px;
+  display: none; // 호버는 기본 값으로 숨김
+`;
+
+const ExhibitionWrapper = styled.div`
+  position: relative;
+  &:hover > div,
+  &:hover {
+    display: block;
+  }
+
 `;

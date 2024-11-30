@@ -12,6 +12,8 @@ import Home from "./pages/Home";
 import StroyDetail from "./pages/StoryDetail";
 import StoryWrite from "./pages/StoryWrite";
 import ExhibitionDetail from "./pages/ExhibitionDetail";
+import ExhibitionSearch from "./pages/ExhibitionSearch";
+import ExhibitionList from "./pages/ExhibitionList";
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
         <Route  path="/onborading" element={<Onboarding />}/>
         <Route  path="/exhibition" element={<Exhibition />}/>
         <Route path="/exhibition/:id" element={<ExhibitionDetail />}/>
+        <Route path="/exhibition/list/:listType" element={<ExhibitionList/>}/>
+        <Route path="/exhibition/search" element={<ExhibitionSearch />}/>
         <Route path="/story" element={<Story/>}/>
         <Route path="/mystory" element={<MyStory/>}/>
         <Route path="/mystory/storywrite" element={<StoryWrite/>}/>

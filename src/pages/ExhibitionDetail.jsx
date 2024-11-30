@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import { Exhibitions } from '../shared/dummy/ExhibitionDummy';
 import ExhibitionInfo from '../entites/Exibition/ui/ExhibitionInfo';
@@ -34,12 +34,13 @@ const ExhibitionDetailLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding : 135px 214px ;
 `;
 
 const ExhibitionTopContainer = styled.div`
   display: flex;
   gap: 154px;
-  margin: 134px 212px 128px 270px; // 피그마 규격
+  margin-bottom: 128px;
 `;
 
 const ExhibitionPoster = styled.img`

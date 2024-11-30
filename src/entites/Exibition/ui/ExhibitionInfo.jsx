@@ -94,7 +94,7 @@ font-family: Pretendard;
 font-size: 12px;
 font-style: normal;
 font-weight: 400;
-line-height: 133.072%; /* 15.969px */
+line-height: 133.072%;
 letter-spacing: 0.42px;
 `;
 

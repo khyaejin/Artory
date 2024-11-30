@@ -1,63 +1,42 @@
-// <path-to-your-build>/src/ckeditor.ts or file containing editor configuration if you are integrating an editor from source.
-
-// The editor creator to use.
-import '../../../css/ckeditor.css'
+import '../../../css/ckeditor.css';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { useState } from 'react';
-import ImgaeLoader from './ImageLoader';
-import EmojiPicker from './EmojiPicker';
 import styled from 'styled-components';
+import ImageLoader from './ImageLoader';
 
 const TextEditor = () => {
-  const [keyword, setKeyword] = useState();
-  const [data, setData] = useState();
+  const [keyword, setKeyword] = useState('');
+  const [data, setData] = useState('');
+
   const editorConfiguration = {
-    contentRenderer: (view, model, writer) => {
-      if (model.isText()) {
-        // 텍스트 노드인 경우에만 처리
-        writer.setAttribute('data-emoji', true, model);
-      }
-    },
     toolbar: {
       items: [
+        'undo',
+        'redo',
+        '|',
         'heading',
+        'fontFamily',
+        'fontSize',
         '|',
         'bold',
         'italic',
-        'link',
+        'underline',
+        'strikethrough',
+        '|',
         'bulletedList',
         'numberedList',
-        '|',
-        'outdent',
-        'indent',
-        'blockQuote',
-        '|',
-        'insertTable',
-        'undo',
-        'redo',
         'alignment',
-        'codeBlock',
-        'code',
-        'findAndReplace',
-        'fontBackgroundColor',
-        'fontColor',
-        'fontSize',
-        'fontFamily',
-        'highlight',
-        'horizontalLine',
-        'pageBreak',
-        'removeFormat',
-        'sourceEditing',
-        'specialCharacters',
-        'strikethrough',
-        'restrictedEditingException',
-        'subscript',
-        'style',
-        'superscript',
-        'textPartLanguage',
-        'todoList',
-        'underline'
+        '|',
+        'blockQuote',
+        'link',
+        'imageStyle:inline',
+        'imageStyle:block',
+        'imageStyle:side',
+        '|',
+        'resizeImage:50',
+        'resizeImage:75',
+        'resizeImage:original',
       ],
     },
     language: 'ko',
@@ -68,44 +47,19 @@ const TextEditor = () => {
         'imageStyle:inline',
         'imageStyle:block',
         'imageStyle:side',
+        '|',
+        'resizeImage:50',
+        'resizeImage:75',
+        'resizeImage:original',
       ],
-    },
-    table: {
-      contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
-    },
-    heading: {
-      options: [
-        {
-          model: 'paragraph',
-          view: 'p',
-          title: '본문',
-          class: 'ck-heading_paragraph',
-        },
-        {
-          model: 'heading2',
-          view: 'h2',
-          title: '제목',
-          class: 'ck-heading_heading2',
-        },
-        {
-          model: 'heading3',
-          view: 'h3',
-          title: '부제목',
-          class: 'ck-heading_heading3',
-        },
-        {
-          model: 'heading4',
-          view: 'h4',
-          title: '소제목',
-          class: 'ck-heading_heading4',
-        },
-      ],
+      resizeUnit: '%', // 크기 조정 단위
+      styles: ['inline', 'block', 'side'],
     },
     placeholder: '이곳에 내용을 작성해 주세요',
   };
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%', position: 'relative' }}>
       <Keyword>
         <p>오늘의 전시 키워드</p>
         <KeywordInput
@@ -122,33 +76,28 @@ const TextEditor = () => {
         editor={ClassicEditor}
         config={editorConfiguration}
         data={data}
-        onChange={async (event, editor) => {
-          try {
-            await setData(editor.getData()); // 에디터 작성 내용 저장
-          } catch (error) {
-            console.log('이모지 테스트', error.response.data);
-          }
+        onChange={(event, editor) => {
+          setData(editor.getData());
         }}
-      >
-      </CKEditor>
-      <ImgaeLoader setData={setData} />
-      <EmojiPicker setData={setData} data={data} className="이모티콘" />
+      />
+      <ImageLoaderContainer>
+        <ImageLoader setData={setData} />
+      </ImageLoaderContainer>
     </div>
   );
 };
 
 export default TextEditor;
 
-
 const Keyword = styled.div`
-  padding: 2.69rem 0 0 2.5rem;
+  padding: 0 0 0 2.5rem;
   z-index: 101;
-  /* width: 100%; */
   width: 50rem;
   background: none;
   font-size: 1.3rem;
   font-weight: bold;
   position : absolute;
+  margin-top : 2.5rem;
 `;
 
 const KeywordInput = styled.input`
@@ -160,5 +109,11 @@ const KeywordInput = styled.input`
   width: 90%;
   &::placeholder {
     color: #5a5c62;
-}
+  }
 `;
+const ImageLoaderContainer = styled.div`
+position : absolute;
+bottom : 1rem;
+right : 5%;
+
+`
