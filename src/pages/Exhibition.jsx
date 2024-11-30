@@ -4,6 +4,7 @@ import Banner from '../entites/Exibition/ui/Banner';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Carousel from '../entites/Story/Carousel';
 import Search from '../entites/Story/Search';
+import Cartegory from '../entites/Exibition/ui/Category';
 
 export default function Exhibition() {
   const navigate = useNavigate();
@@ -44,6 +45,8 @@ export default function Exhibition() {
       <Carousel title={'추천 전시'} type={'exhibition'} />
       <Carousel title={'최근 추천 전시'} type={'exhibition'} />
       <Carousel title={'임박한 전시'} type={'exhibition'} />
+
+      <Cartegory />
     </ExhibitionLayout>
   );
 }
@@ -62,3 +65,5 @@ const BannerWrapper = styled.div`
   background: var(--1, #0E0E0F);
   margin-bottom: 104px;
 `;
+
+
