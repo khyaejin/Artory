@@ -21,10 +21,10 @@ export default function Carousel({ title, type }) {
 
     // 인기 전시 : 좋아요 순으로 정렬 6개 보여주기
     const popularExhibitions = [...Exhibitions].sort((a, b) => b.좋아요 - a.좋아요).slice(0, 6);
-    // 최근 전시 : 시작일 기준 내림차순으로 정렬
-    const recentExhibitions = [...Exhibitions].sort((a, b) => new Date(b.기간.split('~')[0]) - new Date(a.기간.split('~')[0]));
+    // 최근 전시 : 시작일 기준 내림차순으로 정렬하고 6개만 보여주기
+    const recentExhibitions = [...Exhibitions].sort((a, b) => new Date(b.기간.split('~')[0]) - new Date(a.기간.split('~')[0])).slice(0, 6);
     // 추천 전시 : 랜덤 정렬 후 6개 보여주기
-    const recommendedExhibitions = [...Exhibitions].sort(() => 0.5 - Math.random());
+    const recommendedExhibitions = [...Exhibitions].sort(() => 0.5 - Math.random()).slice(0, 6);
     // 최근 추천 전시 : 시작일이 현재 기준 3달 전부터 오늘까지의 전시 중 랜덤으로 6개 선택
     const recentRecommendedExhibitions = [...Exhibitions]
         .filter(exhibition => {
@@ -34,7 +34,7 @@ export default function Carousel({ title, type }) {
         .sort(() => 0.5 - Math.random())
         .slice(0, 6);
     
-    // 임박한 전시 : 종료일이 가장 임박한 순서로 정렬
+    // 임박한 전시 : 종료일이 가장 임박한 순서로 정렬 후 6개 보여주기
     const upcomingExhibitions = [...Exhibitions]
         .filter(exhibition => new Date(exhibition.기간.split('~')[1]) >= now)
         .sort((a, b) => new Date(a.기간.split('~')[1]) - new Date(b.기간.split('~')[1]))
