@@ -61,7 +61,6 @@ const Btn = styled.button`
   font-size: 1.1rem;
   font-family: 'Pretendard';
   padding: 0 10px;
-  width: 12%;
-  height: 33px;
-
+  width: 5.1875rem;
+  height: 1.875rem;
 `;

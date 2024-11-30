@@ -34,8 +34,7 @@ export default function Emotion({ selectedFaceId, setFace, size, margin }) {
         { id: 8, src: FACE_G8, selectedSrc: FACE_B8, label: "Sleepy" },
         { id: 9, src: FACE_G9, selectedSrc: FACE_B9, label: "Sleepy" },
     ];
-
-
+    
     return (
         <FaceListBox margin={margin}>
             {

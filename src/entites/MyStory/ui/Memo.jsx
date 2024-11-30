@@ -26,7 +26,7 @@ export default function Memo() {
 const MainLayout = styled.div`
 margin-left : 13.38rem;
 position : relative;
-
+box-sizing: border-box;
 `
 
 const StyledMemo = styled.textarea`

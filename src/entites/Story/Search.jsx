@@ -9,17 +9,22 @@ export default function Search({ searchItems, setSearchItems, placeholder, type 
     const [input, setInput] = useState('');
 
     useEffect(() => {
-        if (input === '') {
-            setSearchItems([]); // 빈 입력일 때 캐러셀 표시
-        }
+        /* 이거 주석 해제하면 Exhibition Search에서 문제 발생 */
+        // if (input === '') {
+        //     setSearchItems([]); // 빈 입력일 때 캐러셀 표시
+        // } 
     }, [input, setSearchItems])
 
     // 엔터 키를 눌렀을 때 검색 실행
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             if(input === '') {
-                setSearchItems([]); // 빈 입력일 때 캐러셀 표시
-            } else {
+                //setSearchItems([]); // 빈 입력일 때 캐러셀 표시
+                // 빈 입력일 경우 전체 데이터 표시
+                const allData = type === 'story' ? Stories : Exhibitions;
+                setSearchItems(allData);
+            } 
+            else {
                 let filteredData=[];
                 if(type === 'story'){
                     filteredData = Stories.filter(story => story.전시이름.includes(input));
@@ -57,11 +62,9 @@ const SearchContainer = styled.div`
 width: 419px;
 display:flex;
 gap: 10px;
-padding: 9px;
+padding: 10px;
 box-shadow: 1px 2px 8px #f3f3f3;
 border: none;
-
-
 `;
 
 const SearchImg = styled.img`

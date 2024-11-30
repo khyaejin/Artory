@@ -4,10 +4,8 @@ import styled from 'styled-components';
 import 'moment/locale/ko';
 
 // 이미지
-import ADD from '../../../assets/addbutton.svg';
 import PREV from '../../../assets/prevarrow.svg';
 import NEXT from '../../../assets/nextarrow.svg';
-import DOWN from '../../../assets/downbutton.svg';
 
 export default function Calendar({currentYear,setCurrentYear}) {
     const [currentMonth, setCurrentMonth] = useState(moment());
@@ -45,7 +43,6 @@ export default function Calendar({currentYear,setCurrentYear}) {
                 <img src={PREV} onClick={handlePrevMonth} alt="이전 달" />
                 <div>
                     {currentMonth.format("M월")} 
-                    <img src={DOWN} alt="월 선택 버튼" />
                 </div> 
                 <img src={NEXT} onClick={handleNextMonth} alt="다음 달" />
             </Header>
@@ -142,9 +139,5 @@ const Day = styled.div`
     padding-top: 0.5%;
     &:hover {
         background-color: #F4F5F7;
-        background-image: url(${ADD});
-        background-size: 0.875rem 0.875rem;
-        background-repeat: no-repeat;
-        background-position: 90% 10%;
     }
 `;
