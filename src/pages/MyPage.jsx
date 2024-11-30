@@ -55,7 +55,7 @@ export default function MyPage() {
           isActive={isButtonClicked === 4}
           onClick={() => setIsButtonClicked(4)}
         >
-          저장한 전시
+          저장한 스토리
         </TabButton>
       </TapContainer>
 

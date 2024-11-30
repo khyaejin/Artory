@@ -1,35 +1,54 @@
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import StandardButton from '../../shared/components/StandardButton';
+import Modal from '../../shared/components/Modal'; // Modal 컴포넌트 임포트
 import NaverLoginButtonImage from '../../assets/naver_login_large_narrow 2.svg';
 import KakaoLoginButtonImage from '../../assets/kakao_login_large_narrow 2.svg';
 
-
 export default function LoginSection() {
-	const [isEmailFocus, setIsEmailFocus] = useState(false);
-	const [isPasswordFocus, setIsPasswordFocus] = useState(false);
+  const [isEmailFocus, setIsEmailFocus] = useState(false);
+  const [isPasswordFocus, setIsPasswordFocus] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalTitle, setModalTitle] = useState('');
+
+  // 모달 열기
+  const handleOpenModal = (title) => {
+    setModalTitle(title);
+    setIsModalOpen(true);
+  };
+
+  // 모달 닫기
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <MainLayout>
       <LoginBox>
-        <InputField type="email" 
-					placeholder={isEmailFocus ? "" : "이메일을 입력해주세요"}  
-					onFocus={() => setIsEmailFocus(true)} // 포커스
-					onBlur={() => setIsEmailFocus(false)} // 포커스 해제
-				/>
-        <InputField type="password" 
-					placeholder={isPasswordFocus ? "" : "비밀번호를 입력해주세요"}
-					onFocus={()=>setIsPasswordFocus(true)} //포커스
-					onBlur={()=>setIsPasswordFocus(false)} //프커스 해제
-				/>
+        <InputField
+          type="email"
+          placeholder={isEmailFocus ? '' : '이메일을 입력해주세요'}
+          onFocus={() => setIsEmailFocus(true)}
+          onBlur={() => setIsEmailFocus(false)}
+        />
+        <InputField
+          type="password"
+          placeholder={isPasswordFocus ? '' : '비밀번호를 입력해주세요'}
+          onFocus={() => setIsPasswordFocus(true)}
+          onBlur={() => setIsPasswordFocus(false)}
+        />
 
         <StandardButton text="로그인" width="100%" height="3.25rem" marginRight="0" />
 
         <BottomLinks>
-          <LinkItem>아이디 찾기</LinkItem>
-          <LinkItem>비밀번호 찾기</LinkItem>
-          <LinkItem>회원가입</LinkItem>
+          <LinkItem as="button" onClick={() => handleOpenModal('아이디 찾기')}>
+            아이디 찾기
+          </LinkItem>
+          <LinkItem as="button" onClick={() => handleOpenModal('비밀번호 찾기')}>
+            비밀번호 찾기
+          </LinkItem>
+          <LinkItem to="/signup">회원가입</LinkItem>
         </BottomLinks>
 
         <SocialLogin>
@@ -37,10 +56,15 @@ export default function LoginSection() {
             <img src={NaverLoginButtonImage} alt="네이버 로그인" />
           </SocialButton>
           <SocialButton>
-            <img src={KakaoLoginButtonImage} alt="네이버 로그인" />
+            <img src={KakaoLoginButtonImage} alt="카카오 로그인" />
           </SocialButton>
         </SocialLogin>
       </LoginBox>
+
+      {/* 모달 */}
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal} title={modalTitle}>
+        <p>{modalTitle} 기능은 백엔드 기능 구현 이후 작동할 예정입니다!</p>
+      </Modal>
     </MainLayout>
   );
 }
@@ -53,7 +77,6 @@ const MainLayout = styled.div`
   align-items: center;
 `;
 
-// 로그인 관련 전체
 const LoginBox = styled.div`
   width: 35%;
   max-width: 400px;
@@ -63,20 +86,16 @@ const LoginBox = styled.div`
   align-items: center;
 `;
 
-// 이메일, 비밀번호 입력 필드
 const InputField = styled.input`
   display: flex;
   width: 90%;
   height: 3.125rem;
   flex-shrink: 0;
   margin-bottom: 1rem;
-
   border: 1px solid rgba(171, 171, 171, 0.02);
-  background: #FFF;
-  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.10);
-  
-  // 글씨
-  color: #A6A9AF;
+  background: #fff;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
+  color: #a6a9af;
   font-family: Pretendard;
   font-size: 0.8125rem;
   font-style: normal;
@@ -87,13 +106,12 @@ const InputField = styled.input`
   outline: none;
 
   &:focus {
-    border: 1px solid #A6A9AF;
+    border: 1px solid #a6a9af;
   }
 `;
 
-// 찾기
 const BottomLinks = styled.div`
-	margin-top: 1rem;
+  margin-top: 1rem;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -101,44 +119,48 @@ const BottomLinks = styled.div`
   margin-bottom: 20px;
 `;
 
-// 찾기
-const LinkItem = styled.a`
-  cursor: pointer;
+const LinkItem = styled(Link)`
+  cursor: pointer; // 클릭할 수 있는 손가락 모양으로 변경
   color: #9C9C9C;
   font-family: Pretendard;
   font-size: 0.8125rem;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
-  letter-spacing: -0.0325rem;
-  text-decoration: none;
-`;
+  text-decoration: none; // 기본 밑줄 제거
+  background: none;
+  border: none; // 기본 버튼 테두리 제거
+  outline: none; // 클릭하거나 포커스 시 생기는 네모 제거
+  padding: 0;
 
-// 소셜 로그인 관련 전체
-const SocialLogin = styled.div`
-  width: 100%;
-	height: 3rem; // 높이를 줄이기 위해 명시적으로 설정
-  display: flex;
-  justify-content: space-between; // 양쪽 끝에 버튼 배치
-  gap: 1rem; // 버튼들 사이 간격
-`;
+  &:focus {
+    outline: none; // 포커스 시에도 테두리가 생기지 않도록 설정
+  }
 
-// 소셜 로그인 버튼
-const SocialButton = styled.div`
-  flex: 1; // 버튼들이 동일한 넓이를 가지도록
-  max-width: 48%; // 버튼 크기를 부모 대비 최대 제한
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer; // 버튼 클릭 가능하게 설정
-  overflow: hidden; // 이미지가 버튼 크기를 넘지 않도록 잘라내기
-
-  img {
-    width: 135%; 
-		height: auto;
-    object-fit: cover; // 이미지 비율 유지
+  &:hover {
+    text-decoration: underline; // 마우스를 올리면 밑줄 표시
   }
 `;
 
 
+const SocialLogin = styled.div`
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+`;
 
+const SocialButton = styled.div`
+  flex: 1;
+  max-width: 48%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+
+  img {
+    width: 135%;
+    height: auto;
+    object-fit: cover;
+  }
+`;
