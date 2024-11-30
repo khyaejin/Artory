@@ -31,8 +31,8 @@ box-sizing: border-box;
 
 const StyledMemo = styled.textarea`
 background-color: #F4f5f7;
-width: 16.1875rem;
-height: 32.625rem;
+width: 18vw;
+height: 66.5vh;
 resize: none;
 border : none;
 padding : 0.94rem 0 0 0.94rem;
