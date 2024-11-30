@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import StandardPoster from '../shared/components/StandardPoster';
 import { Exhibitions } from '../shared/dummy/ExhibitionDummy';
+import ExhibitionHover from '../entites/Exibition/ui/ExhibitionHover';
 
 export default function ExhibitionList() {
   const { listType } = useParams(); // URL에서 listType을 가져옴
   const [sortedExhibitions, setSortedExhibitions] = useState([]);
 
-  // 영어 타입을 한글로 매핑
   const getTitle = (type) => {
     switch (type) {
       case 'recommend':
@@ -40,8 +40,10 @@ export default function ExhibitionList() {
 
   return (
     <ExhibitionListLayout>
-      {/* 리스트 종류 */}
+      {/* 리스트 종류 제목 */}
       <ExhibitionListType>{getTitle(listType)}</ExhibitionListType>
+
+      {/* 전시 목록 */}
       <ExhibitionListWrpper>
         {sortedExhibitions.map((exhibition) => (
           <PosterItem key={exhibition.아이디}>
