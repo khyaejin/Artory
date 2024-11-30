@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import StandardButton from '../../shared/components/StandardButton';
-import Modal from './Modal'; // Modal 컴포넌트 임포트
+import Modal from '../../shared/components/Modal'; // Modal 컴포넌트 임포트
 import NaverLoginButtonImage from '../../assets/naver_login_large_narrow 2.svg';
 import KakaoLoginButtonImage from '../../assets/kakao_login_large_narrow 2.svg';
 
@@ -12,11 +12,13 @@ export default function LoginSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState('');
 
+  // 모달 열기
   const handleOpenModal = (title) => {
     setModalTitle(title);
     setIsModalOpen(true);
   };
 
+  // 모달 닫기
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -61,7 +63,7 @@ export default function LoginSection() {
 
       {/* 모달 */}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} title={modalTitle}>
-        <p>{modalTitle} 기능은 백엔드 기능 구현 이후 작동할 예정입니다.</p>
+        <p>{modalTitle} 기능은 백엔드 기능 구현 이후 작동할 예정입니다!</p>
       </Modal>
     </MainLayout>
   );

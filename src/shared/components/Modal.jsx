@@ -23,6 +23,7 @@ const ModalOverlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
+  padding: 2rem; // 사방에 여백주기
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -52,10 +53,16 @@ const ModalHeader = styled.div`
 `;
 
 const CloseButton = styled.button`
-  background: none;
+  background: #D1D3D9;
+  color: #fff;
   border: none;
-  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
+
+  &:hover {
+    background: black;
+  }
 `;
 
 const ModalBody = styled.div`
