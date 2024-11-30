@@ -121,7 +121,7 @@ export default function Carousel({ title, type }) {
 
     return (
         <CarouselStoryLayout>
-            <StoryTItle>{title}</StoryTItle>
+            <StoryTitle>{title}</StoryTitle>
             <CarouselStoryContainer>
                 <StyledSlider {...settings}>
 
@@ -151,7 +151,7 @@ justify-content: center;
 align-items:center;
 `;
 
-const StoryTItle = styled.h3`
+const StoryTitle = styled.h2`
 width: 100%;
 `;
 
