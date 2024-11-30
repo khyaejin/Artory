@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Splash from "./pages/Splash";
+import Splash from "./shared/components/Splash";
 import SignUp from "./pages/SignUp";
 import Onboarding1 from "./pages/Onboarding1";
 import Onboarding2 from "./pages/Onboarding2";
