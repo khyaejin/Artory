@@ -10,23 +10,25 @@ export default function StoryWrite() {
   const location = useLocation();
   const { exhibition } = location.state || {};  //location.state로 전달된 데이터 받기
   const [isShowModal,setIsShowModal] = useState(false);
+  const [date,setDate] = useState();
 
   useEffect(() => {
+    console.log(date)
     if (exhibition) {
       console.log(exhibition);  //exhibition 객체 출력
     }
-  }, [exhibition]);
+  }, [exhibition,date]);
 
   return (
     <MainLayout>
 
       <Banner image={exhibition.포스터} title={exhibition.제목}/>
 
-      <WritingSection/>
+      <WritingSection setDate={setDate}/>
 
       <StandardButton text="저장" width="15rem" height="2.5rem" onClick={()=>setIsShowModal(true)} marginBottom="5rem"/>
 
-      <Modal isShowModal={isShowModal} setIsShowModal={setIsShowModal}/>
+      <Modal isShowModal={isShowModal} setIsShowModal={setIsShowModal} date={date} title={exhibition.제목}/>
       
     </MainLayout>
   );

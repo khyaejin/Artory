@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import StandardInput from '../../../shared/components/StandardInput';
 import { Exhibitions } from '../../../shared/dummy/ExhibitionDummy';
 
 import GLASSES from '../../../assets/searchicon.svg';
 
-export default function Modal({ isShowModal, setIsShowModal }) {
+export default function Modal({ isShowModal, setIsShowModal, setExhibition }) {
   const [isEnter, setIsEnter] = useState(false);
   const [searchExhibition, setSearchExhibition] = useState([]);
   const [input, setInput] = useState('');
