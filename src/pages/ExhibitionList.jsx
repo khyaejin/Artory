@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import StandardPoster from '../shared/components/StandardPoster';
 import { Exhibitions } from '../shared/dummy/ExhibitionDummy';
-import ExhibitionHover from '../entites/Exibition/ui/ExhibitionHover';
 
 export default function ExhibitionList() {
   const { listType } = useParams(); // URL에서 listType을 가져옴
