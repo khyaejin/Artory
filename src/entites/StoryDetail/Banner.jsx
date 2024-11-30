@@ -21,14 +21,14 @@ height: 268px;
 display:flex;
 justify-content:center;
 position:relative;
-overflow-y: hidden;
+overflow-y: none;
 `;
 
 const BackgroundImage = styled.img`
 position: absolute;
 z-index: 1;
 width: 120%;
-height: 120%;
+height: 100%;
 object-fit: cover;
 filter: blur(5px);
 `;
