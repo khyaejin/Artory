@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SignUpForm from '../entites/Home/SignUpForm';
+import SignUpForm from '../entites/SignUp/SignUpForm';
 
 export default function SignUp() {
   return (

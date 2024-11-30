@@ -56,4 +56,18 @@ const AgreementItem = styled.label`
 const Checkbox = styled.input`
   width: 20px;
   height: 20px;
+  appearance: none; // 기본 체크박스 스타일 제거
+  border: 1px solid #000; // 테두리 검정색 설정
+  border-radius: 4px; // 네모 박스에 약간의 둥근 모서리 추가
+  outline: none;
+  cursor: pointer;
+
+  &:checked {
+    background-color: #000; // 체크박스 내부를 검정색으로 채움
+    border: 1px solid #000; // 테두리 유지
+  }
+
+  &:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.5); // 포커스 시 외곽선 추가
+  }
 `;
