@@ -57,6 +57,8 @@ const ExhibitionLayout = styled.div`
 const BannerWrapper = styled.div`
   width: 100%;
   height: 693px;
+  display:flex;
+  justify-content:center;
   background: var(--1, #0E0E0F);
   margin-bottom: 104px;
 `;
