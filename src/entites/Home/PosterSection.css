@@ -1,0 +1,12 @@
+/* 스와이퍼 관련 CSS */
+
+.swiper-pagination-bullet {
+    background-color: white; /* 기본 배경색을 흰색으로 변경 */
+    opacity: 0.6; /* 약간 투명하게 설정 */
+  }
+  
+.swiper-pagination-bullet-active {
+    background-color: white; /* 활성화된 슬라이드 배경색 */
+    opacity: 1; /* 불투명하게 설정 */
+}
+  
