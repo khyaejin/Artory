@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Exhibitions } from '../shared/dummy/ExhibitionDummy';
 import ExhibitionInfo from '../entites/ExhibitionDetail/ExhibitionInfo';
 import ExhibtionMap from '../entites/ExhibitionDetail/ExhibitionMap';
+import Footer from '../entites/Home/Footer';
 
 export default function ExhibitionDetail() {
   const { id } = useParams(); // useParmas로 URL에서 id 가져오기
@@ -25,7 +26,7 @@ export default function ExhibitionDetail() {
           {/* 전시 장소 지도 컴포넌트 */}
           <ExhibtionMap address={exhibition.주소} place={exhibition.장소}/>
       </ExhibitionLocationContainer>
-
+      <Footer />
     </ExhibitionDetailLayout>
   );
 }
@@ -34,7 +35,7 @@ const ExhibitionDetailLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding : 135px 214px ;
+  padding : 135px 0px 0px 0px ;
 `;
 
 const ExhibitionTopContainer = styled.div`
