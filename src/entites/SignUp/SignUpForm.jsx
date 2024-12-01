@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import StandardButton from '../../shared/components/StandardButton';
 import AgreementSection from './AgreementSection';
 import SignUpInput from './SignUpInput';
@@ -19,10 +19,12 @@ export default function SignUpForm() {
     marketing: false,
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalTitle, setModalTitle] = useState('');
+  const [modalContent, setModalContent] = useState('');
 
-  const handleOpenModal = (title) => {
-    setModalTitle(title);
+  const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅 추가
+
+  const handleOpenModal = (content) => {
+    setModalContent(content);
     setIsModalOpen(true);
   };
 
@@ -51,6 +53,40 @@ export default function SignUpForm() {
     agreements.terms &&
     agreements.personalInfo;
 
+  // ARTORY 시작하기 버튼 클릭(제출 시) 핸들러
+  const handleSubmit = () => {
+    const message = validateForm();
+    if (message) {
+      handleOpenModal(message); // 모달에 메시지 표시
+    } else {
+      // 모든 입력이 유효한 경우 진행
+      navigate('/onboarding1');
+    }
+  };
+
+  // 누락된 필드 확인 및 메시지 생성
+  const validateForm = () => {
+    let message = '';
+
+    if (!name) {
+      message = '이름을 입력해주세요.';
+    } else if (!email) {
+      message = '아이디(이메일)을 입력해주세요.';
+    } else if (!verificationCode) {
+      message = '인증번호를 입력해주세요.';
+    } else if (!password) {
+      message = '비밀번호를 입력해주세요.';
+    } else if (!passwordConfirm) {
+      message = '비밀번호 확인을 입력해주세요.';
+    } else if (password && passwordConfirm && password !== passwordConfirm) {
+      message = '비밀번호가 일치하지 않습니다.';
+    } else if (!agreements.terms || !agreements.personalInfo) {
+      message = '필수 약관에 동의해주세요.';
+    }
+
+    return message; // 누락된 필드 메시지 반환 (없으면 빈 문자열)
+  };
+
   return (
     <MainLayout>
       {/* 이름 입력 */}
@@ -76,7 +112,7 @@ export default function SignUpForm() {
           />
           <StyledButton
             text="인증하기"
-            onClick={() => handleOpenModal('이메일 인증')}
+            onClick={() => handleOpenModal('[이메일 인증] 기능은 백엔드 기능 구현 이후 추가될 계획입니다!')}
           />
         </InputWrapper>
       </FieldWrapper>
@@ -93,7 +129,7 @@ export default function SignUpForm() {
           />
           <StyledButton
             text="인증완료"
-            onClick={() => handleOpenModal('인증번호 확인')}
+            onClick={() => handleOpenModal('[이메일 인증] 기능은 백엔드 기능 구현 이후 추가될 계획입니다!')}
           />
         </InputWrapper>
       </FieldWrapper>
@@ -120,25 +156,24 @@ export default function SignUpForm() {
         />
       </FieldWrapper>
 
+      {/* 약관 동의 섹션 */}
       <AgreementSection
         agreements={agreements}
         onChange={handleAgreementChange}
       />
 
-      {/* Link로 경로 이동 */}
-      <StyledLink to="/onboarding1">
-        <CustomButton
-          text="ARTORY 시작하기"
-          disabled={!isFormValid}
-          width="100%"
-          height="3.5rem"
-        />
-      </StyledLink>
+      {/* ARTORY 시작하기 버튼 */}
+      <CustomButton
+        text="ARTORY 시작하기"
+        disabled={false}
+        width="100%"
+        height="3.5rem"
+        onClick={handleSubmit}
+      />
 
       {/* 모달 */}
       {isModalOpen && (
-        <Modal isOpen={isModalOpen} onClose={handleCloseModal} title={modalTitle}>
-          <p>{modalTitle} 기능은 백엔드 기능 구현 이후 작동할 예정입니다!</p>
+        <Modal isOpen={isModalOpen} onClose={handleCloseModal} content={modalContent}>
         </Modal>
       )}
     </MainLayout>
@@ -161,10 +196,9 @@ const FieldWrapper = styled.div`
 `;
 
 const Label = styled.label`
-  color: var(--1, #0E0E0F);
+  color: var(--1, #0e0e0f);
   font-family: Pretendard;
   font-size: 1rem;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.04rem;
@@ -182,19 +216,14 @@ const StyledButton = styled(StandardButton)`
   flex-shrink: 0;
 `;
 
-const StyledLink = styled(Link)`
-  display: block;
-  width: 100%;
-  text-decoration: none; // 링크 밑줄 제거
+const CustomButton = styled(StandardButton)`
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.05rem;
+  margin-top: 20px;
 `;
 
-const CustomButton = styled(StandardButton)`
-  color: #fff; // 텍스트 색상
-  text-align: center; // 텍스트 가운데 정렬
-  font-family: Pretendard; // 폰트 설정
-  font-size: 1.25rem; // 텍스트 크기
-  font-style: normal;
-  font-weight: 600; // 텍스트 두께
-  line-height: normal;
-  letter-spacing: -0.05rem; // 글자 간격 조정
-`;

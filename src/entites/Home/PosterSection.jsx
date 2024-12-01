@@ -31,7 +31,7 @@ export default function PosterSection() {
         spaceBetween={30} // 슬라이드 간격
         centeredSlides={true} // 슬라이드가 중앙에 위치
         autoplay={{
-          delay: 5000, // 5초마다 전환
+          delay: 4000, // 4초마다 전환
           disableOnInteraction: false, // 상호작용해도 전환 유지
         }}
         pagination={{
