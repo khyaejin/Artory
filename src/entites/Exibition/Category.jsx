@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Exhibitions } from '../../../shared/dummy/ExhibitionDummy';
+import { Exhibitions } from '../../shared/dummy/ExhibitionDummy';
 import { Link } from 'react-router-dom';
 
 export default function Category() {

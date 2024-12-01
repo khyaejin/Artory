@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Banner from '../entites/Exibition/ui/Banner';
+import Banner from '../entites/Exibition/Banner';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Carousel from '../entites/Story/Carousel';
 import Search from '../entites/Story/Search';
-import Cartegory from '../entites/Exibition/ui/Category';
+import Cartegory from '../entites/Exibition/Category';
 
 export default function Exhibition() {
   const navigate = useNavigate();
