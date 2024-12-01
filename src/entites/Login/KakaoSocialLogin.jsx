@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import KakaoLoginButtonImage from '../../assets/login/kakao_login_large_narrow 2.svg'; // 로컬 이미지 파일 import
+import KakaoLoginButtonImage from '../../assets/login/kakao_login_large_narrow 2.svg';
 import axios from 'axios';
 
-const KAKAO_CLIENT_ID = '3b21c1ee470d63c00ee617b2641f7e47'; // 카카오 REST API 키
-const REDIRECT_URI = 'http://localhost:3000'; // 카카오 개발자 콘솔에 등록한 리다이렉트 URI
+const KAKAO_CLIENT_ID = process.env.REACT_APP_KAKAO_CLIENT_ID; // .env에서 가져오기
+const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI; // .env에서 가져오기
 
 const KakaoSocialLogin = () => {
   useEffect(() => {
@@ -51,6 +51,9 @@ const KakaoSocialLogin = () => {
       });
 
       console.log('User Info:', response.data);
+
+      // 인증 성공 후 작업 (navigate 제거)
+      alert('카카오 로그인 성공! 사용자 정보는 콘솔에서 확인하세요.');
     } catch (error) {
       console.error('사용자 정보 요청 실패:', error);
     }
@@ -63,7 +66,7 @@ const KakaoSocialLogin = () => {
 
   return (
     <SocialButton onClick={handleKakaoLogin}>
-      <img src={KakaoLoginButtonImage} alt="카카오 로그인" /> {/* 로컬 이미지 사용 */}
+      <img src={KakaoLoginButtonImage} alt="카카오 로그인" />
     </SocialButton>
   );
 };
