@@ -2,20 +2,28 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import KakaoLoginButtonImage from '../../assets/login/kakao_login_large_narrow 2.svg';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const KAKAO_CLIENT_ID = process.env.REACT_APP_KAKAO_CLIENT_ID; // .env에서 가져오기
 const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI; // .env에서 가져오기
 
 const KakaoSocialLogin = () => {
+  const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅
+
   useEffect(() => {
     const url = new URL(window.location.href);
+    // 1. 인증 코드 가져오기
     const code = url.searchParams.get('code'); // 인증 코드 가져오기
 
     if (code) {
-      getAccessToken(code);
+      getAccessToken(code); // 내부 함수로
+    }
+    else{
+        console.log("code 없음");
     }
   }, []);
 
+  // 2. 인증코드를 사용해 접근 토큰 받아오기
   const getAccessToken = async (code) => {
     try {
       const response = await axios.post(
@@ -36,12 +44,13 @@ const KakaoSocialLogin = () => {
 
       const { access_token } = response.data;
       console.log('Access Token:', access_token);
-      getUserInfo(access_token);
+      getUserInfo(access_token); // 내부 함수로
     } catch (error) {
       console.error('Access Token 요청 실패:', error);
     }
   };
 
+  // 3. 접근토큰으로 유저 정보 가져오기
   const getUserInfo = async (accessToken) => {
     try {
       const response = await axios.get('https://kapi.kakao.com/v2/user/me', {
@@ -49,11 +58,16 @@ const KakaoSocialLogin = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-
+  
+      const { profile_image, nickname } = response.data.properties;
+  
+      // 4. 정보 저장 (백 로직이 없으므로 로컬스토리지에 사용자 정보 저장)
+      localStorage.setItem('profileImage', profile_image);
+      localStorage.setItem('nickname', nickname);
       console.log('User Info:', response.data);
 
-      // 인증 성공 후 작업 (navigate 제거)
-      alert('카카오 로그인 성공! 사용자 정보는 콘솔에서 확인하세요.');
+      // onboarding1으로 페이지 이동
+      navigate('/onboarding1');
     } catch (error) {
       console.error('사용자 정보 요청 실패:', error);
     }

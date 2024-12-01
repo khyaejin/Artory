@@ -1,30 +1,48 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Image from '../assets/input_pic.svg'
-import SliderImg from '../assets/slider/slider1.svg'
+import Image from '../assets/input_pic.svg';
+import SliderImg from '../assets/slider/slider1.svg';
 
 export default function Onboarding1() {
+  // 초기 상태 설정
   const [nickname, setNickname] = useState('');
   const [length, setLength] = useState(0);
-  const [imageSrc, setImageSrc] = useState(Image); // 이부분 제대로 잘 한건가?
+  const [imageSrc, setImageSrc] = useState(Image);
   const fileInputRef = useRef(null);
 
+  // 컴포넌트 마운트 시 localStorage에서 데이터 가져오기
+  useEffect(() => {
+    const storedNickname = localStorage.getItem('nickname');
+    const storedProfileImage = localStorage.getItem('profileImage');
+
+    if (storedNickname) {
+      setNickname(storedNickname);
+      setLength(storedNickname.length);
+    }
+    if (storedProfileImage) {
+      setImageSrc(storedProfileImage);
+    }
+  }, []);
+
+  // 프로필 이미지 클릭 시 파일 업로드 트리거
   const handleImageClick = () => {
     fileInputRef.current.click();
   };
 
+  // 파일 업로드 시 이미지 변경
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setImageSrc(event.target.result); // 이미지 미리보기
+        setImageSrc(event.target.result);
       };
       reader.readAsDataURL(file);
     }
   };
 
+  // 닉네임 입력 변경 핸들러
   const handleNicknameChange = (e) => {
     const value = e.target.value;
     setLength(value.length > 10 ? 10 : value.length);
