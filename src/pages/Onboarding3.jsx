@@ -79,8 +79,7 @@ export default function Onboarding3() {
       <img src={SliderImg} alt="bar" style={{ marginTop: '30px' }} />
       {showSplash && <Splash />} {/* 스플래시 화면 */}
       {isModalOpen && (
-        <Modal isOpen={isModalOpen} onClose={handleCloseModal} title="안내">
-          최대 3개의 주제만 선택 가능합니다.
+        <Modal isOpen={isModalOpen} onClose={handleCloseModal} content="최대 3개의 주제만 선택 가능합니다.">
         </Modal>
       )}
     </Container>
