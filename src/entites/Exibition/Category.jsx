@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Exhibitions } from '../../../shared/dummy/ExhibitionDummy';
+import { Exhibitions } from '../../shared/dummy/ExhibitionDummy';
 import { Link } from 'react-router-dom';
 
 export default function Category() {
@@ -77,6 +77,7 @@ const CategoryLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom:50px;
 `;
 
 const CategoryTitle = styled.h2`
@@ -111,7 +112,7 @@ const Card = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* 투명도 조절 가능 */
+    background: rgba(0, 0, 0, 0.7);
   }
 `;
 
@@ -127,7 +128,7 @@ const CategoryText = styled.div`
   font-weight: 800;
   line-height: normal;
   letter-spacing: -0.8px;
-  z-index: 1; /* 텍스트를 오버레이 위로 올리기 위해 추가 */
+  z-index: 1; // 텍스트를 오버레이 위로 올리기
 `;
 
 const StyledLink = styled(Link)`

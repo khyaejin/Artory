@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SectionBar from '../../../assets/exhibition/sectionBar.svg';
+import SectionBar from '../../assets/exhibition/sectionBar.svg';
 import { Link } from 'react-router-dom';
 
 export default function ExhibitionHover() {

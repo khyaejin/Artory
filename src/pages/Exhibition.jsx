@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Banner from '../entites/Exibition/ui/Banner';
+import Banner from '../entites/Exibition/Banner';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Carousel from '../entites/Story/Carousel';
 import Search from '../entites/Story/Search';
-import Cartegory from '../entites/Exibition/ui/Category';
+import Cartegory from '../entites/Exibition/Category';
+import Footer from '../entites/Home/Footer';
 
 export default function Exhibition() {
   const navigate = useNavigate();
@@ -46,7 +47,11 @@ export default function Exhibition() {
       <Carousel title={'최근 추천 전시'} type={'exhibition'} />
       <Carousel title={'임박한 전시'} type={'exhibition'} />
 
+      {/* 카테고리 컴포넌트 */}
       <Cartegory />
+
+      {/* 푸터 */}
+      <Footer />
     </ExhibitionLayout>
   );
 }

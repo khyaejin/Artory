@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
-import { Exhibitions } from '../../../shared/dummy/ExhibitionDummy';
+import { Exhibitions } from '../../shared/dummy/ExhibitionDummy';
 import { useNavigate } from 'react-router-dom';
 
 const PosterImg = styled.img`
