@@ -47,7 +47,10 @@ export default function Exhibition() {
       <Carousel title={'최근 추천 전시'} type={'exhibition'} />
       <Carousel title={'임박한 전시'} type={'exhibition'} />
 
+      {/* 카테고리 컴포넌트 */}
       <Cartegory />
+
+      {/* 푸터 */}
       <Footer />
     </ExhibitionLayout>
   );
