@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import SliderImg from '../assets/slider/slider2.svg'
+import SliderImg from '../assets/slider/slider2.svg';
 
 export default function Onboarding2() {
-  const [isButton1Clicked, setIsButton1Clicked] = useState(false);
-  const [isButton2Clicked, setIsButton2Clicked] = useState(false);
-  const [age, setAge] = useState(25);
+  const [isButton1Clicked, setIsButton1Clicked] = useState(false); // 여성 버튼 상태
+  const [isButton2Clicked, setIsButton2Clicked] = useState(false); // 남성 버튼 상태
+  const [age, setAge] = useState(null); // 나이 상태
 
+  // 성별(여성) 버튼 클릭 핸들러
   const handleButton1Click = () => {
     setIsButton1Clicked(true);
     setIsButton2Clicked(false);
   };
-
+  // 성별(남성) 버튼 클릭 핸들러
   const handleButton2Click = () => {
     setIsButton2Clicked(true);
     setIsButton1Clicked(false);
   };
-
-  // 연령대 선택 옵션 생성
+  
+  // 연령대 선택 옵션 
   const startYear = 1940;
   const endYear = new Date().getFullYear();
   const yearArray = Array.from(
@@ -29,11 +30,14 @@ export default function Onboarding2() {
     })
   );
 
+  const isFormValid = (isButton1Clicked || isButton2Clicked) && age; // 성별과 나이 선택 여부 확인
+
   return (
     <Container>
       <Title>성별과 연령대를 선택해주세요</Title>
       <Subtitle>당신에게 맞는 전시를 추천해드려요</Subtitle>
       <ContentBox>
+        {/* 성별 선택 */}
         <GenderWrapper>
           {isButton1Clicked ? (
             <GenderButtonSelected>여성</GenderButtonSelected>
@@ -46,23 +50,29 @@ export default function Onboarding2() {
             <GenderButton onClick={handleButton2Click}>남성</GenderButton>
           )}
         </GenderWrapper>
+
         {/* 연령대 선택 */}
         <SelectWrapper>
-            <Select
-                defaultValue="2000" // 기본값 : 2000년
-                onChange={(e) =>
-                setAge(new Date().getFullYear() - parseInt(e.target.value, 10) + 1)
-                }
-            >
-                {yearArray.map((year) => (
-                <option key={year.value} value={year.value}>
-                    {year.label}
-                </option>
-                ))}
-            </Select>
+          <Select
+            defaultValue=""
+            onChange={(e) =>
+              setAge(new Date().getFullYear() - parseInt(e.target.value, 10) + 1)
+            }
+          >
+            <option value="" disabled>
+              출생 연도를 선택하세요
+            </option>
+            {yearArray.map((year) => (
+              <option key={year.value} value={year.value}>
+                {year.label}
+              </option>
+            ))}
+          </Select>
         </SelectWrapper>
+
+        {/* 다음 버튼 */}
         <Link to="/onboarding3">
-          <StyledButton>다음</StyledButton>
+          <StyledButton disabled={!isFormValid}>다음</StyledButton>
         </Link>
         <img src={SliderImg} alt="bar" style={{ marginTop: '30px' }} />
       </ContentBox>
@@ -70,6 +80,7 @@ export default function Onboarding2() {
   );
 }
 
+// 스타일 정의
 const Container = styled.div`
   min-height: 100vh;
   margin: 100px auto;
@@ -109,7 +120,7 @@ const GenderButton = styled.button`
   height: 55px;
   border: none;
   background-color: white;
-  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
   color: #a8a7a7;
   font-size: 1rem;
   font-weight: 500;
@@ -139,10 +150,8 @@ const Select = styled.select`
   border-radius: 5px;
   background: white;
   border: none;
-  background-color: white;
   box-shadow: 1px 2px 8px #f3f3f3;
   color: #a8a7a7;
-  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
 `;
@@ -151,13 +160,19 @@ const StyledButton = styled.button`
   height: 52px;
   width: 333px;
   border: none;
-  background-color: black;
-  color: white;
   font-size: 1rem;
   font-family: 'Pretendard';
   cursor: pointer;
 
+  // 버튼 활성화 여부에 따라 스타일 변경
+  background: ${({ disabled }) => (disabled ? 'var(--6, #D1D3D9)' : 'black')};
+  box-shadow: ${({ disabled }) =>
+    disabled
+      ? '0px 2px 8px 0px rgba(243, 243, 243, 0.4)'
+      : '0px 2px 8px rgba(0, 0, 0, 0.2)'};
+  color: ${({ disabled }) => (disabled ? '#9C9C9C' : 'white')};
+
   &:hover {
-    background-color: #333;
+    background: ${({ disabled }) => (disabled ? 'var(--6, #D1D3D9)' : '#333')};
   }
 `;
