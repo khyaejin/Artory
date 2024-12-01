@@ -20,10 +20,9 @@ export default function Onboarding3() {
     '작가전',
   ];
 
-  // 상태 관리
-  const [selectedTopics, setSelectedTopics] = useState([]); // 선택된 주제
-  const [showSplash, setShowSplash] = useState(false); // 스플래시 화면
-  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 표시 상태
+  const [selectedTopics, setSelectedTopics] = useState([]); // 선택된 주제 상태 관리
+  const [showSplash, setShowSplash] = useState(false); // 스플래시 화면 상태 관리
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 표시 상태 관리
   const navigate = useNavigate(); // 라우팅
 
   // 주제 클릭 핸들러
@@ -35,7 +34,7 @@ export default function Onboarding3() {
       // 3개 이하로 선택 가능
       setSelectedTopics([...selectedTopics, topic]);
     } else {
-      // 모달을 열어서 안내
+      // 선택한 값이 3개 초과 시 -> 모달을 열어서 안내
       setIsModalOpen(true);
     }
   };
@@ -51,7 +50,7 @@ export default function Onboarding3() {
     setTimeout(() => {
       setShowSplash(false);
       navigate('/exhibition');
-    }, 1500);
+    }, 2000); // 2초 후 이동
   };
 
   return (
@@ -77,17 +76,20 @@ export default function Onboarding3() {
         ARTORY 시작하기
       </StyledButton>
       <img src={SliderImg} alt="bar" style={{ marginTop: '30px' }} />
-      {showSplash && <Splash />} {/* 스플래시 화면 */}
+      {/* 스플래시 화면 */}
+      {showSplash && <Splash />} 
       {isModalOpen && (
-        <Modal isOpen={isModalOpen} onClose={handleCloseModal} title="안내">
-          최대 3개의 주제만 선택 가능합니다.
+        <Modal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          content="최대 3개의 주제만 선택 가능합니다."
+        >
         </Modal>
       )}
     </Container>
   );
 }
 
-// 스타일 정의
 const Container = styled.div`
   min-height: 100vh;
   margin: 100px auto;
@@ -117,8 +119,8 @@ const Highlight = styled.span`
 const ContentBox = styled.div`
   margin: 40px 0;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 15px;
+  grid-template-columns: repeat(5, 1fr); // 5열로 나열 (5*2)
+  gap: 15px; // 주제 카드 간 간격
   width: 100%;
 `;
 
@@ -146,20 +148,23 @@ const StyledButton = styled.button`
   height: 52px;
   width: 482px;
   border: none;
-  background-color: black;
-  box-shadow: 1px 2px 8px #f3f3f3;
-  color: white;
+
+  // 버튼 활성화 여부에 따른 변경들
+  background-color: ${({ disabled }) => (disabled ? '#D1D3D9' : 'black')}; // 버튼 활성화 여부에 따라 색상 변경
+  box-shadow: ${({ disabled }) =>
+    disabled ? 'none' : '1px 2px 8px #f3f3f3'}; // 비활성화 시 그림자 제거
+  color: ${({ disabled }) => (disabled ? '#9C9C9C' : 'white')}; // 버튼 글자색
   font-size: 1rem;
   font-weight: 500;
   font-family: 'Pretendard';
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? '' : 'pointer')}; // 비활성화 시 커서 모양 변경
 
   &:hover {
-    transform: scale(1.01);
+    transform: ${({ disabled }) => (disabled ? 'none' : 'scale(1.01)')}; // 비활성화 시 효과 제거
   }
 
   &:active {
-    transform: scale(0.995);
+    transform: ${({ disabled }) => (disabled ? 'none' : 'scale(0.995)')}; // 비활성화 시 효과 제거
     transition: transform 0.1s ease;
   }
 `;

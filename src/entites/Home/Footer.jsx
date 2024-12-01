@@ -15,7 +15,7 @@ export default Footer;
 
 const FooterContainer = styled.div`
   width: 100%;
-  height: 10.5rem; 
+  height: 12rem; 
   flex-shrink: 0;
   background: #f4f4f4; // 배경색
 
@@ -23,9 +23,12 @@ const FooterContainer = styled.div`
   flex-direction: column;
   align-items: flex-start; // 왼쪽 정렬
 
+  box-sizing: border-box; // width, height를 padding 포함 계산하도록 설정
   padding-top: 2rem;
   padding-left: 14rem; // 내부 여백 추가
   gap: 1rem; // 내부 요소 간 간격
+
+  const FooterContainer = styled.div
 `;
 
 const FooterText = styled.div`

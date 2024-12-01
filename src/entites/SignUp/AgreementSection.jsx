@@ -34,7 +34,7 @@ export default function AgreementSection({ agreements, onChange }) {
           checked={agreements.marketing}
           onChange={() => onChange('marketing')}
         />
-        마케팅 정보 수신 동의
+        마케팅 정보 수신 동의(선택)
       </AgreementItem>
     </AgreementWrapper>
   );
