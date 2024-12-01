@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import MainBannerSection from '../entites/Home/MainBannerSection';
 import PosterSection from '../entites/Home/PosterSection';
-import LoginSection from '../entites/Home/LoginSection';
+import LoginSection from '../entites/Login/LoginSection';
 import Footer from '../entites/Home/Footer';
 
 export default function Home() {
