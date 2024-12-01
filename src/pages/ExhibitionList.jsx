@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom'; // Link 임포트 추가
 import StandardPoster from '../shared/components/StandardPoster';
 import { Exhibitions } from '../shared/dummy/ExhibitionDummy';
+import Footer from '../entites/Home/Footer';
 
 export default function ExhibitionList() {
   const { listType } = useParams(); // URL에서 listType을 가져옴
@@ -56,6 +57,9 @@ export default function ExhibitionList() {
           </PosterItem>
         ))}
       </ExhibitionListWrapper>
+
+      {/* 푸터 */}
+      <Footer />
     </ExhibitionListLayout>
   );
 }
@@ -64,7 +68,7 @@ const ExhibitionListLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 0px;
+  padding: 50px 0px 0px 0px;
 `;
 
 const ExhibitionListWrapper = styled.div`
@@ -72,7 +76,7 @@ const ExhibitionListWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 50px;
+  margin: 50px 0px;
   justify-content: flex-start;
   gap: 50px;
 `;

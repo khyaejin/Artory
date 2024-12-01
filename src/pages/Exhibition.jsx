@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Carousel from '../entites/Story/Carousel';
 import Search from '../entites/Story/Search';
 import Cartegory from '../entites/Exibition/Category';
+import Footer from '../entites/Home/Footer';
 
 export default function Exhibition() {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ export default function Exhibition() {
       <Carousel title={'임박한 전시'} type={'exhibition'} />
 
       <Cartegory />
+      <Footer />
     </ExhibitionLayout>
   );
 }

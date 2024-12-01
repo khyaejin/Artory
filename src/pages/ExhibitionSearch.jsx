@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import Search from '../entites/Story/Search';
 import StandardPoster from '../shared/components/StandardPoster';
+import Footer from '../entites/Home/Footer';
 
 export default function ExhibitionSearch() {
   const location = useLocation();
@@ -36,6 +37,7 @@ export default function ExhibitionSearch() {
           )}
         </SearchResultContainer>
       </ExhibitionSearchWrpper>
+      <Footer />
     </ExhibitionSearchLayout>
   );
 }
@@ -44,11 +46,12 @@ const ExhibitionSearchLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items:center;
-  padding: 50px 0px;
+  padding: 50px 0px 0px 0px;
 `;
 
 const ExhibitionSearchWrpper=styled.div`
   width:894px; // 계산된 크기
+  margin-bottom:50px;
 `;
 
 const SearchResultContainer = styled.div`
