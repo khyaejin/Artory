@@ -11,6 +11,7 @@ import Story from "./pages/Story";
 import MyStory from "./pages/MyStory";
 import MyPage from "./pages/MyPage";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import StroyDetail from "./pages/StoryDetail";
 import StoryWrite from "./pages/StoryWrite";
 import ExhibitionDetail from "./pages/ExhibitionDetail";
@@ -26,6 +27,7 @@ function App() {
         <Route  path="/" element={<Home />}/>
         <Route  path="/splash" element={<Splash />}/>
         <Route  path="/signup" element={<SignUp />}/>
+        <Route  path="/login" element={<Login />}/>
         <Route  path="/onboarding1" element={<Onboarding1 />}/>
         <Route  path="/onboarding2" element={<Onboarding2 />}/>
         <Route  path="/onboarding3" element={<Onboarding3 />}/>

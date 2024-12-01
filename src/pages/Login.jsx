@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom'; // useNavigate 사용
 import MainBannerSection from '../entites/Home/MainBannerSection';
-import PosterSection from '../entites/Home/PosterSection';
 import Footer from '../entites/Home/Footer';
+import LoginSection from '../entites/Login/LoginSection';
 
 export default function Home() {
-  const [isClicked, setIsClicked] = useState(false);
+  const navigate = useNavigate(); // 페이지 이동을 위한 훅
+
+  const handleLoginClick = () => {
+    navigate('/login'); // 로그인 페이지로 이동
+  };
 
   return (
     <MainLayout>
       <ContentArea>
-        <MainBannerSection isClicked={isClicked} setIsClicked={setIsClicked} />
-        <PosterSection />
+        <MainBannerSection onLoginClick={handleLoginClick} />
+        <LoginSection />
       </ContentArea>
       <Footer />
     </MainLayout>
@@ -23,7 +28,6 @@ const MainLayout = styled.div`
   display: flex;
   flex-direction: column; // 위에서 아래로 정렬 (푸터 포함)
   justify-content: space-between; // 상단과 하단에 공간 분배
-
 `;
 
 const ContentArea = styled.div`
