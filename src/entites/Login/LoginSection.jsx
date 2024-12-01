@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import StandardButton from '../../shared/components/StandardButton';
-import Modal from '../../shared/components/Modal'; // Modal 컴포넌트 임포트
-import NaverLoginButtonImage from '../../assets/naver_login_large_narrow 2.svg';
-import KakaoLoginButtonImage from '../../assets/kakao_login_large_narrow 2.svg';
+import Modal from '../../shared/components/Modal';
+import NaverLoginButtonImage from '../../assets/login/naver_login_large_narrow 2.svg';
+import KakaoSocialLogin from './KakaoSocialLogin';
 
 export default function LoginSection() {
   const [isEmailFocus, setIsEmailFocus] = useState(false);
@@ -55,9 +55,7 @@ export default function LoginSection() {
           <SocialButton>
             <img src={NaverLoginButtonImage} alt="네이버 로그인" />
           </SocialButton>
-          <SocialButton>
-            <img src={KakaoLoginButtonImage} alt="카카오 로그인" />
-          </SocialButton>
+          <KakaoSocialLogin /> {/* KakaoSocialLogin 컴포넌트 추가 */}
         </SocialLogin>
       </LoginBox>
 
@@ -85,7 +83,6 @@ const LoginBox = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20rem 0; // 위아래 여백 추가
-
 `;
 
 const InputField = styled.input`
