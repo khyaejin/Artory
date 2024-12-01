@@ -19,10 +19,13 @@ export default function Search({ searchItems, setSearchItems, placeholder, type 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             if(input === '') {
-                //setSearchItems([]); // 빈 입력일 때 캐러셀 표시
                 // 빈 입력일 경우 전체 데이터 표시
-                const allData = type === 'story' ? Stories : Exhibitions;
-                setSearchItems(allData);
+                if(type === 'story') {
+                    setSearchItems([]);
+                } else {
+                    const allData = Exhibitions;
+                    setSearchItems(allData);
+                }
             } 
             else {
                 let filteredData=[];
