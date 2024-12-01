@@ -5,7 +5,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import './PosterSection.css'; // 스와이퍼 색상 커스텀한 css 파일 임포트
+import './PosterSection.css'; // 스와이퍼 색상 커스텀한 css 파일 임포트 (파랑->흰)
 
 import posterImg from '../../assets/poster/0.svg';
 import posterImg1 from '../../assets/poster/1.svg';

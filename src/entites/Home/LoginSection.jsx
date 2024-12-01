@@ -70,20 +70,22 @@ export default function LoginSection() {
 }
 
 const MainLayout = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 57%;
+  height: 100%; 
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const LoginBox = styled.div`
-  width: 35%;
+  width: 50%;
   max-width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20rem 0; // 위아래 여백 추가
+
 `;
 
 const InputField = styled.input`

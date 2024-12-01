@@ -1,34 +1,36 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import MainBannerSection from '../entites/Home/MainBannerSection'
-import PosterSection from '../entites/Home/PosterSection'
-import LoginSection from '../entites/Home/LoginSection'
-import Footer from '../entites/Home/Footer'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import MainBannerSection from '../entites/Home/MainBannerSection';
+import PosterSection from '../entites/Home/PosterSection';
+import LoginSection from '../entites/Home/LoginSection';
+import Footer from '../entites/Home/Footer';
 
 export default function Home() {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
-    <>
     <MainLayout>
-      {/* 좌측 제목 섹션 */}
-      <MainBannerSection  isClicked={isClicked} setIsClicked={setIsClicked}></MainBannerSection>
-
-      {/* 우측 포스터 섹션 */}
-      {
-        isClicked ? 
-        <LoginSection/> :  // 로그인 버튼 클릭 후 : 로그인 섹션
-        <PosterSection></PosterSection> //로그인 버튼 클릭 전 : 포스터 섹션
-      }
-    </MainLayout>
-      {/* 푸터 */}
+      <ContentArea>
+        <MainBannerSection isClicked={isClicked} setIsClicked={setIsClicked} />
+        {isClicked ? <LoginSection /> : <PosterSection />}
+      </ContentArea>
       <Footer />
-    </>
-  )
+    </MainLayout>
+  );
 }
 
 const MainLayout = styled.div`
-height : 90vh;
-display : flex;
-align-items : center;
-`
+  height: 100vh;
+  display: flex;
+  flex-direction: column; // 위에서 아래로 정렬 (푸터 포함)
+  justify-content: space-between; // 상단과 하단에 공간 분배
+
+`;
+
+const ContentArea = styled.div`
+  height: 85vh; // 높이 고정
+  flex: 1; // 푸터를 제외한 공간 차지
+  display: flex;
+  flex-direction: row; // 좌우 배치
+  align-items: center;
+`;
