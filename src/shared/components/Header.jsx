@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link, useLocation } from 'react-router-dom';
-import ExhibitionHover from '../../entites/Exibition/ui/ExhibitionHover';
+import ExhibitionHover from '../../entites/Exibition/ExhibitionHover';
 
 //이미지
 import LOGO from '../../assets/logo.svg'
