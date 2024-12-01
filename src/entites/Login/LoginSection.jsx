@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import StandardButton from '../../shared/components/StandardButton';
 import Modal from '../../shared/components/Modal';
-import NaverLoginButtonImage from '../../assets/login/naver_login_large_narrow 2.svg';
 import KakaoSocialLogin from './KakaoSocialLogin';
 
 export default function LoginSection() {
@@ -52,9 +51,6 @@ export default function LoginSection() {
         </BottomLinks>
 
         <SocialLogin>
-          <SocialButton>
-            <img src={NaverLoginButtonImage} alt="네이버 로그인" />
-          </SocialButton>
           <KakaoSocialLogin /> {/* KakaoSocialLogin 컴포넌트 추가 */}
         </SocialLogin>
       </LoginBox>
