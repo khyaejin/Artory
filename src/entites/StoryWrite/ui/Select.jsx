@@ -17,14 +17,20 @@ import weather_b3 from '../../../assets/weather/weather_b3.svg';
 import weather_b4 from '../../../assets/weather/weather_b4.svg';
 import weather_b5 from '../../../assets/weather/weather_b5.svg';
 
-export default function Select({ type, value }) {
-    const [isText, setIsText] = useState();
-    const [currentClicked, setCurrentClicked] = useState();
-    const selectedFace = [face_b1,face_b2,face_b3,face_b4,face_b5,face_b6,face_b7,face_b8,face_b9]
-    const selectedWeather = [weather_b1,weather_b2,weather_b3,weather_b4,weather_b5]
-    
+export default function Select({ type, value, setItem }) {
+    const [isText, setIsText] = useState(); // 텍스트인지 아이콘인지 구분
+    const [currentClicked, setCurrentClicked] = useState(null); // 선택된 값의 인덱스
+    const selectedFace = [face_b1, face_b2, face_b3, face_b4, face_b5, face_b6, face_b7, face_b8, face_b9];
+    const selectedWeather = [weather_b1, weather_b2, weather_b3, weather_b4, weather_b5];
+
+    // 클릭 이벤트 처리
+    const onClickItem = (i,v) => {
+        setCurrentClicked(i); // 선택된 인덱스 저장
+        isText ? setItem(v) : type === "만족도" ? setItem(selectedFace[i]) :setItem(selectedWeather[i]) 
+    };
+
     useEffect(() => {
-        switch(type) {
+        switch (type) {
             case "관람소요시간":
             case "동행인":
             case "카테고리":
@@ -38,37 +44,39 @@ export default function Select({ type, value }) {
                 break;
         }
     }, [type]);
+
     return (
         <MainLayout>
-
             <Type>{type}</Type>
-
             <Values>
-                {
-                    isText ?
-                    value.map((v, i) => (
-                        <Value key={i} onClick={()=>setCurrentClicked(i)} isSelected={i === currentClicked} >{v}</Value>
-                    ))
-
-                    :
-
-                    value.map((v,i) => (
-                        <Icon 
-                            key={i} 
-                            onClick={()=>setCurrentClicked(i)} 
-                            src={(currentClicked === i && type === "만족도") 
-                            ? selectedFace[i] 
-                            : (currentClicked === i && type === "날씨") 
-                            ? selectedWeather[i] 
-                            : v}/>
-                    ))
-
-                }
+                {isText
+                    ? value.map((v, i) => (
+                          <Value
+                              key={i}
+                              onClick={() => onClickItem(i,v)}
+                              isSelected={i === currentClicked}
+                          >
+                              {v}
+                          </Value>
+                      ))
+                    : value.map((v, i) => (
+                          <Icon
+                              key={i}
+                              onClick={() => onClickItem(i,v)}
+                              src={
+                                  currentClicked === i && type === "만족도"
+                                      ? selectedFace[i]
+                                      : currentClicked === i && type === "날씨"
+                                      ? selectedWeather[i]
+                                      : v
+                              }
+                          />
+                      ))}
             </Values>
-
         </MainLayout>
     );
 }
+
 
 const MainLayout = styled.div`
 display : flex;

@@ -7,13 +7,15 @@ import IMG from '../../../assets/profileImg.svg'
 //컴포넌트
 import StandardButton from '../../../shared/components/StandardButton'
 
-export default function ProfileSection({ currentYear,setIsShowModal }) {
+export default function ProfileSection({setIsShowModal }) {
+    const nickname = localStorage.getItem("nickname")
+    const profileImage = localStorage.getItem("profileImage")
     return (
         <MainLayout>
 
             <ProfileContainer>
-                <ProfileImg src={IMG} />
-                <span>니모님의 기록</span>
+                <ProfileImg src={profileImage} />
+                <span>{nickname}님의 기록</span>
             </ProfileContainer>
 
             <div>
