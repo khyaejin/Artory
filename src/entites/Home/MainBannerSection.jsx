@@ -4,11 +4,15 @@ import MainBanner from './MainBanner';
 import MyStoryButton from './MyStroyButton';
 import { useNavigate } from 'react-router-dom'; // React Router의 useNavigate 훅
 
-export default function MainBannerSection() {
+export default function MainBannerSection({isLogin}) {
   const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅
 
   const handleButtonClick = () => {
-    navigate('/login'); // 로그인 페이지로 이동
+    if (isLogin) {
+      navigate('/mystory'); // 로그인 상태일 경우 : /mystory으로 이동
+    } else {
+      navigate('/login'); // 로그인 상태가 아니면 : /login으로 이동
+    }
   };
 
   return (

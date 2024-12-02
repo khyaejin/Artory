@@ -4,13 +4,13 @@ import MainBannerSection from '../entites/Home/MainBannerSection';
 import PosterSection from '../entites/Home/PosterSection';
 import Footer from '../entites/Home/Footer';
 
-export default function Home() {
-  const [isClicked, setIsClicked] = useState(false);
+export default function Home({isLogin}) {
+  // const [isClicked, setIsClicked] = useState(false);
 
   return (
     <MainLayout>
       <ContentArea>
-        <MainBannerSection isClicked={isClicked} setIsClicked={setIsClicked} />
+        <MainBannerSection isLogin={isLogin} />
         <PosterSection />
       </ContentArea>
       <Footer />
