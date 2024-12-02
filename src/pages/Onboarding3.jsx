@@ -50,7 +50,7 @@ export default function Onboarding3() {
     setTimeout(() => {
       setShowSplash(false);
       navigate('/exhibition');
-    }, 2000); // 2초 후 이동
+    }, 4000); // 4초 후 이동
   };
 
   return (
@@ -157,7 +157,7 @@ const StyledButton = styled.button`
   font-size: 1rem;
   font-weight: 500;
   font-family: 'Pretendard';
-  cursor: ${({ disabled }) => (disabled ? '' : 'pointer')}; // 비활성화 시 커서 모양 변경
+  cursor: ${({ disabled }) => (disabled ? '' : 'pointer')}; // 활성 시 손가락 모양 커서
 
   &:hover {
     transform: ${({ disabled }) => (disabled ? 'none' : 'scale(1.01)')}; // 비활성화 시 효과 제거

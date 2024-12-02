@@ -5,7 +5,7 @@ import StandardButton from '../../shared/components/StandardButton';
 import Modal from '../../shared/components/Modal';
 import KakaoSocialLogin from './KakaoSocialLogin';
 
-export default function LoginSection() {
+export default function LoginSection({ setIsLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isEmailFocus, setIsEmailFocus] = useState(false);
@@ -28,6 +28,8 @@ export default function LoginSection() {
   // 로그인 버튼 클릭 핸들러
   const handleLogin = () => {
     if (email.trim() && password.trim()) {
+      setIsLogin(true); // 로그인 상태 변경
+      localStorage.setItem("userToken", "dummy-token"); // 토큰 저장
       // 이메일과 비밀번호가 채워져 있으면 이동
       navigate('/exhibition');
     } else {
@@ -74,7 +76,7 @@ export default function LoginSection() {
         </BottomLinks>
 
         <SocialLogin>
-          <KakaoSocialLogin />
+          <KakaoSocialLogin setIsLogin={setIsLogin}  />
         </SocialLogin>
       </LoginBox>
 
