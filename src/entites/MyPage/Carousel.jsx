@@ -5,7 +5,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Stories } from '../../shared/dummy/StoryDummy';
 import { Users } from '../../shared/dummy/UserDummy';
-import { Exhibitions } from '../../shared/dummy/ExhibitionDummy';
 import BasicStoryImg from '../../assets/story/basic-story.svg';
 import BasicUserImg from '../../assets/user/basic-user.svg';
 import StandardPoster from '../../shared/components/StandardPoster';
@@ -25,7 +24,7 @@ export default function Carousel({ type, currentUser }) {
                     poster: story.글내용.find(item => item.type === 'image')?.src || BasicStoryImg
                 }));
             case 'album': // 나의 앨범: 작성한 스토리의 모든 이미지를 보여줌
-                return myStories.flatMap(story =>
+                return myStories.flatMap(story => //myStories에서 검색
                     story.글내용
                         .filter(item => item.type === 'image')
                         .map(image => ({
@@ -38,10 +37,10 @@ export default function Carousel({ type, currentUser }) {
                     id: user.id,
                     profile: user.profile || BasicUserImg
                 }));
-            case 'exhibition': // 저장한 전시
-                return Exhibitions.map(exhibition => ({
-                    id: exhibition.id,
-                    poster: exhibition.포스터
+            case 'savedStory': // 저장한 스토리
+                return Stories.map(story => ({ //Stories에서 검색
+                    id: story.아이디,
+                    poster: story.글내용.find(item => item.type === 'image')?.src || BasicStoryImg
                 }));
             default:
                 return [];
