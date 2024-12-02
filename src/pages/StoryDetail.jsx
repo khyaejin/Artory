@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigation, useLocation } from 'react-router-dom';
 import { Stories } from '../shared/dummy/StoryDummy';
 import Comment from '../entites/StoryDetail/Comment';
 import DeleteModal from '../entites/StoryDetail/DeleteModal';
@@ -11,10 +11,12 @@ import styled from 'styled-components'
 
 export default function StroyDetail() {
     const { id } = useParams(); // url 주소에서 파라미터로 지정된 포스터 아이디값 가져오기
-    const story = Stories[id];
+    const location = useLocation();
+    const story = location.state?.newStoryData || Stories[id];
     const [isShowModal, setIsShowModal] = useState(false);
     const [isClickDelete, setIsClickDelete] = useState(false);
 
+    console.log(story);
     const RenderContent = ({ data }) => {
         if (data.type === 'text') {
             return <p>{data.content}</p>;
@@ -49,18 +51,25 @@ export default function StroyDetail() {
                     <CommonTitleText>오늘의 전시 키워드</CommonTitleText>
                     <KeywordContainer>
                         {
-                            story.키워드.map((data, i) => (
-                                <div key={i}>{data}</div>
-                            ))
+                            story.키워드
                         }
                     </KeywordContainer>
                     <CommonTitleText>오늘의 전시 스토리</CommonTitleText>
                     <StoryContent>
-                        {
-                            story.글내용.map((data, i) => (
-                                <RenderContent key={i} data={data} />
-                            ))
-                        }
+                        {Array.isArray(story.글내용) ? (
+                            // 글내용이 배열인 경우 map으로 렌더링
+                            story.글내용.map((data, i) => <RenderContent key={i} data={data} />)
+                        ) : (
+                            // 글내용이 배열이 아닌 경우 그대로 출력
+                            // <RenderContent data={story.글내용} />
+                            <>
+                                <ExhbnContent
+                                    className="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred"
+                                    dangerouslySetInnerHTML={{ __html: story.글내용 }} // 결과 확인
+                                />
+
+                            </>
+                        )}
                     </StoryContent>
                 </CommonBox>
                 {/* 댓글 작성 및 댓글 리스트*/}
@@ -119,4 +128,11 @@ font-size: 0.75rem;
 
 const StoryContent = styled.div`
 
+`;
+
+const ExhbnContent = styled.div`
+  color: #505154;
+  font-size: 0.95rem;
+  line-height: 1.3rem;
+  font-weight: 500;
 `;

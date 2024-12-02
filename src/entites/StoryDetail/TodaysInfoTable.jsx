@@ -32,9 +32,7 @@ export default function TodaysInfoTable({ visitDate, totalTime, emotionImg, weat
                     <td>
                         <CategoryContainer>
                             {
-                                categories.map((data, i) => (
-                                    <HighlightTagBox key={i}>{data}</HighlightTagBox>
-                                ))
+                                categories
                             }
                         </CategoryContainer>
                     </td>
