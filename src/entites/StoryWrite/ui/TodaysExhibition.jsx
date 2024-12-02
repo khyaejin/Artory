@@ -18,7 +18,7 @@ import weather_g4 from '../../../assets/weather/weather_g4.svg';
 import weather_g5 from '../../../assets/weather/weather_g5.svg';
 import Select from './Select';
 
-export default function TodaysExhibition({setDate}) {
+export default function TodaysExhibition({setDate,setViewingTime,setSatisfactionLevel,setWeather,setCompanion,setGenre}) {
     const [startDate, setStartDate] = useState(new Date());
     const [isDateSelected, setIsDateSelected] = useState(false); 
     const times = ["30분", "1시간", "1시간 30분", "2시간", "2시간 30분", "3시간~"]
@@ -53,15 +53,15 @@ export default function TodaysExhibition({setDate}) {
                 }
             />
 
-            <Select type="관람소요시간" value={times} />
+            <Select type="관람소요시간" value={times} setItem={setViewingTime}/>
 
-            <Select type="만족도" value={faces} />
+            <Select type="만족도" value={faces} setItem={setSatisfactionLevel} />
 
-            <Select type="날씨" value={weathers} />
+            <Select type="날씨" value={weathers} setItem={setWeather}/>
 
-            <Select type="동행인" value={companion} />
+            <Select type="동행인" value={companion} setItem={setCompanion}/>
 
-            <Select type="카테고리" value={categorys} />
+            <Select type="카테고리" value={categorys} setItem={setGenre} />
 
         </MainLayout>
     );

@@ -15,9 +15,8 @@ const InputTitle = styled.input`
       outline : none;
     }
 `;
-export default function StoryTitle() {
+export default function StoryTitle({title,setTitle}) {
   const [isClick, setIsClick] = useState();
-  const [title,setTitle] = useState();
   const onFocusInput = () =>
   {
     setIsClick(true) 
@@ -28,7 +27,8 @@ export default function StoryTitle() {
   }
   const onChangeTitle = (e) =>
   {
-    console.log(e.target.value);
+    setTitle(e.target.value)
+    // console.log(e.target.value);
   }
   return (
     <div>

@@ -5,9 +5,9 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import styled from 'styled-components';
 import ImageLoader from './ImageLoader';
 
-const TextEditor = () => {
+const TextEditor = ({data,setData}) => {
   const [keyword, setKeyword] = useState('');
-  const [data, setData] = useState('');
+
 
   const editorConfiguration = {
     toolbar: {
@@ -73,7 +73,7 @@ const TextEditor = () => {
       <CKEditor
         editor={ClassicEditor}
         config={editorConfiguration}
-        data={data}
+        data={data || ''} 
         onChange={(event, editor) => {
           setData(editor.getData());
         }}
