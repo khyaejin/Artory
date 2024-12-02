@@ -11,10 +11,10 @@ export default function ProfileSection() {
     return (
         <MainLayout>
             <ProfileContainer>
-                <span>
-                    '{userName}'님의 <br />
-                    마이페이지
-                </span>
+                <Title>
+                {userName}님의 <br />
+                마이페이지
+                </Title>
                 <ProfileImg src={profileImg} alt="프로필 이미지" />
             </ProfileContainer>
         </MainLayout>
@@ -48,4 +48,14 @@ const ProfileImg = styled.img`
     width: 10.5625rem;
     height: 10.75rem;
     flex-shrink: 0;
+`;
+
+const Title = styled.div`
+color: #000;
+font-family: Pretendard;
+font-size: 1.875rem;
+font-style: normal;
+font-weight: 700;
+line-height: 133.072%; /* 2.49513rem */
+letter-spacing: 0.06563rem;
 `;

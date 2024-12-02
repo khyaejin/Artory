@@ -4,7 +4,7 @@ import UserInfoSection from '../entites/MyPage/UserInfoSection'; // 회원 정�
 import Carousel from '../entites/MyPage/Carousel'; // Carousel 컴포넌트
 
 export default function MyPage() {
-  // 버튼 4개 중 어떤 게 눌렸는지 감지하는 상태 변수와 상태 업데이트 함수
+  // 버튼 4개 중 어떤 게 눌렸는지 감지하는 상태 변수, 함수
   const [isButtonClicked, setIsButtonClicked] = useState(1);
 
   // 현재 로그인한 사용자
@@ -20,7 +20,7 @@ export default function MyPage() {
       case 3:
         return { type: 'user' }; // "저장한 유저" 섹션
       case 4:
-        return { type: 'exhibition' }; // "저장한 전시" 섹션
+        return { type: 'savedStory' }; // "저장한 스토리" 섹션
       default:
         return { type: 'story', currentUser }; // 기본: "나의 스토리" 섹션
     }
@@ -35,7 +35,7 @@ export default function MyPage() {
       <TapContainer>
         <TabButton
           isActive={isButtonClicked === 1} // 현재 버튼이 활성화된 상태인지 확인
-          onClick={() => setIsButtonClicked(1)} // 버튼 클릭 시 상태 업데이트를 위한 상태함수 호출
+          onClick={() => setIsButtonClicked(1)} // 버튼 클릭 시 -> 상태함수 호출
         >
           나의 스토리
         </TabButton>
@@ -94,7 +94,7 @@ const TabButton = styled.button`
   height: 2.1875rem; // 버튼 높이
   flex-shrink: 0; // 버튼 크기 고정
 
-  // 활성화된 버튼의 배경 색상
+  // 버튼의 배경 색상
   background-color: ${({ isActive }) => (isActive ? '#0E0E0F' : '#F4F5F7')};
 
   // 버튼 내 텍스트 스타일
@@ -105,6 +105,6 @@ const TabButton = styled.button`
   line-height: 133.072%; // 줄 높이
   letter-spacing: 0.03063rem; // 글자 간격
 
-  // 활성화된 버튼의 글자 색상
+  // 버튼의 글자 색상
   color: ${({ isActive }) => (isActive ? '#FFF' : '#5A5C62')};
 `;
