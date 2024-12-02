@@ -12,7 +12,8 @@ export default function StandardPoster({ id, poster }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [isLikeClick, setIsLikeClick] = useState(false)
-  const [isSaveClick, setIsSaveClick] = useState(location.pathname === '/mystory' ? true : false)
+  const [isSaveClick, setIsSaveClick] = useState(location.pathname === '/mystory'||'/mypage' ? true : false)
+
 
   const handlePoster = () => {
     if (location.pathname === '/story') {
