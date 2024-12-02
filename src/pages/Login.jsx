@@ -31,7 +31,7 @@ const MainLayout = styled.div`
 `;
 
 const ContentArea = styled.div`
-  height: 85vh; // 높이 고정
+  height: 100vh; // 높이 고정
   flex: 1; // 푸터를 제외한 공간 차지
   display: flex;
   flex-direction: row; // 좌우 배치
