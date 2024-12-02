@@ -8,10 +8,10 @@ import UPBUTTON from '../../assets/upbutton-story.svg';
 import CommentInput from './CommentInput';
 import Reply from './Reply';
 
-export default function CommentItem({ id, authorId, profile, userName, emoji, comment, reply, commentItem, setIsShowModal, setSaveCommentId, isClickDelete, setIsClickDelete }) {
+export default function CommentItem({ id, authorId, profile, userName, emoji, comment, reply, commentItem, setIsShowModal, setSaveCommentId, isClickDelete, setIsClickDelete, userId, userProfile, user }) {
     const [isOpenReply, setIsOpenReply] = useState(false);
     const [input, setInput] = useState('');
-    const [loginUser, setLoginUser] = useState(Users[0]); // 현재 로그인된 사용자의 정보를 가져온다
+    const [loginUser, setLoginUser] = useState(userId); // 현재 로그인된 사용자의 정보를 가져온다
     const [selectedFaceId, setSelectedFaceId] = useState(null);
     const [selectedFace, setSelectedFace] = useState(emoji);
     const [commentText, setCommentText] = useState(comment);
@@ -30,8 +30,8 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
             const lastIndex = replies.length > 0 ? replies[replies.length - 1].아이디 : 0; // replies가 빈 배열일 때 0으로 설정한다
             const newReply = {
                 "아이디": lastIndex + 1,
-                "작성자아이디": loginUser.id,
-                "프로필": loginUser.profile,
+                "작성자아이디": userId,
+                "프로필": userProfile,
                 "댓글": input
             };
             
@@ -68,7 +68,7 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
                     <CommentBox>
                         <img src={selectedFace} />
                         {commentText}
-                        {loginUser.id === authorId && (
+                        {userId === authorId && (
                             <ChangeBox>
                                 <div onClick={handleEdit}>수정</div> | <div onClick={() => handleDelete(id)}>삭제</div>
                             </ChangeBox>
@@ -94,7 +94,7 @@ export default function CommentItem({ id, authorId, profile, userName, emoji, co
                             authorId={data.작성자아이디}
                             profile={data.프로필}
                             replyText={data.댓글}
-                            userId={loginUser.id}
+                            userId={userId}
                             commentItem={commentItem}
                             setIsShowModal={setIsShowModal}
                             setSaveReplyId={setSaveReplyId}
