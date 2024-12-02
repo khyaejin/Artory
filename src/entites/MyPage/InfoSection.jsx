@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-// 설정 이미지
-import IMG from '../../assets/config.svg';
+import { Users } from '../../shared/dummy/UserDummy';// UserDummy 데이터 가져오기
+
+import IMG from '../../assets/config.svg'; // 설정 이미지
 
 export default function InfoSection() {
-  const nickName = "니모"; //닉네임
-  const oneLineIntroduction = "전시 보러다니는게 유일한 취미일지도"; // 한 줄 소개
-  const profileTags = "#작가전시위주 #취미 #프로N잡러"; // 나의 키워드
+
+  // Users에서 id=1 데이터 가져오기 -> 백엔드 로직 추가 이후 수정
+  const userData = Users.find((user) => user.id === 1);
+
+  const nickName = userData?.nickName || '닉네임 없음'; // 데이터가 없을 경우 
+  const oneLineIntroduction = userData?.oneLineIntroduction || '소개 없음';
+  const profileTags = userData?.profileTags || '키워드 없음'; 
 
   return (
     <MainLayout>
@@ -38,67 +43,68 @@ export default function InfoSection() {
 
 const MainLayout = styled.div`
   display: flex;
-  flex-direction: column; // 세로 방향으로 배치
+  flex-direction: column;
   width: 60%;
   height: 100%;
   padding-top: 7.5rem;
-  padding-right: 14rem; // 우측 여백 추가
-  box-sizing: border-box; // width, height를 padding 포함 계산하도록 설정
+  padding-right: 14rem;
+  box-sizing: border-box;
 `;
 
 const IconContainer = styled.div`
   display: flex;
-  justify-content: flex-end; // 오른쪽 정렬
-  margin: 0; // 모든 여백 제거
-  margin-bottom: 1rem; // 아래쪽 간격만 추가
-  cursor: pointer; // 커서 손가락 표시
+  justify-content: flex-end;
+  margin: 0;
+  margin-bottom: 1rem;
+  cursor: pointer;
 
+  // 이미지
   img {
     width: 2.23725rem;
     height: 2.3rem;
-    flex-shrink: 0; // 이미지 크기 유지
+    flex-shrink: 0;
   }
 `;
 
 const UserInfoContainer = styled.div`
-  margin-top : 1.2rem; // 설정 아이콘으로부터 마진 설정
+  margin-top: 1.2rem;
   display: flex;
-  flex-direction: column; // 항목 세로 정렬
-  gap: 15px; 
-  width: 100%; 
-  overflow: hidden; // 내용이 영역을 벗어나지 않도록 설정
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  overflow: hidden;
 `;
 
 const Row = styled.div`
   display: flex;
-  justify-content: space-between; // Label과 Content를 양 끝으로 정렬
-  align-items: center; // 세로방향 중앙 정렬
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Label = styled.div`
-  color: var(--4, #5A5C62);
+  color: var(--4, #5a5c62);
   font-family: Pretendard;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 133.072%; /* 1.99606rem */
+  line-height: 133.072%;
 `;
 
 const Content = styled.div`
-  color: #28292A;
+  color: #28292a;
   text-align: left;
   width: 21.5625rem;
   height: 1.5rem;
   flex-shrink: 0;
-  background-color: #F4F5F7;
-  padding: 10px 15px; // 내부 여백 추가
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); // 그림자 효과 추가
+  background-color: #f4f5f7;
+  padding: 10px 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
   // 폰트
   font-family: Pretendard;
   font-size: 1rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 133.072%; /* 1.33075rem */
+  line-height: 133.072%;
   letter-spacing: 0.035rem;
 `;
