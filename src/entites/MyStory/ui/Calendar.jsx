@@ -5,13 +5,26 @@ import 'moment/locale/ko';
 
 import PREV from '../../../assets/prevarrow.svg';
 import NEXT from '../../../assets/nextarrow.svg';
+import { useNavigate } from 'react-router-dom';
 
-export default function Calendar({ date, title }) {
+export default function Calendar({ date,data, title,exhibitionTitle,poster,viewingTime, satisfactionLevel,weather,companion,genre,keyword }) {
+    const navigate = useNavigate()
     const [currentMonth, setCurrentMonth] = useState(moment());
     const [markDates, setMarkDates] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
 
     useEffect(() => {
+      console.log(date)
+      console.log(data)
+      console.log(title)
+      console.log(exhibitionTitle)
+      console.log(poster)
+      console.log(viewingTime)
+      console.log(satisfactionLevel)
+      console.log(weather)
+      console.log(companion)
+      console.log(genre)
+      console.log(keyword)
         moment.locale('ko');
         if (date) {
             const formattedDate = moment(date).format('YYYY-MM-DD');
@@ -93,13 +106,13 @@ export default function Calendar({ date, title }) {
                                         <span>{currentDate.format('D')}</span>
                                     </DayText>
                                     {markDates.includes(currentDate.format('YYYY-MM-DD')) && isCurrentMonth && (
-                                        <Title>{strFormat(title)}</Title>
+                                        <Title>{strFormat(exhibitionTitle)}</Title>
                                     )}
                                     {selectedDate === currentDate.format('YYYY-MM-DD') &&
                                         markDates.includes(currentDate.format('YYYY-MM-DD')) &&
                                         isCurrentMonth && (
-                                            <Story>
-                                                <span>{title}</span>
+                                            <Story onClick={()=>navigate('/mystory/story')}>
+                                                <span>{exhibitionTitle}</span>
                                             </Story>
                                         )}
                                 </Day>

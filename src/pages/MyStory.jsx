@@ -6,6 +6,7 @@ import ProfileSection from '../entites/MyStory/ui/ProfileSection';
 import CalendarAndMemo from '../entites/MyStory/ui/CalendarAndMemo';
 import SavedExhibitionList from '../entites/MyStory/ui/SavedExhibitionList';
 import Modal from '../entites/MyStory/ui/Modal';
+import Footer from '../entites/Home/Footer';
 
 export default function MyStory() {
   const location = useLocation(); 
@@ -13,7 +14,16 @@ export default function MyStory() {
   
   // undefined일 때 그대로 undefined로 유지
   const date = location.state?.date;
+  const data = location.state?.data;
   const title = location.state?.title;
+  const exhibitionTitle = location.state?.exhibitionTitle;
+  const poster = location.state?.poster;
+  const viewingTime = location.state?.viewingTime;
+  const satisfactionLevel = location.state?.satisfactionLevel;
+  const weather = location.state?.weather;
+  const companion = location.state?.companion;
+  const genre = location.state?.genre;
+  const keyword = location.state?.keyword;
 
   useEffect(() => {
     console.log("받은 date:", date);
@@ -26,8 +36,18 @@ export default function MyStory() {
       <ProfileSection setIsShowModal={setIsShowModal} />
 
       {/* 메모와 캘린더 섹션 */}
-      <CalendarAndMemo date={date} title={title} />
-
+      <CalendarAndMemo 
+        date={date} 
+        data={data}
+        title={title} 
+        exhibitionTitle={exhibitionTitle}
+        poster={poster}
+        viewingTime={viewingTime} 
+        satisfactionLevel={satisfactionLevel}
+        weather={weather} 
+        companion={companion} 
+        genre={genre} 
+        keyword={keyword} />
       {/* 저장한 전시 리스트 */}
       <SavedExhibitionList />
 
@@ -35,6 +55,8 @@ export default function MyStory() {
       {isShowModal && (
         <Modal isShowModal={isShowModal} setIsShowModal={setIsShowModal} />
       )}
+
+      <Footer/>
 
     </MainLayout>
   );

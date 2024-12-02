@@ -4,16 +4,23 @@ import StoryTitle from './StoryTitle'
 import TodaysExhibition from './TodaysExhibition'
 import TextEditor from './TextEditor'
 
-export default function WritingSection({setDate}) {
+export default function WritingSection({setDate,data, setData,title,setTitle,setViewingTime,setSatisfactionLevel,setWeather,setCompanion,setGenre,setKeyword}) {
   return (
     <div>
       <Title>스토리 기록</Title>
 
-      <StoryTitle />
+      <StoryTitle title={title} setTitle={setTitle} />
 
-      <TodaysExhibition setDate={setDate} />
+      <TodaysExhibition 
+        setDate={setDate}
+        setViewingTime={setViewingTime}
+        setSatisfactionLevel={setSatisfactionLevel}
+        setWeather={setWeather}
+        setCompanion={setCompanion}
+        setGenre={setGenre}
+        />
 
-      <TextEditor />
+      <TextEditor data={data} setData={setData} setKeyword={setKeyword}/>
     </div>
   )
 }
