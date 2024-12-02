@@ -142,6 +142,7 @@ const SignBox = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.625rem;
+  cursor: pointer; 
 `;
 
 const StyledLink = styled(Link)`
