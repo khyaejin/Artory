@@ -58,7 +58,11 @@ export default function Modal({ isShowModal, setIsShowModal, setExhibition }) {
             ))}
           </Result>
           :
-          <StyledImg src={GLASSES} />
+          <Result>
+          {Exhibitions.map((e, i) => (
+            <PosterImg key={i} src={e.포스터} onClick={() => onClickPoster(e)} />
+          ))}
+        </Result>
       }
     </ReactModal>
   );
