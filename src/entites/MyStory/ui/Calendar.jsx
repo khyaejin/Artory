@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
 import 'moment/locale/ko';
+import { Stories } from '../../../shared/dummy/StoryDummy';
 
 import PREV from '../../../assets/prevarrow.svg';
 import NEXT from '../../../assets/nextarrow.svg';
@@ -12,6 +13,7 @@ export default function Calendar({ date,data, title,exhibitionTitle,poster,viewi
     const [currentMonth, setCurrentMonth] = useState(moment());
     const [markDates, setMarkDates] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
+    const [storyList, setStoryList] = useState(Stories);
 
     useEffect(() => {
       console.log(date)
@@ -25,12 +27,37 @@ export default function Calendar({ date,data, title,exhibitionTitle,poster,viewi
       console.log(companion)
       console.log(genre)
       console.log(keyword)
+      const userName = localStorage.getItem("nickname");
+      const userProfile = localStorage.getItem("profileImage");
         moment.locale('ko');
         if (date) {
             const formattedDate = moment(date).format('YYYY-MM-DD');
             setMarkDates([formattedDate]);
         }
+        const lastIndex = storyList.length;
+        const newStory = {
+          "아이디": lastIndex + 1,
+          "포스터": poster,
+          "전시이름": exhibitionTitle,
+          "작성자": userName,
+          "작성자프로필": userProfile,
+          "글제목": title,
+          "방문일": date,
+          "관람소요시간": viewingTime,
+          "만족도": satisfactionLevel,
+          "날씨": weather,
+          "동행인": companion,
+          "카테고리": genre,
+          "키워드": keyword,
+          "글내용": data,
+        }
+        setStoryList([...storyList, newStory]);
+
     }, [date]);
+
+    useEffect(() => {
+      console.log(storyList);
+    },[storyList])
 
     const startDay = currentMonth.clone().startOf('month').startOf('week');
     const endDay = currentMonth.clone().endOf('month').endOf('week');
@@ -111,7 +138,12 @@ export default function Calendar({ date,data, title,exhibitionTitle,poster,viewi
                                     {selectedDate === currentDate.format('YYYY-MM-DD') &&
                                         markDates.includes(currentDate.format('YYYY-MM-DD')) &&
                                         isCurrentMonth && (
-                                            <Story onClick={()=>navigate('/mystory/story')}>
+                                            <Story onClick={()=>
+                                            navigate(`/story/${storyList.length-1}`, 
+                                              {
+                                                state: { newStoryData: storyList[storyList.length-1] },
+                                              }
+                                            )}>
                                                 <span>{exhibitionTitle}</span>
                                             </Story>
                                         )}
