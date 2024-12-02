@@ -8,7 +8,7 @@ import Splash from '../../shared/components/Splash';
 const KAKAO_CLIENT_ID = process.env.REACT_APP_KAKAO_CLIENT_ID; // .env에서 가져오기
 const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI; // .env에서 가져오기
 
-const KakaoSocialLogin = () => {
+const KakaoSocialLogin = ({setIsLogin}) => {
   const navigate = useNavigate();
   const [showSplash, setShowSplash] = useState(false); // 스플래시 상태 추가
 
@@ -76,13 +76,14 @@ const KakaoSocialLogin = () => {
 
       // 4-2. 회원가입 여부에 따라 페이지 이동
       setTimeout(() => {
+        setIsLogin(true); // 로그인 상태 변경
         setShowSplash(false); // 4초 후 스플래시 종료
         if (isNewUser) {
           navigate('/onboarding1'); // 회원가입인 경우 : 온보딩 페이지로 이동
         } else {
           navigate('/exhibition'); // 로그인인 경우 : 바로 /exhibition으로 이동
         }
-      }, 4000); // 스플래시 화면 유지 시간 설정
+      }, 4000); // 4초동안 스플래시 화면 유지
     } catch (error) {
       console.error('사용자 정보 요청 실패:', error);
       setShowSplash(false); // 실패 시 스플래시 종료

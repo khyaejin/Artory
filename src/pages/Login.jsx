@@ -5,7 +5,7 @@ import MainBannerSection from '../entites/Home/MainBannerSection';
 import Footer from '../entites/Home/Footer';
 import LoginSection from '../entites/Login/LoginSection';
 
-export default function Home() {
+export default function Login({ setIsLogin }) {
   const navigate = useNavigate(); // 페이지 이동을 위한 훅
 
   const handleLoginClick = () => {
@@ -16,7 +16,7 @@ export default function Home() {
     <MainLayout>
       <ContentArea>
         <MainBannerSection onLoginClick={handleLoginClick} />
-        <LoginSection />
+        <LoginSection setIsLogin={setIsLogin} />
       </ContentArea>
       <Footer />
     </MainLayout>
