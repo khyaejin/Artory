@@ -26,7 +26,7 @@ function App() {
       {/* isLogin 상태를 Header에 전달 */}
       <Header isLogin={isLogin} setIsLogin={setIsLogin} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home isLogin={isLogin}/>} />
         <Route path="/splash" element={<Splash />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
