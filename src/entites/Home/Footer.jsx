@@ -15,7 +15,7 @@ export default Footer;
 
 const FooterContainer = styled.div`
   width: 100%;
-  height: 12rem; 
+  height: 12.5rem; 
   flex-shrink: 0;
   background: #f4f4f4; // 배경색
 
