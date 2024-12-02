@@ -9,7 +9,7 @@ export default function MainBannerSection({isLogin}) {
 
   const handleButtonClick = () => {
     if (isLogin) {
-      navigate('/exhibition'); // 로그인 상태일 경우 : /exhibition으로 이동
+      navigate('/mystory'); // 로그인 상태일 경우 : /mystory으로 이동
     } else {
       navigate('/login'); // 로그인 상태가 아니면 : /login으로 이동
     }
