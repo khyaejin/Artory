@@ -3,23 +3,24 @@ import styled from 'styled-components'
 import Carousel from '../entites/Story/Carousel';
 import Search from '../entites/Story/Search';
 import StandardPoster from '../shared/components/StandardPoster';
+import Footer from '../entites/Home/Footer';
 
 export default function Stroy() {
   const [searchStories, setSearchStories] = useState([]); // 검색하고자 하는 스토리를 저장하는 배열
   return (
     <StoryLayout>
-      <Search 
-      searchItems={searchStories} 
-      setSearchItems={setSearchStories}
-      type="story" />
+      <Search
+        searchItems={searchStories}
+        setSearchItems={setSearchStories}
+        type="story" />
       {searchStories.length > 0 ? (
         <>
-        <SearchResultLayout>
-          {searchStories.map((data) => (
-            <SearchPosterBox key={data.아이디}>
-              <StandardPoster id={data.아이디} poster={data.포스터} />
-            </SearchPosterBox>
-          ))}
+          <SearchResultLayout>
+            {searchStories.map((data) => (
+              <SearchPosterBox key={data.아이디}>
+                <StandardPoster id={data.아이디} poster={data.포스터} />
+              </SearchPosterBox>
+            ))}
           </SearchResultLayout>
         </>
       ) : (
@@ -31,6 +32,10 @@ export default function Stroy() {
         </>
       )
       }
+      <div style={{width:'100%', height: '30px'}}></div>
+      
+      {/* 푸터 */}
+      <Footer />
     </StoryLayout >
   )
 }

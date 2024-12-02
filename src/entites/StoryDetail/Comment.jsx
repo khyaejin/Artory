@@ -15,9 +15,18 @@ export default function Comment({ storyId, setIsShowModal, isClickDelete, setIsC
     const [selectedFaceId, setSelectedFaceId] = useState(null);
     const [selectedFace, setSelectedFace] = useState(null);
     const [input, setInput] = useState('');
-    const [loginUser, setLoginUser] = useState(Users[0]); // 현재 로그인된 사용자의 정보를 가져온다
+    const [loginUser, setLoginUser] = useState(null); // 현재 로그인된 사용자의 정보를 가져온다
+    const [loginUserProfile, setLoginUserProfile] = useState(null);
+    const [loginUserId, setLoginUserId] = useState(null);
     const [commentList, setCommentList] = useState(Stories[storyId]?.댓글 || []); 
     const [saveCommentId, setSaveCommentId] = useState(null);
+
+    useEffect(() => {
+        setLoginUser(localStorage.getItem("nickname"));
+        setLoginUserProfile(localStorage.getItem("profileImage"));
+        const parseUserUndefined = JSON.parse(localStorage.getItem("user_undefined"));
+        setLoginUserId(parseUserUndefined.id);
+    },[]);
 
     const setFace = (data) => {
         setSelectedFaceId(data.id);
@@ -30,9 +39,9 @@ export default function Comment({ storyId, setIsShowModal, isClickDelete, setIsC
             const lastIndex = commentList.length;
             const newComment = {
                 "아이디": lastIndex+1,
-                "작성자아이디": loginUser.id,
-                "프로필": loginUser.profile,
-                "작성자": loginUser.name,
+                "작성자아이디": loginUserId,
+                "프로필": loginUserProfile,
+                "작성자": loginUser,
                 "이모지": selectedFace,
                 "댓글": input,
             };
@@ -92,6 +101,9 @@ export default function Comment({ storyId, setIsShowModal, isClickDelete, setIsC
                                 setSaveCommentId={setSaveCommentId}
                                 isClickDelete={isClickDelete}
                                 setIsClickDelete={setIsClickDelete}
+                                userId={loginUserId}
+                                userProfile={loginUserProfile}
+                                user={loginUser}
                             />
                         ))
                     }
