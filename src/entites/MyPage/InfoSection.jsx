@@ -48,21 +48,21 @@ const MainLayout = styled.div`
   height: 100%;
   padding-top: 7.5rem;
   padding-right: 14rem;
-  box-sizing: border-box;
+  box-sizing: border-box; // width, height를 padding 포함 계산하도록 설정
 `;
 
 const IconContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end; // 오른쪽 정렬
   margin: 0;
-  margin-bottom: 1rem;
-  cursor: pointer;
+  margin-bottom: 1rem; // 아래쪽 간격만 추가
+  cursor: pointer; // 커서 손가락 표시
 
   // 이미지
   img {
     width: 2.23725rem;
     height: 2.3rem;
-    flex-shrink: 0;
+    flex-shrink: 0; // 이미지 크기 유지
   }
 `;
 
@@ -72,12 +72,12 @@ const UserInfoContainer = styled.div`
   flex-direction: column;
   gap: 15px;
   width: 100%;
-  overflow: hidden;
+  overflow: hidden; // 내용이 영역을 벗어나지 않도록 설정
 `;
 
 const Row = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; // Label과 Content를 양 끝으로 정렬
   align-items: center;
 `;
 
@@ -97,8 +97,8 @@ const Content = styled.div`
   height: 1.5rem;
   flex-shrink: 0;
   background-color: #f4f5f7;
-  padding: 10px 15px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 10px 15px; // 내부 여백 추가
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); // 그림자 효과 추가
 
   // 폰트
   font-family: Pretendard;

@@ -12,8 +12,8 @@ export default function ProfileSection() {
         <MainLayout>
             <ProfileContainer>
                 <Title>
-                {userName}님의 <br />
-                마이페이지
+                    {userName}님의 <br />
+                    마이페이지
                 </Title>
                 <ProfileImg src={profileImg} alt="프로필 이미지" />
             </ProfileContainer>
