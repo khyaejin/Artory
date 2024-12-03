@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Carousel from '../entites/Story/Carousel';
 import Search from '../entites/Story/Search';
 import Cartegory from '../entites/Exibition/Category';
-import Footer from '../entites/Home/Footer';
+import Footer from '../shared/components/Footer';
 
 export default function Exhibition() {
   const navigate = useNavigate();

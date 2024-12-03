@@ -5,7 +5,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import './PosterSection.css'; // 스와이퍼 색상 커스텀한 css 파일 임포트 (파랑->흰)
+import '../../css/posterSection.css'; // 스와이퍼 색상 커스텀한 css 파일 임포트 (파랑->흰)
 
 import posterImg from '../../assets/poster/0.svg';
 import posterImg1 from '../../assets/poster/1.svg';
@@ -31,7 +31,7 @@ export default function PosterSection() {
         spaceBetween={30} // 슬라이드 간격
         centeredSlides={true} // 슬라이드가 중앙에 위치
         autoplay={{
-          delay: 4000, // 4초마다 전환
+          delay: 6000, // 6초마다 전환
           disableOnInteraction: false, // 상호작용해도 전환 유지
         }}
         pagination={{

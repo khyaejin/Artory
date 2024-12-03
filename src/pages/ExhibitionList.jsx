@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
 import StandardPoster from '../shared/components/StandardPoster';
 import { Exhibitions } from '../shared/dummy/ExhibitionDummy';
-import Footer from '../entites/Home/Footer';
+import Footer from '../shared/components/Footer';
 import LeftArrow from '../assets/exhibition/leftPageArrow.svg';
 import RightArrow from '../assets/exhibition/rightPageArrow.svg';
 

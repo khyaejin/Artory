@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Carousel from '../entites/Story/Carousel';
 import Search from '../entites/Story/Search';
 import StandardPoster from '../shared/components/StandardPoster';
-import Footer from '../entites/Home/Footer';
+import Footer from '../shared/components/Footer';
 
 export default function Stroy() {
   const [searchStories, setSearchStories] = useState([]); // 검색하고자 하는 스토리를 저장하는 배열
