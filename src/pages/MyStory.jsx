@@ -6,7 +6,7 @@ import ProfileSection from '../entites/MyStory/ui/ProfileSection';
 import CalendarAndMemo from '../entites/MyStory/ui/CalendarAndMemo';
 import SavedExhibitionList from '../entites/MyStory/ui/SavedExhibitionList';
 import Modal from '../entites/MyStory/ui/Modal';
-import Footer from '../entites/Home/Footer';
+import Footer from '../shared/components/Footer';
 
 export default function MyStory() {
   const location = useLocation(); 

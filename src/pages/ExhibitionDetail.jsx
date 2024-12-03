@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Exhibitions } from '../shared/dummy/ExhibitionDummy';
 import ExhibitionInfo from '../entites/ExhibitionDetail/ExhibitionInfo';
 import ExhibtionMap from '../entites/ExhibitionDetail/ExhibitionMap';
-import Footer from '../entites/Home/Footer';
+import Footer from '../shared/components/Footer';
 
 export default function ExhibitionDetail() {
   const { id } = useParams(); // useParmas로 URL에서 id 가져오기

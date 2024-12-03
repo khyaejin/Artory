@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import UserInfoSection from '../entites/MyPage/UserInfoSection'; // 회원 정보 섹션 컴포넌트
 import Carousel from '../entites/MyPage/Carousel'; // Carousel 컴포넌트
+import Footer from '../shared/components/Footer';
 
 export default function MyPage() {
   // 버튼 4개 중 어떤 게 눌렸는지 감지하는 상태 변수, 함수
@@ -61,6 +62,8 @@ export default function MyPage() {
 
       {/* 선택된 버튼에 따라 적절한 데이터로 Carousel 렌더링 */}
       <Carousel {...getCarouselProps(isButtonClicked)} />
+
+      <Footer/>
     </MainLayout>
   );
 }

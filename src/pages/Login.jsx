@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom'; // useNavigate 사용
 import MainBannerSection from '../entites/Home/MainBannerSection';
-import Footer from '../entites/Home/Footer';
+import Footer from '../shared/components/Footer';
 import LoginSection from '../entites/Login/LoginSection';
 
 export default function Login({ setIsLogin }) {

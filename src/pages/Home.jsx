@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import MainBannerSection from '../entites/Home/MainBannerSection';
 import PosterSection from '../entites/Home/PosterSection';
-import Footer from '../entites/Home/Footer';
+import Footer from '../shared/components/Footer';
 
 export default function Home({isLogin}) {
   // const [isClicked, setIsClicked] = useState(false);

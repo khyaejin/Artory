@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import Search from '../entites/Story/Search';
 import StandardPoster from '../shared/components/StandardPoster';
-import Footer from '../entites/Home/Footer';
+import Footer from '../shared/components/Footer';
 import LeftArrow from '../assets/exhibition/leftPageArrow.svg';
 import RightArrow from '../assets/exhibition/rightPageArrow.svg'
 
