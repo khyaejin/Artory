@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import SliderImg from '../assets/slider/slider3.svg';
 import Splash from '../shared/components/Splash'; // 스플래시 컴포넌트 import
@@ -24,6 +24,17 @@ export default function Onboarding3() {
   const [showSplash, setShowSplash] = useState(false); // 스플래시 화면 상태 관리
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 표시 상태 관리
   const navigate = useNavigate(); // 라우팅
+
+  // 로컬 스토리지에서 데이터 불러오기
+  useEffect(()=>{
+    const storedTopics=JSON.parse(localStorage.getItem('selectedTopics')) || [];
+      setSelectedTopics(storedTopics);
+  }, []);
+
+  // 선택한 항목이 변경되 때 로컬 스토리지에 저장
+  useEffect(()=> {
+    localStorage.setItem('selectedTopics', JSON.stringify(selectedTopics));
+  }, [selectedTopics]);
 
   // 주제 클릭 핸들러
   const handleTopicClick = (topic) => {
