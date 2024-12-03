@@ -19,20 +19,56 @@ export default function Carousel({ title, type }) {
     const threeMonthsAgo = new Date();
     threeMonthsAgo.setMonth(now.getMonth() - 3);
 
+    const selectedCategories = JSON.parse(localStorage.getItem('userSelectedTopics')) || [];
+
     // 인기 전시 : 좋아요 순으로 정렬 6개 보여주기
     const popularExhibitions = [...Exhibitions].sort((a, b) => b.좋아요 - a.좋아요).slice(0, 6);
     // 최근 전시 : 시작일 기준 내림차순으로 정렬하고 6개만 보여주기
     const recentExhibitions = [...Exhibitions].sort((a, b) => new Date(b.기간.split('~')[0]) - new Date(a.기간.split('~')[0])).slice(0, 6);
-    // 추천 전시 : 랜덤 정렬 후 6개 보여주기
-    const recommendedExhibitions = [...Exhibitions].sort(() => 0.5 - Math.random()).slice(0, 6);
-    // 최근 추천 전시 : 시작일이 현재 기준 3달 전부터 오늘까지의 전시 중 랜덤으로 6개 선택
-    const recentRecommendedExhibitions = [...Exhibitions]
-        .filter(exhibition => {
-            const startDate = new Date(exhibition.기간.split('~')[0]);
+    // 추천 전시 : 로컬 스토리지에서 선택된 카테고리를 가져와 추천 전시를 6개 필터링
+    const recommendedExhibitions = (exhibitions, selectedCategories, count = 6) => {
+        if (!selectedCategories || selectedCategories.length === 0) {
+            // 선택된 카테고리가 없으면 랜덤으로 추천
+            return exhibitions
+                .sort(() => Math.random() - 0.5)
+                .slice(0, count);
+        }
+    
+        // 선택된 카테고리가 있으면 해당 카테고리에 맞는 전시 필터링
+        return exhibitions
+            .filter((exhibition) =>
+                exhibition.카테고리.some((category) => selectedCategories.includes(category))
+            )
+            .sort(() => Math.random() - 0.5) // 랜덤 정렬
+            .slice(0, count); // 상위 count개 선택
+    };
+  
+    // 최근 추천 전시 : 로컬 스토리지의 카테고리 및 기간 기준
+    const recentRecommendedExhibitions = (exhibitions, selectedCategories, count = 6) => {
+        const now = new Date();
+        const threeMonthsAgo = new Date();
+        threeMonthsAgo.setMonth(now.getMonth() - 3);
+  
+        const filteredExhibitions = exhibitions.filter((exhibition) => {
+            const startDate = new Date(exhibition.기간.split('~')[0].trim());
             return startDate >= threeMonthsAgo && startDate <= now; // 3달 전부터 오늘까지 시작한 전시
-        })
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 6);
+        });
+  
+        if (!selectedCategories || selectedCategories.length === 0) {
+            // 선택된 카테고리가 없으면 최근 전시 중 랜덤 선택
+            return filteredExhibitions
+            .sort(() => Math.random() - 0.5)
+            .slice(0, count);
+        }   
+  
+        // 선택된 카테고리가 있으면 필터링 후 랜덤 선택
+        return filteredExhibitions
+            .filter((exhibition) =>
+                exhibition.카테고리.some((category) => selectedCategories.includes(category))
+            )
+            .sort(() => Math.random() - 0.5) // 랜덤 정렬
+            .slice(0, count);
+    };
     
     // 임박한 전시 : 종료일이 가장 임박한 순서로 정렬 후 6개 보여주기
     const upcomingExhibitions = [...Exhibitions]
@@ -49,9 +85,9 @@ export default function Carousel({ title, type }) {
             case '최근 전시':
                 return recentExhibitions;
             case '추천 전시':
-                return recommendedExhibitions;
+                return recommendedExhibitions([...Exhibitions], selectedCategories);
             case '최근 추천 전시':
-                return recentRecommendedExhibitions;
+                return recentRecommendedExhibitions([...Exhibitions], selectedCategories);
             case '임박한 전시':
                 return upcomingExhibitions;
             default:

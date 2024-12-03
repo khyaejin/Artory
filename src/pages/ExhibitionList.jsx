@@ -41,8 +41,17 @@ export default function ExhibitionList() {
 
   useEffect(() => {
     let sortedList = [];
+    const selectedCategories = JSON.parse(localStorage.getItem('selectedTopics'));
     if (listType === 'recommend') {
-      sortedList = [...Exhibitions].sort(() => Math.random() - 0.5);
+      if (selectedCategories && selectedCategories.length > 0) {
+        // 선택된 카테고리가 있을 경우 해당 카테고리 전시 필터링
+        sortedList = Exhibitions.filter((exhibition) =>
+          exhibition.카테고리.some((category) => selectedCategories.includes(category))
+        );
+      } else {
+        // 선택된 카테고리가 없을 경우 모든 전시 불러오기
+        sortedList = [...Exhibitions];
+      }
     } else if (listType === 'popular') {
       sortedList = [...Exhibitions].sort((a, b) => b.좋아요 - a.좋아요);
     } else if (listType === 'recent') {
