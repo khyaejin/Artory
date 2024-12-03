@@ -12,8 +12,8 @@ export default function StandardPoster({ id, poster }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [isLikeClick, setIsLikeClick] = useState(false)
-  const [isSaveClick, setIsSaveClick] = useState(location.pathname === '/mystory'||'/mypage' ? true : false)
-
+  const [isSaveClick, setIsSaveClick] = useState(location.pathname === "/mystory" || location.pathname === "/mypage" ? true : false)
+  // mystory, mypage에서는 저장한 story들을 보는 것이므로 true로 설정
 
   const handlePoster = () => {
     if (location.pathname === '/story') {

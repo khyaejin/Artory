@@ -25,6 +25,7 @@ export default function Carousel({ title, type }) {
     const popularExhibitions = [...Exhibitions].sort((a, b) => b.좋아요 - a.좋아요).slice(0, 6);
     // 최근 전시 : 시작일 기준 내림차순으로 정렬하고 6개만 보여주기
     const recentExhibitions = [...Exhibitions].sort((a, b) => new Date(b.기간.split('~')[0]) - new Date(a.기간.split('~')[0])).slice(0, 6);
+    
     // 추천 전시 : 로컬 스토리지에서 선택된 카테고리를 가져와 추천 전시를 6개 필터링
     const recommendedExhibitions = (exhibitions, selectedCategories, count = 6) => {
         if (!selectedCategories || selectedCategories.length === 0) {
