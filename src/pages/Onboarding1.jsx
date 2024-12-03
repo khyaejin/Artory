@@ -13,19 +13,23 @@ export default function Onboarding1() {
   // 사용자 이미지를 업로드할 때 사용
   const fileInputRef = useRef(null);
 
-  // useEffect로 로컬스토리지에서 데이터 불러오기
   useEffect(() => {
-    const storedNickname = localStorage.getItem('nickname'); // 저장된 닉네임 가져오기
-    const storedProfileImage = localStorage.getItem('profileImage'); // 저장된 프로필 이미지 가져오기
-
+    // 로컬스토리지에서 데이터 불러오기
+    const storedNickname = localStorage.getItem('nickname');
+    const storedProfileImage = localStorage.getItem('profileImage');
+  
+    // 닉네임이 존재하면 상태 업데이트
     if (storedNickname) {
-      setNickname(storedNickname); // 닉네임 상태 설정
-      setLength(storedNickname.length); // 글자수 상태 설정
+      setNickname(storedNickname);
+      setLength(storedNickname.length); // 글자 수 상태도 동기화
     }
-    if (storedProfileImage) {
-      setImageSrc(storedProfileImage); // 프로필 이미지 상태 설정
+  
+    // 프로필 이미지가 유효하면 상태 업데이트
+    if (storedProfileImage && storedProfileImage !== 'undefined') {
+      setImageSrc(storedProfileImage);
     }
-  }, []); //의존성 배열 빈배열으로 설정
+  }, []); // 빈 배열로 의존성 설정
+  
 
   // 프로필 이미지 클릭 시 -> 파일 업로드 창 열기
   const handleImageClick = () => {
@@ -151,6 +155,6 @@ const StyledButton = styled.button`
   color: ${({ disabled }) => (disabled ? '#9C9C9C' : 'white')};
 
   &:hover {
-    background: ${({ disabled }) => (disabled ? 'var(--6, #D1D3D9)' : '#333')};
+    background: ♥{({ disabled }) => (disabled ? 'var(--6, #D1D3D9)' : '#333')};
   }
 `;
