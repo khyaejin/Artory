@@ -35,7 +35,7 @@ _*저희 Artory를 실행해보기 위해서는 [6. 프로젝트 시작](#6-시�
 | 김혜진 | 이주연 | 임혜정 | 정예빈 |
 |:---:|:---:|:---:|:---:|
 | <img src="https://github.com/khyaejin.png" width="100"> | <img src="https://github.com/Juye0nLee.png" width="100"> | <img src="https://github.com/frombunny.png" width="100"> | <img src="https://github.com/benniejung.png" width="100"> | 
-| [@kmgnw](https://github.com/khyaejin) | [@jungeun-e](https://github.com/Juye0nLee) | [@khyaejin](https://github.com/frombunny) | [@eekfkt](https://github.com/benniejung) |
+| [@kmgnw](https://github.com/khyaejin) | [@Juye0nLee](https://github.com/Juye0nLee) | [@khyaejin](https://github.com/frombunny) | [@benniejung](https://github.com/benniejung) |
 </br>
 
 ## 📚 4. 기술 스택 📚
