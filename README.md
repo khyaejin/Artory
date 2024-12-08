@@ -3,7 +3,7 @@
   <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=100&section=header&text=Artory&fontSize=40&animation=fadeIn&fontColor=random" alt="Artory Header"/>
 </div>
 
-_*저희 Artory를 실행해보기 위해서는 [6. 프로젝트 시작](#6-시작하기) 부분으로 가주세요._
+_*저희 Artory를 실행해보기 위해서는 [6. 프로젝트 시작]부분으로 가주세요._
 
 </br>
 
