@@ -1,7 +1,5 @@
 ## 웹프레임워크1 나야채소팀 : Artory
-<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=100&section=header&text=Artory&fontSize=40&animation=fadeIn&fontColor=random" alt="Artory Header"/>
-</div>
+![시작페이지](https://github.com/user-attachments/assets/300aa293-6045-40e6-a0d4-088bb14362d8)
 
 _*저희 Artory를 실행해보기 위해서는 [6. 프로젝트 시작]부분으로 가주세요._
 
